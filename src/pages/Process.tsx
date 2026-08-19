@@ -1,196 +1,606 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Seo from '@/components/Seo'
-import CTASection from '@/components/CTASection'
-import { processSteps } from '@/data/process'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import '../styles/process.css'
+import {
+  Search,
+  Target,
+  PenTool,
+  Code2,
+  CircleCheck,
+  Rocket,
+  BarChart3,
+  ArrowRight,
+  Eye,
+  Cuboid,
+  ShieldCheck,
+  TrendingUp,
+} from 'lucide-react'
 
-function Icon({ name }: { name?: string }) {
-  switch (name) {
-    case 'search':
-      return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.5" />
-        </svg>
-      )
-    case 'target':
-      return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.4" />
-          <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.4" />
-          <path d="M12 2v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </svg>
-      )
-    case 'design':
-      return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M3 21l3-3 7-7 3-3 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      )
-    case 'code':
-      return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M8.5 16.5L3 12l5.5-4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M15.5 7.5L21 12l-5.5 4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      )
-    case 'check':
-      return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      )
-    case 'rocket':
-      return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M14 2s4 0 6 2-2 6-2 6l-6 6s-4 0-6-2 2-6 2-6l6-6z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      )
-    case 'growth':
-      return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M3 3v18h18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M7 13l4-4 4 6 4-8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      )
-    default:
-      return null
-  }
+const processSteps = [
+  {
+    number: '01',
+    title: 'Discover',
+    subtitle: 'RESEARCH & INSIGHT',
+    description:
+      'Understand the business, users, market and technical constraints before we build.',
+    outputs: ['Research', 'Requirements', 'User Flows'],
+    icon: Search,
+  },
+  {
+    number: '02',
+    title: 'Define',
+    subtitle: 'STRATEGY & PLANNING',
+    description:
+      'Turn the problem into a clear product strategy, scope and execution roadmap.',
+    outputs: ['Product Scope', 'Roadmap', 'Architecture'],
+    icon: Target,
+  },
+  {
+    number: '03',
+    title: 'Design',
+    subtitle: 'EXPERIENCE & INTERFACE',
+    description:
+      'Create intuitive user experiences and interfaces designed around real user behavior.',
+    outputs: ['Wireframes', 'UI System', 'Prototype'],
+    icon: PenTool,
+  },
+  {
+    number: '04',
+    title: 'Develop',
+    subtitle: 'ENGINEERING & BUILD',
+    description:
+      'Build scalable, secure and production-ready software using the right technology stack.',
+    outputs: ['Frontend', 'Backend', 'APIs', 'Integrations'],
+    icon: Code2,
+  },
+  {
+    number: '05',
+    title: 'Test',
+    subtitle: 'QUALITY & ASSURANCE',
+    description:
+      'Validate functionality, performance, security and reliability before release.',
+    outputs: ['Functional', 'API', 'Automation', 'Performance'],
+    icon: CircleCheck,
+  },
+  {
+    number: '06',
+    title: 'Launch',
+    subtitle: 'DEPLOY & DELIVER',
+    description:
+      'Move from validated product to production with controlled deployment and support.',
+    outputs: ['Deployment', 'Monitoring', 'Release'],
+    icon: Rocket,
+  },
+  {
+    number: '07',
+    title: 'Scale',
+    subtitle: 'GROWTH & OPTIMIZATION',
+    description:
+      'Improve, measure and evolve the product as users, data and business grow.',
+    outputs: ['Analytics', 'Optimization', 'New Features'],
+    icon: BarChart3,
+  },
+]
+
+function ProcessHeroVisual() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+
+    if (!ctx) return
+
+    let animationFrame = 0
+    let width = 0
+    let height = 0
+    let running = true
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect()
+      const dpr = window.devicePixelRatio || 1
+
+      width = Math.max(1, rect.width)
+      height = Math.max(1, rect.height)
+
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    const draw = (time: number) => {
+      if (!running) return
+
+      const t = reducedMotion ? 0 : time * 0.0007
+
+      ctx.clearRect(0, 0, width, height)
+
+      const rows = width < 700 ? 13 : 19
+      const cols = width < 700 ? 18 : 30
+
+      const left = width * 0.38
+      const right = width * 1.03
+      const horizon = height * 0.18
+      const bottom = height * 0.95
+
+      const points: { x: number; y: number }[][] = []
+
+      for (let row = 0; row < rows; row += 1) {
+        const depth = row / (rows - 1)
+
+        const y =
+          horizon +
+          depth * (bottom - horizon) +
+          Math.sin(depth * 5 + t * 2) * 5
+
+        const rowPoints: { x: number; y: number }[] = []
+
+        for (let col = 0; col < cols; col += 1) {
+          const xProgress = col / (cols - 1)
+
+          const x = left + xProgress * (right - left)
+
+          const wave =
+            Math.sin(xProgress * Math.PI * 2.2 + t * 2.2) *
+              65 *
+              (1 - depth * 0.65) +
+            Math.sin(xProgress * Math.PI * 4 + t * 1.3) *
+              18 *
+              (1 - depth)
+
+          const yWave =
+            Math.sin(xProgress * Math.PI * 2.4 + t * 2) *
+            30 *
+            (1 - depth)
+
+          rowPoints.push({
+            x: x + wave,
+            y: y + yWave,
+          })
+        }
+
+        points.push(rowPoints)
+      }
+
+      ctx.lineCap = 'round'
+      ctx.lineJoin = 'round'
+
+      // Horizontal wave lines
+      points.forEach((row, rowIndex) => {
+        const depth = rowIndex / Math.max(rows - 1, 1)
+
+        ctx.beginPath()
+
+        row.forEach((point, index) => {
+          if (index === 0) {
+            ctx.moveTo(point.x, point.y)
+          } else {
+            const previous = row[index - 1]
+
+            const midX = (previous.x + point.x) / 2
+            const midY = (previous.y + point.y) / 2
+
+            ctx.quadraticCurveTo(
+              previous.x,
+              previous.y,
+              midX,
+              midY,
+            )
+          }
+        })
+
+        ctx.strokeStyle = `rgba(183,255,0,${0.18 - depth * 0.1})`
+        ctx.lineWidth = 1
+        ctx.stroke()
+      })
+
+      // Vertical lines
+      for (let col = 0; col < cols; col += 1) {
+        ctx.beginPath()
+
+        points.forEach((row, rowIndex) => {
+          const point = row[col]
+
+          if (rowIndex === 0) {
+            ctx.moveTo(point.x, point.y)
+          } else {
+            const previous = points[rowIndex - 1][col]
+
+            const midX = (previous.x + point.x) / 2
+            const midY = (previous.y + point.y) / 2
+
+            ctx.quadraticCurveTo(
+              previous.x,
+              previous.y,
+              midX,
+              midY,
+            )
+          }
+        })
+
+        ctx.strokeStyle = `rgba(183,255,0,${0.11 - (col / cols) * 0.04})`
+        ctx.lineWidth = 0.8
+        ctx.stroke()
+      }
+
+      // Glowing points
+      const glowingPoints = [
+        [0.28, 0.24],
+        [0.52, 0.18],
+        [0.68, 0.32],
+        [0.82, 0.12],
+        [0.92, 0.45],
+      ]
+
+      glowingPoints.forEach(([x, y], index) => {
+        const px = width * x
+        const py =
+          height * y +
+          Math.sin(t * 2 + index) * 5
+
+        const pulse =
+          2.5 + Math.sin(t * 4 + index) * 1.2
+
+        ctx.save()
+
+        ctx.fillStyle = 'rgba(183,255,0,0.95)'
+        ctx.shadowColor = 'rgba(183,255,0,0.8)'
+        ctx.shadowBlur = 16
+
+        ctx.beginPath()
+        ctx.arc(px, py, pulse, 0, Math.PI * 2)
+        ctx.fill()
+
+        ctx.restore()
+      })
+
+      if (!reducedMotion) {
+        animationFrame = requestAnimationFrame(draw)
+      }
+    }
+
+    resize()
+    draw(performance.now())
+
+    window.addEventListener('resize', resize)
+
+    return () => {
+      running = false
+      cancelAnimationFrame(animationFrame)
+      window.removeEventListener('resize', resize)
+    }
+  }, [reducedMotion])
+
+  return (
+    <div className="process-hero-visual" aria-hidden="true">
+      <canvas ref={canvasRef} />
+      <div className="process-glow process-glow-one" />
+      <div className="process-glow process-glow-two" />
+    </div>
+  )
+}
+
+function StepIcon({
+  Icon,
+}: {
+  Icon: typeof Search
+}) {
+  return (
+    <div className="process-step-icon">
+      <Icon size={22} strokeWidth={1.5} />
+    </div>
+  )
 }
 
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null)
+
   useScrollReveals(containerRef)
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="process-page">
       <Seo
         title="Our Process | Software Garage"
-        description="From discovery to scale — the seven-stage process Software Garage follows to take a product from idea to impact."
+        description="A structured product engineering process built to reduce uncertainty, move faster and ship with confidence."
       />
 
-      <section className="page-hero process-hero">
-        <div className="container">
-          <div className="eyebrow">OUR PROCESS</div>
-          <h1>
-            FROM IDEA<br />TO <span className="title-highlight">IMPACT.</span>
-          </h1>
-          <p className="process-lead">
-            A structured product engineering process built to reduce uncertainty, move faster, and ship with confidence.
-          </p>
-
-          <div className="process-principles">
-            <span>STRATEGIC</span>
-            <span className="dot">•</span>
-            <span>TRANSPARENT</span>
-            <span className="dot">•</span>
-            <span>RESULTS-DRIVEN</span>
-          </div>
+      {/* HERO */}
+      <section className="process-hero">
+        <div className="process-particles" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
         </div>
-        <div className="process-hero-wireframe" aria-hidden />
-      </section>
 
-      <section className="tight">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <div className="eyebrow">HOW WE TURN IDEAS INTO PRODUCTS</div>
-              <p className="section-intro">From the first conversation to production and beyond, every project moves through a clear, measurable process.</p>
+        <div className="container process-hero-container">
+          <div className="process-hero-content">
+            <div className="eyebrow process-reveal">
+              <span className="eyebrow-dot" />
+              OUR PROCESS
+            </div>
+
+            <h1 className="process-title">
+              <span className="process-title-line">
+                FROM IDEA
+              </span>
+
+              <span className="process-title-line">
+                TO <span className="text-lime">IMPACT.</span>
+              </span>
+            </h1>
+
+            <p className="process-hero-description">
+              A structured product engineering process built to
+              reduce uncertainty, move faster, and ship with
+              confidence.
+            </p>
+
+            <div className="process-hero-keywords">
+              <span>STRATEGIC</span>
+              <i />
+              <span>TRANSPARENT</span>
+              <i />
+              <span>RESULTS-DRIVEN</span>
             </div>
           </div>
 
-          <div className="process-timeline">
-            <div className="timeline-track" aria-hidden />
-            {processSteps.map((step) => (
-              <div className="process-row" key={step.step}>
-                <div className="row-number">{step.step}</div>
-                <div className="row-node">
-                  <div className="icon-wrap">
-                    <Icon name={step.icon} />
-                  </div>
-                </div>
-                <div className="row-content">
-                  <div className="row-title">
-                    <h3>{step.title}</h3>
-                    <div className="row-category">{step.category}</div>
-                  </div>
-                </div>
+          <ProcessHeroVisual />
+        </div>
+      </section>
 
-                <div className="row-desc-col">
-                  <p className="row-desc-right">{step.description}</p>
-                  <div className="outputs-right">
-                    <div className="outputs-label">OUTPUTS</div>
-                    <div className="outputs-list-right">
-                      {step.outputs.map((o, idx) => (
-                        <span className="outputs-item" key={o}>
-                          <span className="dot-small" />
-                          <span className="outputs-text">{o}</span>
+      {/* INTRO */}
+      <section className="process-intro section-space">
+        <div className="container">
+          <div className="process-section-heading reveal">
+            <div className="eyebrow">
+              <span className="eyebrow-dot" />
+              HOW WE TURN IDEAS INTO PRODUCTS
+            </div>
+
+            <p>
+              From the first conversation to production and
+              beyond, every project moves through a clear,
+              measurable process.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS STEPS */}
+      <section className="process-steps-section">
+        <div className="container">
+          <div className="process-steps">
+            {processSteps.map((step, index) => {
+              const Icon = step.icon
+
+              return (
+                <article
+                  className="process-step reveal"
+                  key={step.number}
+                  style={{
+                    '--step-index': index,
+                  } as React.CSSProperties}
+                >
+                  <div className="process-step-number">
+                    {step.number}
+                  </div>
+
+                  <div className="process-step-timeline">
+                    <div className="process-step-dot" />
+
+                    {index !== processSteps.length - 1 && (
+                      <div className="process-step-line">
+                        <span />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="process-step-main">
+                    <StepIcon Icon={Icon} />
+
+                    <div className="process-step-title">
+                      <h2>{step.title}</h2>
+
+                      <span>{step.subtitle}</span>
+                    </div>
+                  </div>
+
+                  <div className="process-step-description">
+                    {step.description}
+                  </div>
+
+                  <div className="process-step-output">
+                    <span className="process-output-label">
+                      OUTPUTS
+                    </span>
+
+                    <div className="process-output-list">
+                      {step.outputs.map((output) => (
+                        <span key={output}>
+                          {output}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="row-action">
-                    <span className="row-arrow">→</span>
+
+                  <div className="process-step-arrow">
+                    <ArrowRight size={22} />
                   </div>
-                </div>
-              </div>
-            ))}
+                </article>
+              )
+            })}
           </div>
-
-          <div className="process-flow">
-            <div className="flow-track">
-              {processSteps.map((s, i) => (
-                <div className="flow-step" key={s.step}>
-                  <div className="flow-icon"><Icon name={s.icon} /></div>
-                  <div className="flow-label">{s.title.toUpperCase()}</div>
-                  {i < processSteps.length - 1 && <div className="flow-arrow">→</div>}
-                </div>
-              ))}
-            </div>
-            <div className="flow-note">One team. One process. One accountable path from concept to production.</div>
-          </div>
-
-          <div className="what-you-get">
-            <div className="eyebrow">WHAT YOU GET</div>
-            <div className="wyg-grid">
-              <div className="wyg-item">
-                <div className="wyg-icon">🎯</div>
-                <h4>CLEAR DIRECTION</h4>
-                <p>Know what we're building, why we're building it and what comes next.</p>
-              </div>
-              <div className="wyg-item">
-                <div className="wyg-icon">👁️</div>
-                <h4>VISIBLE PROGRESS</h4>
-                <p>Regular milestones, transparent communication and measurable deliverables.</p>
-              </div>
-              <div className="wyg-item">
-                <div className="wyg-icon">▢</div>
-                <h4>PRODUCTION-READY SOFTWARE</h4>
-                <p>Not just prototypes — software designed to perform in the real world.</p>
-              </div>
-              <div className="wyg-item">
-                <div className="wyg-icon">✔️</div>
-                <h4>QUALITY BUILT IN</h4>
-                <p>Testing and validation are part of the process, not an afterthought.</p>
-              </div>
-              <div className="wyg-item">
-                <div className="wyg-icon">📈</div>
-                <h4>LONG-TERM THINKING</h4>
-                <p>Architecture and decisions made with future growth in mind.</p>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 
-      <CTASection
-        eyebrow="YOUR IDEA HAS A NEXT STEP."
-        title={"READY TO GET STARTED?"}
-        description={
-          "Whether you're starting from a concept,\\nrebuilding an existing product, or scaling something already in production — we'll help you figure out what comes next."
-        }
-      />
+      {/* PROCESS FLOW */}
+      <section className="process-flow-section reveal">
+        <div className="container">
+          <div className="process-flow">
+            {processSteps.map((step, index) => {
+              const Icon = step.icon
+
+              return (
+                <div className="process-flow-item" key={step.number}>
+                  <div className="process-flow-icon">
+                    <Icon size={22} strokeWidth={1.5} />
+                  </div>
+
+                  <span>{step.title.toUpperCase()}</span>
+
+                  {index !== processSteps.length - 1 && (
+                    <div className="process-flow-arrow">
+                      →
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+
+            <div className="process-flow-caption">
+              One team.
+              <br />
+              One process.
+              <br />
+              One accountable path
+              <br />
+              from concept to production.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT YOU GET */}
+      <section className="process-benefits section-space">
+        <div className="container">
+          <div className="eyebrow reveal">
+            <span className="eyebrow-dot" />
+            WHAT YOU GET
+          </div>
+
+          <div className="process-benefits-grid">
+            <div className="process-benefit reveal">
+              <div className="process-benefit-icon">
+                <Target size={25} />
+              </div>
+
+              <h3>CLEAR DIRECTION</h3>
+
+              <p>
+                Know what we&apos;re building, why we&apos;re
+                building it and what comes next.
+              </p>
+            </div>
+
+            <div className="process-benefit reveal">
+              <div className="process-benefit-icon">
+                <Eye size={25} />
+              </div>
+
+              <h3>VISIBLE PROGRESS</h3>
+
+              <p>
+                Regular milestones, transparent communication
+                and measurable deliverables.
+              </p>
+            </div>
+
+            <div className="process-benefit reveal">
+              <div className="process-benefit-icon">
+                <Cuboid size={25} />
+              </div>
+
+              <h3>PRODUCTION-READY</h3>
+
+              <p>
+                Not just prototypes — software designed to
+                perform in the real world.
+              </p>
+            </div>
+
+            <div className="process-benefit reveal">
+              <div className="process-benefit-icon">
+                <ShieldCheck size={25} />
+              </div>
+
+              <h3>QUALITY BUILT IN</h3>
+
+              <p>
+                Testing and validation are part of the process,
+                not an afterthought.
+              </p>
+            </div>
+
+            <div className="process-benefit reveal">
+              <div className="process-benefit-icon">
+                <TrendingUp size={25} />
+              </div>
+
+              <h3>LONG-TERM THINKING</h3>
+
+              <p>
+                Architecture and decisions made with future
+                growth in mind.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="process-final-cta reveal">
+        <div className="process-cta-grid" />
+
+        <div className="container">
+          <div className="process-cta-inner">
+            <div className="eyebrow">
+              <span className="eyebrow-dot" />
+              YOUR IDEA HAS A NEXT STEP.
+            </div>
+
+            <h2>
+              READY TO <span>GET STARTED?</span>
+            </h2>
+
+            <p>
+              Whether you&apos;re starting from a concept,
+              rebuilding an existing product, or scaling
+              something already in production — we&apos;ll help
+              you figure out what comes next.
+            </p>
+
+            <div className="process-cta-actions">
+              <a
+                href="/contact"
+                className="process-button process-button-primary"
+              >
+                START A PROJECT
+                <ArrowRight size={18} />
+              </a>
+
+              <a
+                href="/contact"
+                className="process-button process-button-secondary"
+              >
+                TALK TO THE GARAGE
+                <ArrowRight size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

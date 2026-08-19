@@ -125,7 +125,7 @@ nav.site-nav.scrolled{
 
 /* Generic page hero (inner pages) */
 .page-hero{ padding:calc(var(--nav-h) + 90px) 6vw 90px; border-bottom:1px solid var(--line); }
-.page-hero h1{ font-size:clamp(36px,6.5vw,84px); max-width:900px; margin-top:18px; }
+.page-hero h1{ font-size:clamp(36px,6.5vw,96px); max-width:900px; margin-top:18px; }
 .page-hero p{ max-width:480px; color:var(--text-dim); font-size:16px; line-height:1.6; margin-top:24px; }
 
 .work-hero{ position:relative; padding:calc(var(--nav-h) + 64px) 6vw 84px; border-bottom:1px solid rgba(255,255,255,0.07); overflow:hidden; }
