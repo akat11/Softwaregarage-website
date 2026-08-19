@@ -34,7 +34,7 @@ export default function App() {
 
       {/* key={pathname} remounts the page on route change, which is what lets
           each page's own useGSAP/useScrollReveals cleanly re-run and tear
-          down (no stale ScrollTriggers surviving a navigation). */}
+          down (no stale ScrollTriggers surviving a navigation). testing */}
       <main key={location.pathname} className="page-fade-enter page-fade-enter-active">
         <Routes location={location}>
           <Route path="/" element={<Home />} />
