@@ -41,8 +41,9 @@
    HERO
 ========================================================= */
 
-.process-hero {
+.process-page .process-hero {
   position: relative;
+  padding: 0;
   min-height: 610px;
   overflow: hidden;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -57,16 +58,21 @@
 
 .process-hero-container {
   position: relative;
+  width: min(100%, 1400px);
   min-height: 610px;
   display: grid;
   grid-template-columns: 42% 58%;
-  align-items: center;
+  align-items: start;
+  padding-top: calc(var(--nav-h) + 90px);
+}
+
+.process-page .process-hero-container {
+  padding-top: calc(var(--nav-h) + 90px);
 }
 
 .process-hero-content {
   position: relative;
   z-index: 3;
-  padding-top: 30px;
 }
 
 .process-title {
@@ -143,9 +149,10 @@
 .process-hero-visual {
   position: absolute;
   top: 0;
-  right: -5%;
-  width: 70%;
-  height: 100%;
+  right: 0;
+  left: 42%;
+  width: auto;
+  height: 84%;
   pointer-events: none;
 }
 
@@ -300,7 +307,7 @@
 .process-steps {
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 14px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .process-step {
@@ -317,6 +324,7 @@
 
 .process-step:last-child {
   border-bottom: 0;
+  padding-bottom: 24px;
 }
 
 .process-step:hover {
@@ -517,8 +525,11 @@
 .process-flow-item {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  min-width: 0;
+  padding-right: 28px;
   flex: 1;
 }
 
@@ -535,13 +546,21 @@
 }
 
 .process-flow-item > span {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.08em;
 }
 
 .process-flow-arrow {
-  margin-left: auto;
+  position: absolute;
+  top: 10px;
+  right: 0;
   color: #b7ff00;
   font-size: 22px;
 }
@@ -574,7 +593,7 @@
 
 .process-benefit {
   min-height: 210px;
-  padding: 35px 30px;
+  padding: 35px 30px 50px;
   border-right: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -781,10 +800,11 @@
   }
 
   .process-hero-visual {
-    top: 250px;
-    right: -25%;
-    width: 125%;
-    height: 400px;
+    top: 285px;
+    right: -18%;
+    left: auto;
+    width: 112%;
+    height: 330px;
     opacity: 0.7;
   }
 

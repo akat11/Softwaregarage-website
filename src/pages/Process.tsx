@@ -122,23 +122,20 @@ function ProcessHeroVisual() {
 
       ctx.clearRect(0, 0, width, height)
 
-      const rows = width < 700 ? 13 : 19
-      const cols = width < 700 ? 18 : 30
+      const rows = width < 700 ? 15 : 23
+      const cols = width < 700 ? 24 : 38
 
-      const left = width * 0.38
-      const right = width * 1.03
-      const horizon = height * 0.18
-      const bottom = height * 0.95
+      const left = width * 0.03
+      const right = width * 1.02
+      const horizon = height * 0.22
+      const bottom = height * 0.9
 
       const points: { x: number; y: number }[][] = []
 
       for (let row = 0; row < rows; row += 1) {
         const depth = row / (rows - 1)
 
-        const y =
-          horizon +
-          depth * (bottom - horizon) +
-          Math.sin(depth * 5 + t * 2) * 5
+        const y = horizon + depth * (bottom - horizon)
 
         const rowPoints: { x: number; y: number }[] = []
 
@@ -146,23 +143,16 @@ function ProcessHeroVisual() {
           const xProgress = col / (cols - 1)
 
           const x = left + xProgress * (right - left)
-
-          const wave =
-            Math.sin(xProgress * Math.PI * 2.2 + t * 2.2) *
-              65 *
-              (1 - depth * 0.65) +
-            Math.sin(xProgress * Math.PI * 4 + t * 1.3) *
-              18 *
-              (1 - depth)
-
-          const yWave =
-            Math.sin(xProgress * Math.PI * 2.4 + t * 2) *
-            30 *
-            (1 - depth)
+          const firstPeak = Math.exp(-Math.pow((xProgress - 0.32) / 0.18, 2))
+          const secondPeak = Math.exp(-Math.pow((xProgress - 0.73) / 0.2, 2))
+          const ridge = firstPeak * 0.82 + secondPeak * 1.05
+          const ripple = Math.sin(xProgress * 18 + t * 1.4) * 5
+          const mountainHeight = ridge * height * 0.42 + ripple
+          const animatedHeight = mountainHeight * (1 - depth * 0.72)
 
           rowPoints.push({
-            x: x + wave,
-            y: y + yWave,
+            x,
+            y: y - animatedHeight,
           })
         }
 
@@ -196,7 +186,7 @@ function ProcessHeroVisual() {
           }
         })
 
-        ctx.strokeStyle = `rgba(183,255,0,${0.18 - depth * 0.1})`
+        ctx.strokeStyle = `rgba(183,255,0,${0.24 - depth * 0.1})`
         ctx.lineWidth = 1
         ctx.stroke()
       })
@@ -225,28 +215,24 @@ function ProcessHeroVisual() {
           }
         })
 
-        ctx.strokeStyle = `rgba(183,255,0,${0.11 - (col / cols) * 0.04})`
+        ctx.strokeStyle = `rgba(183,255,0,${0.15 - (col / cols) * 0.05})`
         ctx.lineWidth = 0.8
         ctx.stroke()
       }
 
-      // Glowing points
+      // Glowing markers over the mountain ridge
       const glowingPoints = [
-        [0.28, 0.24],
-        [0.52, 0.18],
-        [0.68, 0.32],
-        [0.82, 0.12],
-        [0.92, 0.45],
+        [0.18, 0.38, 3],
+        [0.33, 0.12, 4],
+        [0.52, 0.34, 3],
+        [0.73, 0.08, 5],
+        [0.91, 0.4, 3],
       ]
 
-      glowingPoints.forEach(([x, y], index) => {
+      glowingPoints.forEach(([x, y, size], index) => {
         const px = width * x
-        const py =
-          height * y +
-          Math.sin(t * 2 + index) * 5
-
-        const pulse =
-          2.5 + Math.sin(t * 4 + index) * 1.2
+        const py = height * y + Math.sin(t * 2 + index) * 5
+        const pulse = size + Math.sin(t * 4 + index) * 1.2
 
         ctx.save()
 
@@ -255,7 +241,7 @@ function ProcessHeroVisual() {
         ctx.shadowBlur = 16
 
         ctx.beginPath()
-        ctx.arc(px, py, pulse, 0, Math.PI * 2)
+        ctx.rect(px - pulse, py - pulse, pulse * 2, pulse * 2)
         ctx.fill()
 
         ctx.restore()
@@ -327,7 +313,6 @@ export default function Process() {
         <div className="container process-hero-container">
           <div className="process-hero-content">
             <div className="eyebrow process-reveal">
-              <span className="eyebrow-dot" />
               OUR PROCESS
             </div>
 
@@ -365,7 +350,6 @@ export default function Process() {
         <div className="container">
           <div className="process-section-heading reveal">
             <div className="eyebrow">
-              <span className="eyebrow-dot" />
               HOW WE TURN IDEAS INTO PRODUCTS
             </div>
 
@@ -486,7 +470,6 @@ export default function Process() {
       <section className="process-benefits section-space">
         <div className="container">
           <div className="eyebrow reveal">
-            <span className="eyebrow-dot" />
             WHAT YOU GET
           </div>
 
@@ -566,7 +549,6 @@ export default function Process() {
         <div className="container">
           <div className="process-cta-inner">
             <div className="eyebrow">
-              <span className="eyebrow-dot" />
               YOUR IDEA HAS A NEXT STEP.
             </div>
 

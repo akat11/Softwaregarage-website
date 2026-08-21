@@ -3,6 +3,15 @@ import Seo from '@/components/Seo'
 import CTASection from '@/components/CTASection'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
+import {
+  Flag,
+  Pencil,
+  Rocket,
+  ShieldCheck,
+  Trophy,
+  UsersRound,
+} from 'lucide-react'
+import '../styles/about.css'
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -15,52 +24,91 @@ export default function About() {
         description="Software Garage is a digital technology studio combining engineering, design, quality and innovation to build products for ambitious businesses."
       />
 
-      <section className="page-hero">
-        <div className="container">
-          <div className="eyebrow">THE STUDIO</div>
-          <h1>NOT JUST ANOTHER<br />SOFTWARE COMPANY.</h1>
-          <p>
-            Software Garage is a digital technology studio combining engineering, design, quality and innovation
-            to turn ambitious ideas into reliable digital products.
-          </p>
-        </div>
-      </section>
+      <section className="about-hero">
+        <div className="container about-hero-inner">
+          <div className="about-hero-copy">
+            <div className="eyebrow">WE BUILD DIGITAL SOLUTIONS</div>
+            <h1>NOT JUST ANOTHER<br />SOFTWARE COMPANY.</h1>
+            <p>
+              Software Garage is a digital technology studio combining engineering, design, quality and innovation
+              to turn ambitious ideas into reliable digital products.
+            </p>
 
-      <section className="tight">
-        <div className="container">
-          <div className="stats-grid">
-            <AnimatedCounter value={15} label="Projects Delivered" />
-            <AnimatedCounter value={6} label="Global Projects" />
+            <div className="about-hero-actions">
+              <a href="/contact" className="about-button about-button-primary">LET&apos;S START A PROJECT <span>→</span></a>
+              <a href="/contact" className="about-button about-button-secondary">TALK TO THE GARAGE <span>→</span></a>
+            </div>
+          </div>
+
+          <div className="about-hero-mark" aria-hidden="true">
+            <div className="about-mark-glow" />
+            <div className="about-mark-shape"><span>G</span></div>
           </div>
         </div>
       </section>
 
-      <section>
+      <section className="about-stats-section">
         <div className="container">
-          <div className="eyebrow">HOW WE THINK</div>
-          <h2 className="reveal" style={{ marginTop: '18px', maxWidth: '820px' }}>
-            IDEA → DESIGN → BUILD → TEST → LAUNCH → SCALE.
+          <div className="about-stats-grid">
+            <div className="about-stat reveal">
+              <div className="about-stat-icon"><Rocket size={20} /></div>
+              <div><AnimatedCounter value={15} label="Projects Delivered" /></div>
+            </div>
+            <div className="about-stat reveal">
+              <div className="about-stat-icon"><UsersRound size={20} /></div>
+              <div><AnimatedCounter value={6} label="Years Experience" /></div>
+            </div>
+            <div className="about-stat about-stat-copy reveal">
+              <div className="about-stat-icon"><Trophy size={38} /></div>
+              <p><strong>Delivering value through innovation and excellence.</strong><span>We build software that drives results.</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-process-section">
+        <div className="container">
+          <div className="eyebrow">OUR PROCESS</div>
+          <h2 className="about-process-title reveal">
+            <span>IDEA</span><i>→</i><span>DESIGN</span><i>→</i><span>BUILD</span><i>→</i><span>TEST</span><i>→</i><span>LAUNCH</span><i>→</i><span>SCALE.</span>
           </h2>
-          <p style={{ maxWidth: '600px', color: 'var(--text-dim)', marginTop: '24px', lineHeight: 1.7 }}>
-            Every product we build moves through the same disciplined journey — from understanding the problem, to
-            shaping the experience, to shipping technology that holds up under real usage. Quality engineering runs
-            alongside development at every stage, not as an afterthought.
+          <p className="about-process-description">
+            A streamlined process that turns an idea into a powerful, scalable digital product.<br />
+            We follow industry best practices, agile methodology, and a design-first mindset<br />
+            at every stage to deliver client delight.
           </p>
 
-          <div className="journey" style={{ marginTop: '60px' }}>
-            <div className="journey-step">STAGE 01<b>Idea</b></div>
-            <div className="journey-step">STAGE 02<b>Design</b></div>
-            <div className="journey-step">STAGE 03<b>Build</b></div>
-            <div className="journey-step">STAGE 04<b>Test</b></div>
-            <div className="journey-step">STAGE 05<b>Launch</b></div>
-            <div className="journey-step">STAGE 06<b>Scale</b></div>
+          <div className="about-journey reveal">
+            {[
+              ['STAGE 01', 'Idea', Flag],
+              ['STAGE 02', 'Design', Pencil],
+              ['STAGE 03', 'Build', null],
+              ['STAGE 04', 'Test', ShieldCheck],
+              ['STAGE 05', 'Launch', Rocket],
+              ['STAGE 06', 'Scale', Trophy],
+            ].map(([stage, title, Icon], index) => (
+              <div className="about-journey-step" key={stage as string}>
+                <small>{stage as string}</small>
+                <strong>{title as string}</strong>
+                {Icon ? <Icon size={24} strokeWidth={1.5} /> : <span className="about-code-icon">&lt;/&gt;</span>}
+                {index < 5 && <i>→</i>}
+              </div>
+            ))}
           </div>
 
-          <div className="principles" style={{ marginTop: '80px' }}>
-            <div className="principle"><div className="pnum">01</div><h3>Build with Purpose</h3></div>
-            <div className="principle"><div className="pnum">02</div><h3>Design with Intent</h3></div>
-            <div className="principle"><div className="pnum">03</div><h3>Test without Compromise</h3></div>
-            <div className="principle"><div className="pnum">04</div><h3>Ship with Confidence</h3></div>
+          <div className="about-principles">
+            {[
+              ['01', 'Build with Purpose', 'We build solutions that solve real problems and drive meaningful impact.', Flag],
+              ['02', 'Design with Intent', 'Thoughtful design that enhances usability and creates better experiences.', Pencil],
+              ['03', 'Test without Compromise', 'Quality is built in. We test rigorously to deliver bug-free, high-performance products.', ShieldCheck],
+              ['04', 'Ship with Confidence', 'We ensure smooth launches and continuous support to help you scale.', Rocket],
+            ].map(([number, title, description, Icon]) => (
+              <article className="about-principle reveal" key={number as string}>
+                <div className="about-principle-icon"><Icon size={19} /></div>
+                <h3>{title as string}</h3>
+                <p>{description as string}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>

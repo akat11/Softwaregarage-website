@@ -56,8 +56,9 @@ export default function Home() {
         <div className="hero-inner">
           <div className="eyebrow">GLOBAL DIGITAL ENGINEERING STUDIO</div>
           <h1>
-            <span className="line"><span>WE BUILD DIGITAL PRODUCTS</span></span>
-            <span className="line"><span>THAT MOVE BUSINESS.</span></span>
+            <span className="line"><span>WE BUILD DIGITAL</span></span>
+            <span className="line"><span>PRODUCTS THAT MOVE</span></span>
+            <span className="line"><span>BUSINESS.</span></span>
           </h1>
           <p className="hero-copy">
             Software Garage is a global technology studio helping startups and businesses design, build, test and
@@ -155,7 +156,7 @@ export default function Home() {
           />
           <div className="principles">
             <div className="principle">
-              <div className="pnum">01</div>
+              <div className="pnum"></div>
               <div>
                 <h3>Build with Purpose</h3>
                 <p className="ptext">We start from the real business problem, not just the brief.</p>

@@ -30,6 +30,16 @@ export const services: Service[] = [
     useCases: ['Consumer apps', 'Field-service tools', 'On-demand platforms'],
   },
   {
+    slug: 'web3-blockchain-development',
+    title: 'Web3 & Blockchain Development',
+    shortDesc: 'Secure blockchain products, smart contracts and decentralized experiences built for real-world adoption.',
+    longDesc:
+      'We engineer production-ready Web3 platforms that make complex blockchain technology useful, secure and easy to trust — from smart contract systems to wallet-connected products and decentralized applications.',
+    capabilities: ['Smart contracts', 'dApps & Web3 platforms', 'Wallet integrations', 'Token and on-chain systems'],
+    stack: ['Solidity', 'EVM', 'wagmi', 'Node.js', 'IPFS'],
+    useCases: ['DeFi products', 'Digital ownership platforms', 'On-chain business systems'],
+  },
+  {
     slug: 'saas-custom-software',
     title: 'SaaS & Custom Software',
     shortDesc: 'Multi-tenant platforms, admin systems, internal tools.',

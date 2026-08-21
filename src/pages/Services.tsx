@@ -18,7 +18,7 @@ const services = [
   },
   {
     slug: 'mobile-app-development',
-    number: '02',
+    number: '',
     title: 'Mobile App Development',
     description:
       'We build reliable mobile experiences for iOS and Android, designed for performance, usability and long-term maintainability.',
@@ -525,7 +525,7 @@ export default function Services() {
         <ServicesHeroCanvas />
         <div className="container services-hero-grid">
           <div className="services-hero-copy">
-            <div className="eyebrow">02 / CAPABILITIES</div>
+            <div className="eyebrow">CAPABILITIES</div>
             <h1>
               SERVICES<br />
               <span className="text-lime">WE DELIVER</span>
@@ -533,7 +533,7 @@ export default function Services() {
             <p>From product strategy and design to engineering, testing and automation — we build digital products that move business.</p>
             <div className="hero-stats-row">
               <div className="hero-stat compact">
-                <strong>09+</strong>
+                <strong>07+</strong>
                 <span>CAPABILITIES</span>
               </div>
               <div className="hero-stat compact">
