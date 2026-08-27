@@ -266,9 +266,7 @@ function ProcessHeroVisual() {
 
   return (
     <div className="process-hero-visual" aria-hidden="true">
-      <canvas ref={canvasRef} />
-      <div className="process-glow process-glow-one" />
-      <div className="process-glow process-glow-two" />
+      <img className="process-hero-reference" src="/process-hero-reference.svg" alt="" />
     </div>
   )
 }
@@ -333,11 +331,33 @@ export default function Process() {
             </p>
 
             <div className="process-hero-keywords">
-              <span>STRATEGIC</span>
-              <i />
-              <span>TRANSPARENT</span>
-              <i />
-              <span>RESULTS-DRIVEN</span>
+              <div className="process-hero-keyword">
+                <span className="process-hero-keyword-icon">01</span>
+                <span className="process-hero-keyword-copy">
+                  <strong>STRATEGIC</strong>
+                  <em>Purposeful Thinking</em>
+                </span>
+              </div>
+
+              <i aria-hidden="true" />
+
+              <div className="process-hero-keyword">
+                <span className="process-hero-keyword-icon">02</span>
+                <span className="process-hero-keyword-copy">
+                  <strong>TRANSPARENT</strong>
+                  <em>Clear Communication</em>
+                </span>
+              </div>
+
+              <i aria-hidden="true" />
+
+              <div className="process-hero-keyword">
+                <span className="process-hero-keyword-icon">03</span>
+                <span className="process-hero-keyword-copy">
+                  <strong>RESULTS-DRIVEN</strong>
+                  <em>Measurable Impact</em>
+                </span>
+              </div>
             </div>
           </div>
 

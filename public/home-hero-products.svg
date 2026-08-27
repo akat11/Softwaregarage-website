@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 470" role="img" aria-labelledby="title desc">
+  <title id="title">Digital product interfaces</title>
+  <desc id="desc">A glowing laptop, mobile phone and dashboard cards representing digital products.</desc>
+  <defs>
+    <radialGradient id="bg" cx="55%" cy="52%" r="62%"><stop offset="0" stop-color="#445d00" stop-opacity=".32"/><stop offset=".55" stop-color="#101700" stop-opacity=".2"/><stop offset="1" stop-color="#020302" stop-opacity="0"/></radialGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151c0d"/><stop offset="1" stop-color="#050705"/></linearGradient>
+    <linearGradient id="lime" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4ff32"/><stop offset="1" stop-color="#86b900"/></linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="620" height="470" fill="url(#bg)"/>
+  <ellipse cx="340" cy="252" rx="205" ry="130" fill="#b7ff00" opacity=".09" filter="url(#soft)"/>
+  <g fill="none" stroke="#b7ff00" opacity=".45" stroke-width="1.5" stroke-dasharray="6 6">
+    <path d="M88 290C142 228 185 208 263 218C350 230 415 171 531 105"/><path d="M104 370C192 323 218 282 278 278C360 271 435 318 547 286"/><path d="M254 56C300 100 331 125 372 159C424 202 477 204 568 186"/>
+  </g>
+  <g fill="#b7ff00" opacity=".5"><circle cx="82" cy="290" r="3"/><circle cx="531" cy="105" r="3"/><circle cx="547" cy="286" r="2.5"/><circle cx="253" cy="56" r="2.5"/><circle cx="442" cy="329" r="2"/></g>
+  <!-- laptop -->
+  <g transform="rotate(-9 315 225)" filter="url(#glow)">
+    <rect x="138" y="91" width="350" height="224" rx="12" fill="#050605" stroke="#535b4d" stroke-width="2"/>
+    <rect x="150" y="104" width="326" height="195" rx="4" fill="url(#screen)" stroke="#1e2818"/>
+    <circle cx="313" cy="98" r="2" fill="#778060"/>
+    <text x="169" y="129" fill="#d6ff42" font-family="monospace" font-size="12" font-weight="700">SG</text>
+    <text x="169" y="173" fill="#f5f5f5" font-family="sans-serif" font-size="24" font-weight="700">Elevating</text><text x="169" y="199" fill="#b7ff00" font-family="sans-serif" font-size="24" font-weight="700">Digital</text><text x="169" y="225" fill="#f5f5f5" font-family="sans-serif" font-size="24" font-weight="700">Experiences</text>
+    <text x="169" y="249" fill="#90998b" font-family="sans-serif" font-size="7">We design and build digital products</text><text x="169" y="260" fill="#90998b" font-family="sans-serif" font-size="7">that are fast, secure and built to scale.</text>
+    <rect x="169" y="274" width="86" height="14" rx="7" fill="#b7ff00"/><text x="178" y="284" fill="#111" font-family="monospace" font-size="6" font-weight="700">EXPLORE PROJECTS →</text>
+    <path d="M112 325h404l-31 20H143Z" fill="#0c0e0b" stroke="#3f473b" stroke-width="2"/><path d="M206 326h218l-22 11H228Z" fill="#24291f"/>
+  </g>
+  <!-- dashboard card -->
+  <g transform="rotate(-11 525 72)">
+    <rect x="443" y="18" width="151" height="121" rx="9" fill="#0a0d08" stroke="#414a39"/><text x="457" y="37" fill="#777f70" font-family="monospace" font-size="7">FINTECH DASHBOARD</text><text x="457" y="57" fill="#c4ff28" font-family="monospace" font-size="7">Total Revenue</text><text x="457" y="76" fill="#f5f5f5" font-family="sans-serif" font-size="18" font-weight="700">$98,642</text><path d="M459 112c20-30 32 7 49-17s23 13 38-21 21 10 38-17" fill="none" stroke="#b7ff00" stroke-width="2"/><circle cx="584" cy="56" r="3" fill="#b7ff00"/>
+  </g>
+  <!-- phone -->
+  <g transform="rotate(8 518 264)">
+    <rect x="463" y="176" width="111" height="201" rx="15" fill="#070907" stroke="#47503e" stroke-width="2"/><rect x="471" y="198" width="95" height="165" rx="7" fill="#10160a"/><rect x="505" y="184" width="27" height="4" rx="2" fill="#333b2c"/><text x="484" y="222" fill="#86927a" font-family="monospace" font-size="7">MOBILE APP</text><text x="484" y="256" fill="#f5f5f5" font-family="sans-serif" font-size="17" font-weight="700">Your</text><text x="484" y="276" fill="#b7ff00" font-family="sans-serif" font-size="17" font-weight="700">Goals</text><text x="484" y="296" fill="#f5f5f5" font-family="sans-serif" font-size="17" font-weight="700">Our Mission</text><rect x="484" y="325" width="52" height="13" rx="6" fill="#b7ff00"/><text x="490" y="334" fill="#111" font-family="monospace" font-size="6">GET STARTED</text>
+  </g>
+  <!-- lower floating cards -->
+  <g transform="rotate(-5 385 404)"><rect x="300" y="372" width="159" height="76" rx="8" fill="#080b07" stroke="#3d4737"/><text x="315" y="391" fill="#777f70" font-family="monospace" font-size="7">ANALYTICS PLATFORM</text><text x="315" y="414" fill="#eee" font-family="sans-serif" font-size="16" font-weight="700">Traffic</text><text x="315" y="434" fill="#b7ff00" font-family="sans-serif" font-size="18" font-weight="700">24.8K</text><circle cx="422" cy="412" r="19" fill="none" stroke="#b7ff00" stroke-width="8" stroke-dasharray="83 36"/></g>
+  <g transform="rotate(-7 540 408)"><rect x="470" y="374" width="126" height="75" rx="8" fill="#080b07" stroke="#3d4737"/><text x="484" y="393" fill="#777f70" font-family="monospace" font-size="7">E-COMMERCE PLATFORM</text><text x="484" y="418" fill="#eee" font-family="sans-serif" font-size="13" font-weight="700">Modern shopping</text><text x="484" y="434" fill="#b7ff00" font-family="sans-serif" font-size="11">experience</text></g>
+</svg>

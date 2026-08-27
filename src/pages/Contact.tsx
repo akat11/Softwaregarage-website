@@ -1,7 +1,9 @@
 import { ChangeEvent, FormEvent, useRef, useState } from 'react'
+import { Building2, Clock3, Code2, FileText, Headphones, LockKeyhole, Mail, MapPin, Phone, Rocket, Send, ShieldCheck, Sparkles, UserRound, UsersRound, WalletCards, Zap } from 'lucide-react'
 import Seo from '@/components/Seo'
 import MagneticButton from '@/components/MagneticButton'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
+import '@/styles/contact.css'
 
 interface FormState {
   name: string
@@ -31,7 +33,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // handleSubmit for a real POST to your backend/email-service endpoint (e.g.
 // a serverless function, Formspree, or your CRM API) when one exists —
 // the validation, loading and status-state logic below does not need to change.
-const CONTACT_EMAIL = 'hello@softwaregarage.example'
+const CONTACT_EMAIL = 'softwaregarage2025@gmail.com'
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -84,36 +86,48 @@ export default function Contact() {
         description="Tell Software Garage what you're building. Start a conversation about your web, mobile, SaaS or AI product."
       />
 
-      <section className="page-hero">
-        <div className="container">
-          <div className="eyebrow">START A PROJECT</div>
-          <h1>LET&apos;S BUILD SOMETHING<br />WORTH TALKING ABOUT.</h1>
-          <p>Usually, the first conversation starts with an idea.</p>
+      <section className="contact-hero">
+        <div className="container contact-hero-grid">
+          <div className="contact-hero-copy">
+            <div className="contact-kicker"><Sparkles size={12} /> START A PROJECT</div>
+            <h1>LET&apos;S BUILD<br />SOMETHING<br /><span>WORTH TALKING</span><br />ABOUT<span className="contact-dot">.</span></h1>
+            <p>Great ideas deserve the right team.<br />Tell us about your project and let&apos;s bring it to life.</p>
+            <div className="contact-promises">
+              <div><span><Zap size={23} /></span><b>Quick Response</b><small>We typically reply<br />within 24 hours.</small></div>
+              <div><span><ShieldCheck size={17} /></span><b>Secure &amp; Confidential</b><small>Your information is<br />100% safe with us.</small></div>
+              <div><span><UsersRound size={17} /></span><b>No Obligations</b><small>Share your idea.<br />Zero pressure.</small></div>
+            </div>
+          </div>
+          <div className="contact-hero-art" aria-hidden="true"><img className="contact-reference-image" src="/contact-envelope.svg" alt="" /></div>
         </div>
       </section>
 
-      <section className="tight">
+      <section className="contact-section">
         <div className="container contact-grid">
-          <form onSubmit={handleSubmit} noValidate>
+          <form className="contact-panel project-form" onSubmit={handleSubmit} noValidate>
+            <div className="panel-heading"><div><h2>TELL US ABOUT YOUR PROJECT</h2><span /></div></div>
+            <div className="form-row">
             <div className={`form-field${errors.name ? ' error' : ''}`}>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name"><UserRound size={14} /> Full Name</label>
               <input id="name" type="text" value={form.name} onChange={setField('name')} required />
+              <small>Enter your full name</small>
               {errors.name && <span className="field-error">{errors.name}</span>}
             </div>
-
-            <div className="form-field">
-              <label htmlFor="company">Company</label>
-              <input id="company" type="text" value={form.company} onChange={setField('company')} />
-            </div>
-
             <div className={`form-field${errors.email ? ' error' : ''}`}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email"><Mail size={14} /> Email Address</label>
               <input id="email" type="email" value={form.email} onChange={setField('email')} required />
+              <small>name@example.com</small>
               {errors.email && <span className="field-error">{errors.email}</span>}
             </div>
-
+            </div>
+            <div className="form-field">
+              <label htmlFor="company"><Building2 size={14} /> Company / Organization</label>
+              <input id="company" type="text" value={form.company} onChange={setField('company')} />
+              <small>Your company name</small>
+            </div>
+            <div className="form-row">
             <div className={`form-field${errors.projectType ? ' error' : ''}`}>
-              <label htmlFor="projectType">Project Type</label>
+              <label htmlFor="projectType"><Code2 size={14} /> Project Type</label>
               <select id="projectType" value={form.projectType} onChange={setField('projectType')} required>
                 <option value="">Select one</option>
                 <option value="Website">Website</option>
@@ -124,11 +138,11 @@ export default function Contact() {
                 <option value="AI / Automation">AI / Automation</option>
                 <option value="Other">Other</option>
               </select>
+              <small>Select one</small>
               {errors.projectType && <span className="field-error">{errors.projectType}</span>}
             </div>
-
             <div className={`form-field${errors.budget ? ' error' : ''}`}>
-              <label htmlFor="budget">Budget Range</label>
+              <label htmlFor="budget"><WalletCards size={14} /> Budget Range</label>
               <select id="budget" value={form.budget} onChange={setField('budget')} required>
                 <option value="">Select a range</option>
                 <option value="Under $5k">Under $5k</option>
@@ -137,18 +151,17 @@ export default function Contact() {
                 <option value="$40k+">$40k+</option>
                 <option value="Not sure yet">Not sure yet</option>
               </select>
+              <small>Select a range</small>
               {errors.budget && <span className="field-error">{errors.budget}</span>}
             </div>
-
+            </div>
             <div className={`form-field${errors.description ? ' error' : ''}`}>
-              <label htmlFor="description">Project Description</label>
+              <label htmlFor="description"><FileText size={14} /> Project Description</label>
               <textarea id="description" value={form.description} onChange={setField('description')} required />
+              <small>Tell us about your project, goals, features,<br />timeline, or anything you think is important.</small>
               {errors.description && <span className="field-error">{errors.description}</span>}
             </div>
-
-            <MagneticButton type="submit" variant="primary" disabled={status === 'submitting'}>
-              {status === 'submitting' ? 'PREPARING...' : 'SEND PROJECT BRIEF →'}
-            </MagneticButton>
+            <div className="form-submit-row"><MagneticButton type="submit" variant="primary" disabled={status === 'submitting'}><Send size={14} /> {status === 'submitting' ? 'PREPARING...' : 'SEND PROJECT BRIEF'}</MagneticButton><span><LockKeyhole size={14} /> We respect your privacy.<br />Your details are safe with us.</span></div>
 
             {status === 'success' && (
               <div className="form-status success" role="status">
@@ -161,21 +174,22 @@ export default function Contact() {
               </div>
             )}
 
-            <p className="form-note">
-              This form doesn&apos;t yet post to a backend — submitting opens a pre-filled email to {CONTACT_EMAIL}.
-              Connect a backend or email service to deliver briefs directly.
-            </p>
+            <p className="form-note">Submitting opens a pre-filled email to {CONTACT_EMAIL}.</p>
           </form>
 
-          <div>
-            <div className="eyebrow">DIRECT</div>
-            <p style={{ marginTop: '16px', color: 'var(--text-dim)', lineHeight: 1.7, maxWidth: '360px' }}>
-              Prefer email? Reach us directly at{' '}
-              <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--lime)' }}>{CONTACT_EMAIL}</a>.
-            </p>
+          <div className="contact-panel direct-panel">
+            <div className="panel-heading"><div><h2>GET IN TOUCH DIRECTLY</h2><span /></div></div>
+            <p className="direct-intro">Prefer email? Reach us directly at<br /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+            <div className="direct-list"><ContactDetail icon={<Mail size={16} />} title="Email Us" value={CONTACT_EMAIL} /><ContactDetail icon={<Phone size={16} />} title="Call Us" value="+91 8416973088" /><ContactDetail icon={<MapPin size={16} />} title="Location" value="Kanpur, Uttar Pradesh, India" /><ContactDetail icon={<Clock3 size={16} />} title="Working Hours" value="Mon - Fri : 10AM - 6PM" /></div>
+            <div className="stay-connected"><b>STAY CONNECTED</b><p>Follow us to see our latest work,<br />insights and behind-the-scenes.</p><div className="social-icons"><a href="https://www.linkedin.com/company/thesoftwaregarage" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><span className="brand-mark linkedin-mark">in</span></a><a href="https://www.instagram.com/the_software_garage/" target="_blank" rel="noreferrer noopener" aria-label="Instagram"><span className="brand-mark instagram-mark">◎</span></a></div></div>
           </div>
         </div>
+        <div className="container contact-services"><div><Rocket size={18} /><b>We Build</b><small>Powerful digital products<br />that scale.</small></div><div><Code2 size={18} /><b>We Develop</b><small>Clean, efficient &amp; future-<br />ready solutions.</small></div><div><ShieldCheck size={18} /><b>We Test</b><small>Quality-first approach for bug-free <br /> performance.</small></div><div><Headphones size={18} /><b>We Support</b><small>Ongoing support to keep<br />your business moving.</small></div></div>
       </section>
     </div>
   )
+}
+
+function ContactDetail({ icon, title, value }: { icon: React.ReactNode; title: string; value: string }) {
+  return <div className="direct-detail"><span>{icon}</span><div><b>{title}</b><small>{value}</small></div></div>
 }

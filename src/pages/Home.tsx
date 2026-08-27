@@ -3,7 +3,6 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Link } from 'react-router-dom'
 import Seo from '@/components/Seo'
-import HeroScene from '@/three/HeroScene'
 import HeroGlow from '@/components/HeroGlow'
 import AINetwork from '@/three/AINetwork'
 import Marquee from '@/components/Marquee'
@@ -51,22 +50,26 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero" id="home">
-        <HeroScene />
+        <div className="home-hero-art" aria-hidden="true">
+          <img src="/home-hero-products.svg" alt="" />
+        </div>
         <HeroGlow />
         <div className="hero-inner">
-          <div className="eyebrow">GLOBAL DIGITAL ENGINEERING STUDIO</div>
+          <div className="eyebrow">DIGITAL PRODUCTS. REAL IMPACT. <span className="hero-eyebrow-dot">●</span></div>
           <h1>
             <span className="line"><span>WE BUILD DIGITAL</span></span>
-            <span className="line"><span>PRODUCTS THAT MOVE</span></span>
-            <span className="line"><span>BUSINESS.</span></span>
+            <span className="line"><span>PRODUCTS THAT</span></span>
+            <span className="line"><span className="text-lime">DRIVE BUSINESS</span></span>
+            <span className="line"><span className="text-lime">FORWARD.</span></span>
           </h1>
           <p className="hero-copy">
-            Software Garage is a global technology studio helping startups and businesses design, build, test and
-            scale powerful digital products.
+            From powerful web platforms to scalable mobile apps,<br />
+            we design, build and deliver digital solutions that<br />
+            create impact and accelerate growth.
           </p>
           <div className="hero-ctas">
-            <MagneticButton to="/contact" variant="primary">START A PROJECT →</MagneticButton>
-            <MagneticButton to="/work" variant="secondary">EXPLORE OUR WORK</MagneticButton>
+            <MagneticButton to="/work" variant="primary">VIEW ALL PROJECTS →</MagneticButton>
+            <MagneticButton to="/work" variant="secondary"><span className="play-icon">▶</span> WATCH SHOWREEL</MagneticButton>
           </div>
         </div>
         <div className="hero-proof">

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import Seo from '@/components/Seo'
+import AnimatedCounter from '@/components/AnimatedCounter'
 import MagneticButton from '@/components/MagneticButton'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -18,7 +19,7 @@ const services = [
   },
   {
     slug: 'mobile-app-development',
-    number: '',
+    number: '02',
     title: 'Mobile App Development',
     description:
       'We build reliable mobile experiences for iOS and Android, designed for performance, usability and long-term maintainability.',
@@ -86,7 +87,6 @@ const services = [
     slug: 'blockchain-web3',
     number: '08',
     title: 'Blockchain & Web3',
-    badge: 'NEW',
     description:
       'We build and test blockchain-powered products, from smart-contract integrations and wallets to Web3 applications and decentralized platforms.',
     technologies: ['Ethereum', 'EVM', 'Solidity', 'Web3.js', 'IPFS'],
@@ -111,89 +111,19 @@ function VisualGraphic({ type }: { type: string }) {
   return (
     <div className={`visual-graphic visual-${type}`} aria-hidden="true">
       {type === 'web' && (
-        <div className="visual-browser">
-          <div className="browser-bar">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="browser-body">
-            <div className="browser-code">
-              <span>&lt; /&gt;</span>
-            </div>
-            <div className="browser-nodes">
-              <div className="node small">API</div>
-              <div className="node small">DB</div>
-              <div className="node small">BACKEND</div>
-            </div>
-          </div>
-        </div>
+        <img className="web-development-reference" src="/web-development-reference.svg" alt="" />
       )}
       {type === 'mobile' && (
-        <div className="visual-mobile">
-          <div className="phone phone-left">
-            <div className="phone-screen">
-              <div className="tile row" />
-              <div className="tile row short" />
-              <div className="tile small" />
-              <div className="card" />
-            </div>
-          </div>
-          <div className="phone phone-right">
-            <div className="phone-screen">
-              <div className="tile row" />
-              <div className="tile row" />
-              <div className="stat-row">
-                <div />
-                <div />
-              </div>
-            </div>
-          </div>
-        </div>
+        <img className="mobile-two-screens-reference" src="/mobile-two-screens.svg" alt="" />
       )}
       {type === 'saas' && (
-        <div className="visual-saas">
-          <div className="saas-top">
-            <div className="chart" />
-            <div className="status-grid">
-              <span />
-              <span />
-            </div>
-          </div>
-          <div className="saas-bottom">
-            <div className="card small" />
-            <div className="card" />
-          </div>
-        </div>
+        <img className="saas-dashboard-reference" src="/saas-dashboard-reference.svg" alt="" />
       )}
       {type === 'commerce' && (
-        <div className="visual-commerce">
-          <div className="product-card">
-            <div className="product-image" />
-            <div className="product-copy">
-              <span className="label">PRODUCT</span>
-              <strong>MODERN HEADSET</strong>
-              <div className="price">$249</div>
-            </div>
-          </div>
-          <div className="commerce-actions">
-            <div className="button">ADD TO CART</div>
-            <div className="badge">PAY</div>
-          </div>
-        </div>
+        <img className="ecommerce-development-reference" src="/ecommerce-development-reference.svg" alt="" />
       )}
       {type === 'design' && (
-        <div className="visual-design">
-          <div className="design-grid">
-            <div className="wireframe tall" />
-            <div className="wireframe" />
-            <div className="token-list">
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-        </div>
+        <img className="ui-ux-product-design-reference" src="/ui-ux-product-design-reference.svg" alt="" />
       )}
       {type === 'qa' && (
         <div className="visual-qa">
@@ -214,36 +144,13 @@ function VisualGraphic({ type }: { type: string }) {
         </div>
       )}
       {type === 'backend' && (
-        <div className="visual-backend">
-          <div className="backend-node">CLIENT</div>
-          <div className="backend-connector" />
-          <div className="backend-node middle">API</div>
-          <div className="backend-connector secondary" />
-          <div className="backend-node bottom">DATABASE</div>
-          <div className="backend-side">
-            <div className="side-node">THIRD PARTY</div>
-          </div>
-        </div>
+        <img className="api-backend-engineering-reference" src="/api-backend-engineering-reference.svg" alt="" />
       )}
       {type === 'blockchain' && (
-        <div className="visual-blockchain">
-          <div className="blockchain-center">SMART CONTRACT</div>
-          <div className="chain-node node-a">NODE</div>
-          <div className="chain-node node-b">NODE</div>
-          <div className="chain-node node-c">WALLET</div>
-          <div className="chain-node node-d">dAPP</div>
-        </div>
+        <img className="blockchain-web3-reference" src="/blockchain-web3-reference.svg" alt="" />
       )}
       {type === 'ai' && (
-        <div className="visual-ai">
-          <div className="ai-center">AI</div>
-          <div className="ai-link user">USER</div>
-          <div className="ai-link crm">CRM</div>
-          <div className="ai-link api">API</div>
-          <div className="ai-link db">DATABASE</div>
-          <div className="ai-link auto">AUTOMATION</div>
-          <div className="ai-link analytics">ANALYTICS</div>
-        </div>
+        <img className="ai-business-automation-reference" src="/ai-business-automation-reference.svg" alt="" />
       )}
     </div>
   )
@@ -522,7 +429,6 @@ export default function Services() {
       />
 
       <section className="services-hero">
-        <ServicesHeroCanvas />
         <div className="container services-hero-grid">
           <div className="services-hero-copy">
             <div className="eyebrow">CAPABILITIES</div>
@@ -533,16 +439,22 @@ export default function Services() {
             <p>From product strategy and design to engineering, testing and automation — we build digital products that move business.</p>
             <div className="hero-stats-row">
               <div className="hero-stat compact">
-                <strong>07+</strong>
-                <span>CAPABILITIES</span>
+                <AnimatedCounter value={15} label="Projects Delivered" />
               </div>
               <div className="hero-stat compact">
-                <strong>100%</strong>
-                <span>COMMITMENT</span>
+                <AnimatedCounter value={100} suffix="%" label="Client Satisfaction" />
+              </div>
+              <div className="hero-stat compact">
+                <AnimatedCounter value={6} label="Global Clients" />
+              </div>
+              <div className="hero-stat compact">
+                <AnimatedCounter value={7} label="Core Capability" />
               </div>
             </div>
           </div>
-          <div className="services-hero-visual" />
+          <div className="services-hero-visual">
+            <img src="/services-hero-reference.svg" alt="" aria-hidden="true" />
+          </div>
         </div>
       </section>
 
@@ -600,9 +512,13 @@ export default function Services() {
       <section className="services-final-cta reveal">
         <div className="services-final-backdrop" aria-hidden="true" />
         <div className="container services-final-copy">
-          <div className="eyebrow">HAVE AN IDEA?</div>
-          <h2>LET&apos;S BUILD IT.</h2>
-          <p>From first sketch to production, we turn ambitious ideas into powerful digital products.</p>
+          <div className="services-final-heading">
+            <div className="eyebrow">HAVE AN IDEA?</div>
+            <h2>LET&apos;S <span>BUILD IT.</span></h2>
+          </div>
+          <div className="services-final-middle">
+            <p>From first sketch to production, we turn ambitious ideas into powerful digital products.</p>
+          </div>
           <div className="hero-ctas">
             <MagneticButton to="/contact" variant="primary" cursorLabel="LET'S TALK">
               START A PROJECT →

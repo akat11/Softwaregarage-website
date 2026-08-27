@@ -19,9 +19,14 @@ export default function Work() {
       <section className="page-hero work-hero">
         <div className="container">
           <div className="eyebrow">PORTFOLIO</div>
-          <h1>SELECTED WORK</h1>
+          <h1>
+            OUR<br />
+            <span className="title-highlight">FEATURED WORK.</span>
+          </h1>
           <p>
-            A sample of products we&apos;ve shipped for clients across industries.
+            A collection of impactful products we&apos;ve built
+            <br />
+            for clients across industries.
           </p>
         </div>
         <div className="work-hero-wireframe" aria-hidden="true" />
@@ -59,13 +64,14 @@ export default function Work() {
 
       <CTASection
         className="work-cta"
-        eyebrow="START A PROJECT"
+        eyebrow="HAVE A PROJECT IN MIND?"
         title={
           <>
-            HAVE AN IDEA?<br />LET&apos;S <span className="title-highlight">BUILD</span> IT.
+            LET&apos;S TURN YOUR<br />
+            <span className="title-highlight">IDEA</span> INTO <span className="title-highlight">REALITY.</span>
           </>
         }
-        description="Tell us what you&apos;re building. We&apos;ll help turn the idea into a product people can use, trust and remember."
+        description="Share your idea with us and we&apos;ll help you build a product people can love, trust and remember."
       />
     </div>
   )

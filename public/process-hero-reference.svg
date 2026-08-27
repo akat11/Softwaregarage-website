@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
+  <title id="title">Software Garage process</title>
+  <desc id="desc">Strategy, execution and impact around the Software Garage cube.</desc>
+  <defs>
+    <radialGradient id="wash" cx="58%" cy="55%" r="62%">
+      <stop offset="0" stop-color="#243400" stop-opacity=".58"/>
+      <stop offset=".45" stop-color="#0b1100" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+  <rect width="1200" height="860" fill="#020302"/>
+  <rect width="1200" height="860" fill="url(#wash)"/>
+  <image href="/industry-sg-hero.png" x="105" y="75" width="1040" height="585" preserveAspectRatio="xMidYMid slice" opacity=".9"/>
+  <ellipse cx="630" cy="675" rx="275" ry="28" fill="#b7ff00" opacity=".2" filter="url(#glow)"/>
+  <g fill="none" stroke="#b7ff00" stroke-width="2" opacity=".7">
+    <path d="M188 115h210q22 0 22 22v70"/>
+    <path d="M1010 370h-105q-22 0-22 22v85"/>
+    <path d="M175 720h220q22 0 22-22v-40"/>
+  </g>
+  <g fill="#b7ff00">
+    <circle cx="398" cy="207" r="5"/><circle cx="883" cy="455" r="5"/><circle cx="417" cy="658" r="5"/>
+  </g>
+  <g fill="#f4f4f4" font-family="Arial, sans-serif">
+    <text x="72" y="75" font-size="18" font-weight="700" letter-spacing="2">STRATEGY</text>
+    <text x="72" y="102" font-size="13" fill="#c9c9c9">We start with clarity</text>
+    <text x="72" y="121" font-size="13" fill="#c9c9c9">and the right questions.</text>
+    <text x="925" y="340" font-size="18" font-weight="700" letter-spacing="2">EXECUTION</text>
+    <text x="925" y="367" font-size="13" fill="#c9c9c9">We build with precision</text>
+    <text x="925" y="386" font-size="13" fill="#c9c9c9">and modern technology.</text>
+    <text x="72" y="778" font-size="18" font-weight="700" letter-spacing="2">IMPACT</text>
+    <text x="72" y="805" font-size="13" fill="#c9c9c9">We deliver measurable</text>
+    <text x="72" y="824" font-size="13" fill="#c9c9c9">outcomes that grow your business.</text>
+  </g>
+</svg>

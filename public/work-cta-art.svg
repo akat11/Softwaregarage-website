@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 434 259" role="img" aria-labelledby="title desc">
+  <title id="title">Software Garage project illustration</title>
+  <desc id="desc">A glowing lime cube surrounded by rocket, star and code icons.</desc>
+  <defs>
+    <radialGradient id="wash" cx="54%" cy="51%" r="57%">
+      <stop offset="0" stop-color="#9ac900" stop-opacity=".27"/>
+      <stop offset=".55" stop-color="#243500" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#020302" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <rect width="434" height="259" fill="#020302"/>
+  <rect width="434" height="259" fill="url(#wash)"/>
+  <ellipse cx="228" cy="130" rx="103" ry="88" fill="#b7ff00" opacity=".1" filter="url(#soft)"/>
+  <g fill="#b7ff00" opacity=".34">
+    <circle cx="35" cy="116" r="1.3"/><circle cx="43" cy="179" r="1"/><circle cx="125" cy="112" r="1"/>
+    <circle cx="321" cy="39" r="1"/><circle cx="311" cy="218" r="1.2"/><circle cx="382" cy="135" r="1"/>
+  </g>
+  <g fill="none" stroke="#b7ff00" stroke-width="1.3" stroke-dasharray="5 5" opacity=".48">
+    <path d="M126 51C162 55 173 76 199 92"/>
+    <path d="M336 82C305 78 298 91 282 99"/>
+    <path d="M118 171C156 175 178 151 199 137"/>
+    <path d="M315 174C294 170 298 145 282 137"/>
+    <path d="M125 52C187 51 169 112 220 115" opacity=".55"/>
+    <path d="M311 174C368 166 354 113 286 111" opacity=".55"/>
+  </g>
+  <g fill="#b7ff00" opacity=".75"><circle cx="154" cy="65" r="2"/><circle cx="315" cy="91" r="2"/><circle cx="145" cy="158" r="2"/><circle cx="302" cy="164" r="2"/></g>
+  <g filter="url(#glow)" fill="none" stroke="#b7ff00" stroke-linejoin="round">
+    <path stroke-width="3" d="m228 53 65 26-65 30-65-30 65-26Z"/>
+    <path stroke-width="3" d="M163 79v99l65 23v-92l-65-30Zm130 0v99l-65 23v-92l65-30Z"/>
+  </g>
+  <g fill="#080b06" stroke="#5e7418" stroke-width="1">
+    <rect x="67" y="23" width="59" height="59" rx="9"/><rect x="335" y="54" width="59" height="59" rx="9"/><rect x="59" y="143" width="59" height="58" rx="9"/>
+  </g>
+  <g fill="#b7ff00" filter="url(#glow)">
+    <path d="M81 62c4-13 13-24 28-29l-3 13 7 7-12 3-8 11-3-8-9 3Z"/>
+    <path d="m365 67 4 10 11 1-8 7 3 11-10-6-10 6 3-11-8-7 11-1 4-10Z"/>
+  </g>
+  <text x="70" y="181" fill="#b7ff00" font-family="monospace" font-size="25" font-weight="700">&lt;/&gt;</text>
+</svg>
