@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLocation } from 'react-router-dom'
 import { usePrefersReducedMotion } from './usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -14,6 +15,8 @@ gsap.registerPlugin(ScrollTrigger)
  */
 export function useLenis() {
   const reducedMotion = usePrefersReducedMotion()
+  const lenisRef = useRef<Lenis | null>(null)
+  const { pathname } = useLocation()
 
   useEffect(() => {
     if (reducedMotion) return
@@ -22,6 +25,7 @@ export function useLenis() {
       duration: 1.1,
       smoothWheel: true,
     })
+    lenisRef.current = lenis
 
     const onScroll = () => ScrollTrigger.update()
     lenis.on('scroll', onScroll)
@@ -36,6 +40,12 @@ export function useLenis() {
       gsap.ticker.remove(tick)
       lenis.off('scroll', onScroll)
       lenis.destroy()
+      lenisRef.current = null
     }
   }, [reducedMotion])
+
+  useEffect(() => {
+    lenisRef.current?.scrollTo(0, { immediate: true })
+    window.scrollTo(0, 0)
+  }, [pathname])
 }

@@ -1,4 +1,84 @@
 <svg width="620" height="420" viewBox="0 0 620 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-<defs><filter id="g"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="w" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#202522"/><stop offset="1" stop-color="#050706"/></linearGradient></defs>
-<rect x="76" y="35" width="468" height="285" rx="14" fill="url(#w)" stroke="#A9B0A8" stroke-opacity=".55" stroke-width="3" filter="url(#g)"/><path d="M77 79h466" stroke="#5A625B" stroke-width="3"/><circle cx="101" cy="57" r="5" fill="#D6FF29"/><circle cx="119" cy="57" r="5" fill="#D6FF29"/><circle cx="137" cy="57" r="5" fill="#D6FF29"/><path d="M102 111h40M102 145h40M102 179h40M102 213h40M102 247h40" stroke="#505850" stroke-width="5" stroke-linecap="round"/><text x="272" y="218" fill="#B7FF00" font-family="Arial,sans-serif" font-size="90" font-weight="300">&lt;/&gt;</text>
-<path d="M245 320v46h-84M376 320v46h84" stroke="#B7FF00" stroke-opacity=".75" stroke-width="2"/><circle cx="245" cy="320" r="5" fill="#B7FF00"/><circle cx="376" cy="320" r="5" fill="#B7FF00"/><rect x="78" y="352" width="132" height="48" rx="9" fill="#171D1A" stroke="#606960" stroke-opacity=".55"/><text x="99" y="383" fill="#C8FF3D" font-family="monospace" font-size="22">API</text><g><ellipse cx="426" cy="354" rx="24" ry="8" stroke="#B7FF00" stroke-width="3"/><path d="M402 354v35c0 5 11 9 24 9s24-4 24-9v-35M402 365c0 5 11 9 24 9s24-4 24-9M402 377c0 5 11 9 24 9s24-4 24-9" stroke="#B7FF00" stroke-width="3"/><rect x="454" y="352" width="111" height="48" rx="9" fill="#171D1A" stroke="#606960" stroke-opacity=".55"/><text x="467" y="382" fill="#E0E5DF" font-family="monospace" font-size="13">DATABASE</text></g></svg>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="32" x2="540" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1512"/>
+      <stop offset="0.52" stop-color="#090B0B"/>
+      <stop offset="1" stop-color="#040505"/>
+    </linearGradient>
+    <linearGradient id="panelGlow" x1="70" y1="55" x2="520" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A221D"/>
+      <stop offset="1" stop-color="#070908"/>
+    </linearGradient>
+    <linearGradient id="lime" x1="96" y1="102" x2="512" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8FF5A"/>
+      <stop offset="1" stop-color="#B6FF18"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="36" y="24" width="548" height="354" rx="18" fill="url(#bg)" stroke="rgba(255,255,255,0.12)"/>
+
+  <g opacity="0.48">
+    <path d="M64 118H554" stroke="rgba(183,255,0,0.18)" stroke-width="1.4"/>
+    <path d="M64 176H554" stroke="rgba(183,255,0,0.12)" stroke-width="1.2"/>
+    <path d="M64 234H554" stroke="rgba(183,255,0,0.12)" stroke-width="1.2"/>
+    <path d="M64 292H554" stroke="rgba(183,255,0,0.12)" stroke-width="1.2"/>
+    <path d="M188 60V342" stroke="rgba(183,255,0,0.1)" stroke-width="1.2"/>
+    <path d="M440 60V342" stroke="rgba(183,255,0,0.08)" stroke-width="1.2"/>
+  </g>
+
+  <g>
+    <rect x="76" y="42" width="468" height="298" rx="16" fill="url(#panelGlow)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="76" y="42" width="468" height="34" rx="16" fill="rgba(255,255,255,0.02)"/>
+    <circle cx="108" cy="59" r="5" fill="#D5FF58"/>
+    <circle cx="126" cy="59" r="5" fill="#D5FF58"/>
+    <circle cx="144" cy="59" r="5" fill="#D5FF58"/>
+
+    <rect x="96" y="88" width="160" height="192" rx="10" fill="rgba(16,22,18,0.92)" stroke="rgba(183,255,0,0.22)"/>
+    <rect x="110" y="106" width="86" height="12" rx="6" fill="rgba(183,255,0,0.88)"/>
+    <rect x="110" y="129" width="60" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+    <rect x="110" y="147" width="102" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+    <rect x="110" y="165" width="74" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+    <rect x="110" y="203" width="112" height="40" rx="12" fill="rgba(183,255,0,0.1)" stroke="rgba(183,255,0,0.35)"/>
+    <path d="M139 222H205" stroke="#D6FF29" stroke-width="3" stroke-linecap="round"/>
+    <path d="M139 232H189" stroke="rgba(255,255,255,0.52)" stroke-width="3" stroke-linecap="round"/>
+
+    <g filter="url(#softGlow)">
+      <rect x="278" y="94" width="226" height="146" rx="14" fill="rgba(17,21,19,0.96)" stroke="rgba(183,255,0,0.3)"/>
+      <rect x="300" y="120" width="150" height="12" rx="6" fill="url(#lime)"/>
+      <rect x="300" y="145" width="95" height="8" rx="4" fill="rgba(255,255,255,0.18)"/>
+      <rect x="300" y="161" width="125" height="8" rx="4" fill="rgba(255,255,255,0.12)"/>
+      <rect x="300" y="194" width="150" height="18" rx="9" fill="rgba(183,255,0,0.12)"/>
+      <rect x="300" y="194" width="98" height="18" rx="9" fill="rgba(183,255,0,0.65)"/>
+      <circle cx="446" cy="133" r="30" fill="rgba(183,255,0,0.08)" stroke="rgba(183,255,0,0.48)"/>
+      <path d="M446 113V153M426 133H466" stroke="#D6FF29" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <g>
+      <rect x="292" y="266" width="120" height="42" rx="10" fill="rgba(25,31,29,1)" stroke="rgba(183,255,0,0.2)"/>
+      <text x="318" y="293" fill="#E8F6D1" font-family="Arial, sans-serif" font-size="20" font-weight="700">42%</text>
+      <rect x="428" y="266" width="82" height="42" rx="10" fill="rgba(25,31,29,1)" stroke="rgba(183,255,0,0.2)"/>
+      <text x="453" y="293" fill="#D6FF29" font-family="Arial, sans-serif" font-size="18" font-weight="700">LIVE</text>
+    </g>
+
+    <g opacity="0.9">
+      <circle cx="255" cy="180" r="7" fill="#D6FF29"/>
+      <path d="M255 180L320 180" stroke="#D6FF29" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="320" cy="180" r="7" fill="#D6FF29"/>
+      <path d="M320 180L383 180" stroke="#D6FF29" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="383" cy="180" r="7" fill="#D6FF29"/>
+      <path d="M383 180L453 180" stroke="#D6FF29" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="453" cy="180" r="7" fill="#D6FF29"/>
+    </g>
+
+    <g opacity="0.75">
+      <path d="M70 330C135 298 140 248 207 245C278 241 280 294 332 286C386 278 413 227 474 237C517 245 543 266 560 290" stroke="rgba(183,255,0,0.52)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

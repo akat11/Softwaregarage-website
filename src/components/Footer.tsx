@@ -1,45 +1,128 @@
 import { Link } from 'react-router-dom'
 
+const companyLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'Services', to: '/services' },
+  { label: 'Work', to: '/work' },
+]
+
+const resourceLinks = [
+  { label: 'Process', to: '/process' },
+  { label: 'Industries', to: '/industries' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+]
+
+const socialLinks = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com' },
+  { label: 'Instagram', href: 'https://www.instagram.com' },
+]
+
 export default function Footer() {
   return (
-    <footer>
-      <div className="footer-top">
-        <div>
-          <div className="footer-logo">
+    <footer className="site-footer">
+      <div className="footer-grid">
+        <div className="footer-brand-wrap">
+          <h2 className="footer-brand">
             SOFTWARE <span>GARAGE</span>
+          </h2>
+
+          <div className="footer-motto">
+            BUILT TO SOLVE. DESIGNED TO SCALE.
+            <span className="motto-line" aria-hidden="true" />
           </div>
-          <div className="footer-tag">BUILD. TEST. TRANSFORM.</div>
-          <div className="footer-detail">BUILT • TESTED • SHIPPED</div>
+
+          <div className="footer-pitch">
+            <div className="pitch-bolt" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.5 2L5 13H10L8.5 22L18 10.5H13L14.5 2H13.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <p>
+              We build reliable digital products
+              <br />
+              that drive real business impact.
+            </p>
+          </div>
         </div>
-        <div className="footer-links">
-          <div className="footer-col">
-            <h4>Company</h4>
-            <Link to="/">Home</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/work">Work</Link>
-            <Link to="/industries">Industries</Link>
-            <Link to="/about">About</Link>
+
+        <div className="footer-menu-grid">
+          <div className="footer-menu-block">
+            <div className="footer-menu-label">
+              <span className="footer-menu-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6.5C4 5.67 4.67 5 5.5 5H11L13 7H18.5C19.33 7 20 7.67 20 8.5V17.5C20 18.33 19.33 19 18.5 19H5.5C4.67 19 4 18.33 4 17.5V6.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                </svg>
+              </span>
+              COMPANY
+            </div>
+            <nav className="footer-links" aria-label="Company navigation">
+              {companyLinks.map((item) => (
+                <Link key={item.label} to={item.to}>
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
           </div>
-          <div className="footer-col">
-            <h4>Resources</h4>
-            <Link to="/process">Process</Link>
-            <Link to="/work">Case Studies</Link>
-            <a href="#">Blog</a>
-            <a href="#">Careers</a>
-            <Link to="/contact">Contact</Link>
+
+          <div className="footer-menu-block">
+            <div className="footer-menu-label">
+              <span className="footer-menu-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 7.5H17M7 12H17M7 16.5H13.5M5 4.5H19C19.83 4.5 20.5 5.17 20.5 6V18C20.5 18.83 19.83 19.5 19 19.5H5C4.17 19.5 3.5 18.83 3.5 18V6C3.5 5.17 4.17 4.5 5 4.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                </svg>
+              </span>
+              RESOURCES
+            </div>
+            <nav className="footer-links" aria-label="Resources navigation">
+              {resourceLinks.map((item) =>
+                item.to ? (
+                  <Link key={item.label} to={item.to}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a key={item.label} href={item.href}>
+                    {item.label}
+                  </a>
+                ),
+              )}
+            </nav>
           </div>
-          <div className="footer-col">
-            <h4>Social</h4>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer noopener">LinkedIn</a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer noopener">Instagram</a>
-            <a href="https://github.com" target="_blank" rel="noreferrer noopener">GitHub</a>
-            <a href="https://dribbble.com" target="_blank" rel="noreferrer noopener">Dribbble</a>
+
+          <div className="footer-menu-block">
+            <div className="footer-menu-label">
+              <span className="footer-menu-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 15.5L10.5 11L13.5 14L18 9.5M18 9.5H14.5M18 9.5V13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5.5 18.5H18.5C19.33 18.5 20 17.83 20 17V7C20 6.17 19.33 5.5 18.5 5.5H5.5C4.67 5.5 4 6.17 4 7V17C4 17.83 4.67 18.5 5.5 18.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                </svg>
+              </span>
+              SOCIAL
+            </div>
+            <nav className="footer-links" aria-label="Social navigation">
+              {socialLinks.map((item) => (
+                <a key={item.label} href={item.href} target="_blank" rel="noreferrer noopener">
+                  {item.label}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
       </div>
+
+      <div className="footer-divider" aria-hidden="true" />
+
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} SOFTWARE GARAGE. ALL RIGHTS RESERVED.</span>
-        <span>SEE YOU INSIDE. ●</span>
+        <div className="footer-copyright">
+          © 2026 Software Garage. All rights reserved.
+        </div>
+
+        <Link to="/contact" className="footer-cta">
+          <span className="cta-arrow" aria-hidden="true">
+            →
+          </span>
+          See you inside.
+        </Link>
       </div>
     </footer>
   )

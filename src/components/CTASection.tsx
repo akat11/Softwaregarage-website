@@ -8,6 +8,7 @@ interface Props {
   description?: string
   className?: string
   secondaryLabel?: string
+  visualType?: 'rocket' | 'lightbulb' | 'art'
 }
 
 export default function CTASection({
@@ -16,12 +17,16 @@ export default function CTASection({
   description = "Tell us what you're building. We'll help turn the idea into a product people can use, trust and remember.",
   className,
   secondaryLabel = 'TALK TO THE GARAGE',
+  visualType,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion()
 
   return (
-    <section className={`final-cta${className ? ` ${className}` : ''}`} id="contact-cta">
+    <section className={`final-cta${className ? ` ${className}` : ''}${visualType === 'rocket' ? ' with-rocket' : ''}`} id="contact-cta">
       <div className={`portal-glow${reducedMotion ? '' : ' breathe'}`} aria-hidden="true" />
+      {visualType === 'rocket' && (
+        <img className="cta-rocket-art" src="/cta-rocket.svg" alt="" aria-hidden="true" />
+      )}
       {className?.includes('work-cta') && (
         <img className="work-cta-art" src="/work-cta-art.svg" alt="" aria-hidden="true" />
       )}
@@ -31,7 +36,7 @@ export default function CTASection({
       <div className={className?.includes('industries-cta') ? 'industries-cta-content' : undefined}>
         <div
           className="eyebrow"
-          style={{ justifyContent: className?.includes('industries-cta') || className?.includes('work-cta') ? 'flex-start' : 'center' }}
+          style={{ justifyContent: className?.includes('industries-cta') || className?.includes('work-cta') || visualType === 'rocket' ? 'flex-start' : 'center' }}
         >
           {eyebrow}
         </div>

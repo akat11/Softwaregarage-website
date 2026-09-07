@@ -55,7 +55,7 @@ export default function Home() {
         </div>
         <HeroGlow />
         <div className="hero-inner">
-          <div className="eyebrow">DIGITAL PRODUCTS. REAL IMPACT. <span className="hero-eyebrow-dot">●</span></div>
+          <div className="eyebrow">DIGITAL PRODUCTS. REAL IMPACT. <span className="hero-eyebrow-dot"></span></div>
           <h1>
             <span className="line"><span>WE BUILD DIGITAL</span></span>
             <span className="line"><span>PRODUCTS THAT</span></span>
@@ -69,7 +69,6 @@ export default function Home() {
           </p>
           <div className="hero-ctas">
             <MagneticButton to="/work" variant="primary">VIEW ALL PROJECTS →</MagneticButton>
-            <MagneticButton to="/work" variant="secondary"><span className="play-icon">▶</span> WATCH SHOWREEL</MagneticButton>
           </div>
         </div>
         <div className="hero-proof">
@@ -159,7 +158,7 @@ export default function Home() {
           />
           <div className="principles">
             <div className="principle">
-              <div className="pnum"></div>
+              <div className="pnum">01</div>
               <div>
                 <h3>Build with Purpose</h3>
                 <p className="ptext">We start from the real business problem, not just the brief.</p>
@@ -235,7 +234,13 @@ export default function Home() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection 
+        eyebrow="MAKE AN IMPACT"
+        title={<>LET'S BUILD SOMETHING<br /><span className="text-lime">EXTRAORDINARY</span> TOGETHER.</>}
+        description="From idea to impact — we build digital products that drive growth, engage users and create lasting value."
+        secondaryLabel="TALK TO OUR EXPERTS"
+        visualType="rocket"
+      />
     </div>
   )
 }

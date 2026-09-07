@@ -54,7 +54,6 @@ export default function Work() {
                 </div>
                 <div className="work-action">
                   <span className="work-action-link">VIEW PROJECT ↗</span>
-                  <span className="work-plus">+</span>
                 </div>
               </Link>
             ))}

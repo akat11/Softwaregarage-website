@@ -1,72 +1,30 @@
-import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SectionHeading from '@/components/SectionHeading'
 import { projects } from '@/data/projects'
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
-gsap.registerPlugin(ScrollTrigger)
+const showcaseProjects = [
+  {
+    ...projects[0],
+    image:
+      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    ...projects[1],
+    image:
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    ...projects[2],
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+  },
+]
 
 /**
- * Home-page-only "Selected Work" showcase. Deliberately NOT shared with
- * /work (see project notes) — that page keeps its current simple editorial
- * list untouched.
- *
- * Desktop (>=900px): pinned section, vertical scroll drives horizontal
- * translation through project panels (gsap.matchMedia, scoped + reverted
- * automatically on unmount/breakpoint change).
- * Mobile / reduced-motion: the exact same markup renders as a normal
- * stacked, vertically-scrolling list — no pin, no hijacked touch scroll.
- *
- * No real project screenshots exist in the repo yet, so each panel uses an
- * abstract, brand-consistent visual (grid pattern + category tag + initials
- * mark) rather than a fabricated screenshot. Swap `.showcase-visual`'s
- * children for a real <img> per project once assets are available.
+ * Home-page-only "Selected Work" teaser. Deliberately NOT shared with /work
+ * so that page keeps its current editorial list untouched.
  */
 export default function SelectedWork() {
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const trackRef = useRef<HTMLDivElement>(null)
-  const reducedMotion = usePrefersReducedMotion()
-
-  useGSAP(
-    () => {
-      if (reducedMotion) return
-      const wrapper = wrapperRef.current
-      const track = trackRef.current
-      if (!wrapper || !track) return
-
-      const mm = gsap.matchMedia()
-
-      mm.add('(min-width: 900px)', () => {
-        const getDistance = () => track.scrollWidth - wrapper.offsetWidth
-        const tween = gsap.to(track, {
-          x: () => -Math.max(0, getDistance()),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: wrapper,
-            start: 'top top',
-            end: () => `+=${Math.max(0, getDistance())}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        })
-
-        // gsap.matchMedia expects the cleanup function returned here.
-        return () => {
-          tween.scrollTrigger?.kill()
-          tween.kill()
-        }
-      })
-
-      return () => mm.revert()
-    },
-    { scope: wrapperRef, dependencies: [reducedMotion] }
-  )
-
   return (
     <section id="work">
       <div className="container">
@@ -77,36 +35,28 @@ export default function SelectedWork() {
         />
       </div>
 
-      <div className={`showcase-wrapper${reducedMotion ? ' no-motion' : ''}`} ref={wrapperRef}>
-        <div className="showcase-track" ref={trackRef}>
-          {projects.map((p, i) => (
+      <div className="showcase-wrapper">
+        <div className="showcase-track">
+          {showcaseProjects.map((p) => (
             <Link
               key={p.slug}
               to={`/work/${p.slug}`}
               className="showcase-panel"
               data-cursor="expand"
               data-cursor-label="VIEW PROJECT →"
+              style={{ backgroundImage: `linear-gradient(180deg, rgba(5,6,6,0.1), rgba(5,6,6,0.72)), url(${p.image})` }}
             >
-              <div className="showcase-visual" role="img" aria-label={`${p.name} — abstract project visual`}>
-                <span className="showcase-visual-tag">{p.category.toUpperCase()}</span>
-                <span className="showcase-visual-mark" aria-hidden="true">
-                  {p.name.slice(0, 2).toUpperCase()}
-                </span>
-              </div>
-              <div className="showcase-meta">
-                <div className="showcase-num">0{i + 1}</div>
+              <div className="showcase-panel-inner">
+                <span className="showcase-label">{p.category.split('•')[0].trim()}</span>
                 <h3>{p.name}</h3>
-                <div className="showcase-type">{p.type}</div>
-                <p className="showcase-desc">{p.description}</p>
-                <div className="showcase-tags">
-                  {p.technology.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
-                <div className="showcase-arrow">VIEW PROJECT →</div>
               </div>
             </Link>
           ))}
+        </div>
+        <div className="showcase-cta">
+          <Link to="/work" className="btn-primary">
+            VIEW WORK <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>
