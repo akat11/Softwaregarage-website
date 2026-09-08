@@ -453,7 +453,7 @@ export default function Services() {
             </div>
           </div>
           <div className="services-hero-visual">
-            <img src="/services-hero-reference.svg" alt="" aria-hidden="true" />
+            <img src="/steps.png" alt="" aria-hidden="true" />
           </div>
         </div>
       </section>

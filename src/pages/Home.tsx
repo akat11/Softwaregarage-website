@@ -51,7 +51,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" id="home">
         <div className="home-hero-art" aria-hidden="true">
-          <img src="/home-hero-products.svg" alt="" />
+          <img src="/herosection.jpeg" alt="" />
         </div>
         <HeroGlow />
         <div className="hero-inner">
@@ -72,8 +72,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-proof">
-          <div><strong>15+</strong>PROJECTS DELIVERED</div>
-          <div><strong>06+</strong>GLOBAL PROJECTS</div>
+          
         </div>
         <div className="scroll-hint"><div className="bar" />SCROLL</div>
       </section>

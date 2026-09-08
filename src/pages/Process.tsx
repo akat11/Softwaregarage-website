@@ -266,7 +266,7 @@ function ProcessHeroVisual() {
 
   return (
     <div className="process-hero-visual" aria-hidden="true">
-      <img className="process-hero-reference" src="/process-hero-reference.svg" alt="" />
+      <img className="process-hero-reference" src="/process.jpeg" alt="" />
     </div>
   )
 }

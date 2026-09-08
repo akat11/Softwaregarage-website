@@ -22,35 +22,69 @@ export default function CTASection({
   const reducedMotion = usePrefersReducedMotion()
 
   return (
-    <section className={`final-cta${className ? ` ${className}` : ''}${visualType === 'rocket' ? ' with-rocket' : ''}`} id="contact-cta">
-      <div className={`portal-glow${reducedMotion ? '' : ' breathe'}`} aria-hidden="true" />
-      {visualType === 'rocket' && (
-        <img className="cta-rocket-art" src="/cta-rocket.svg" alt="" aria-hidden="true" />
-      )}
-      {className?.includes('work-cta') && (
-        <img className="work-cta-art" src="/work-cta-art.svg" alt="" aria-hidden="true" />
-      )}
-      {className?.includes('industries-cta') && (
-        <img className="industries-cta-art" src="/industry-cta-lightbulb.svg" alt="" aria-hidden="true" />
-      )}
-      <div className={className?.includes('industries-cta') ? 'industries-cta-content' : undefined}>
-        <div
-          className="eyebrow"
-          style={{ justifyContent: className?.includes('industries-cta') || className?.includes('work-cta') || visualType === 'rocket' ? 'flex-start' : 'center' }}
-        >
-          {eyebrow}
-        </div>
-        <h2 style={{ whiteSpace: 'pre-line' }}>{title}</h2>
-        <p>{description}</p>
-        <div className="hero-ctas">
-          <MagneticButton to="/contact" variant="primary" cursorLabel="LET'S TALK">
-            START A PROJECT →
-          </MagneticButton>
-          <MagneticButton to="/contact" variant="secondary">
-            {secondaryLabel} →
-          </MagneticButton>
-        </div>
-      </div>
-    </section>
+   <section
+  className={`final-cta${className ? ` ${className}` : ''}${visualType === 'rocket' ? ' with-rocket' : ''}`}
+  id="contact-cta"
+>
+  <div className={`portal-glow${reducedMotion ? '' : ' breathe'}`} aria-hidden="true" />
+
+  {className?.includes('work-cta') && (
+    <img
+      className="work-cta-art"
+      src="/work-cta-art.svg"
+      alt=""
+      aria-hidden="true"
+    />
+  )}
+
+  {className?.includes('industries-cta') && (
+    <img
+      className="industries-cta-art"
+      src="/industry-cta-lightbulb.svg"
+      alt=""
+      aria-hidden="true"
+    />
+  )}
+
+  <div
+    className={
+      className?.includes('industries-cta')
+        ? 'industries-cta-content'
+        : undefined
+    }
+  >
+    <div
+      className="eyebrow"
+      style={{
+        justifyContent:
+          className?.includes('industries-cta') ||
+          className?.includes('work-cta') ||
+          visualType === 'rocket'
+            ? 'flex-start'
+            : 'center',
+      }}
+    >
+      {eyebrow}
+    </div>
+
+    <h2 style={{ whiteSpace: 'pre-line' }}>{title}</h2>
+
+    <p>{description}</p>
+
+    <div className="hero-ctas">
+      <MagneticButton
+        to="/contact"
+        variant="primary"
+        cursorLabel="LET'S TALK"
+      >
+        START A PROJECT →
+      </MagneticButton>
+
+      <MagneticButton to="/contact" variant="secondary">
+        {secondaryLabel} →
+      </MagneticButton>
+    </div>
+  </div>
+</section>
   )
 }
