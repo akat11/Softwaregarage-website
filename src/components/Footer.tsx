@@ -16,6 +16,7 @@ const resourceLinks = [
 const socialLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com' },
   { label: 'Instagram', href: 'https://www.instagram.com' },
+  { label: 'softwaregarage2025@gmail.com', href: 'mailto:softwaregarage2025@gmail.com' },
 ]
 
 export default function Footer() {
@@ -32,18 +33,6 @@ export default function Footer() {
             <span className="motto-line" aria-hidden="true" />
           </div>
 
-          <div className="footer-pitch">
-            <div className="pitch-bolt" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.5 2L5 13H10L8.5 22L18 10.5H13L14.5 2H13.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-              </svg>
-            </div>
-            <p>
-              We build reliable digital products
-              <br />
-              that drive real business impact.
-            </p>
-          </div>
         </div>
 
         <div className="footer-menu-grid">
@@ -117,12 +106,11 @@ export default function Footer() {
           © 2026 Software Garage. All rights reserved.
         </div>
 
-        <Link to="/contact" className="footer-cta">
-          <span className="cta-arrow" aria-hidden="true">
-            →
-          </span>
-          See you inside.
-        </Link>
+        <div className="footer-built-with" aria-label="Built with love for a better tomorrow">
+          Built with <span aria-hidden="true">♥</span> for a better tomorrow.
+        </div>
+
+        <Link to="/contact" className="footer-cta" aria-label="Contact us" />
       </div>
     </footer>
   )

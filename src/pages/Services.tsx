@@ -496,7 +496,7 @@ export default function Services() {
                   </div>
                 </div>
                 <div className="service-action">
-                  <MagneticButton to="/contact" variant="secondary" cursorLabel="START A PROJECT">
+                  <MagneticButton to="/contact" variant="secondary">
                     START A PROJECT →
                   </MagneticButton>
                 </div>
@@ -520,7 +520,7 @@ export default function Services() {
             <p>From first sketch to production, we turn ambitious ideas into powerful digital products.</p>
           </div>
           <div className="hero-ctas">
-            <MagneticButton to="/contact" variant="primary" cursorLabel="LET'S TALK">
+            <MagneticButton to="/contact" variant="primary">
               START A PROJECT →
             </MagneticButton>
             <MagneticButton to="/work" variant="secondary">
