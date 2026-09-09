@@ -40,7 +40,7 @@ export default function CTASection({
   {className?.includes('industries-cta') && (
     <img
       className="industries-cta-art"
-      src="/industry-cta-lightbulb.svg"
+      src="/industies.png"
       alt=""
       aria-hidden="true"
     />
