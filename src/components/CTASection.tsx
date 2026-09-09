@@ -8,6 +8,7 @@ interface Props {
   description?: string
   className?: string
   secondaryLabel?: string
+  showSecondaryButton?: boolean
   visualType?: 'rocket' | 'lightbulb' | 'art'
 }
 
@@ -17,6 +18,7 @@ export default function CTASection({
   description = "Tell us what you're building. We'll help turn the idea into a product people can use, trust and remember.",
   className,
   secondaryLabel = 'TALK TO THE GARAGE',
+  showSecondaryButton = true,
   visualType,
 }: Props) {
   const reducedMotion = usePrefersReducedMotion()
@@ -75,14 +77,15 @@ export default function CTASection({
       <MagneticButton
         to="/contact"
         variant="primary"
-        cursorLabel="LET'S TALK"
       >
         START A PROJECT →
       </MagneticButton>
 
-      <MagneticButton to="/contact" variant="secondary">
-        {secondaryLabel} →
-      </MagneticButton>
+      {showSecondaryButton && (
+        <MagneticButton to="/contact" variant="secondary">
+          {secondaryLabel} →
+        </MagneticButton>
+      )}
     </div>
   </div>
 </section>
