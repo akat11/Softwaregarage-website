@@ -29,6 +29,11 @@ export default function Work() {
             for clients across industries.
           </p>
         </div>
+        <img
+          className="work-hero-image"
+          src="/work-hero.png.png"
+          alt="Software Garage digital product showcase"
+        />
         <div className="work-hero-wireframe" aria-hidden="true" />
       </section>
 
@@ -44,7 +49,7 @@ export default function Work() {
                 data-cursor-label="VIEW PROJECT →"
               >
                 <div className="wnum">
-                  0{index + 1}
+                  {index + 1}
                   <span className="wnum-dot" />
                 </div>
                 <div className="work-item-content">

@@ -49,26 +49,13 @@ export default function CaseStudy() {
             <div className="eyebrow" style={{ marginTop: '20px' }}>{project.category.toUpperCase()}</div>
             <h1 style={{ fontSize: 'clamp(36px,5vw,64px)', marginTop: '18px', marginBottom: '16px' }}>{project.name}</h1>
             <p style={{ maxWidth: '420px', color: 'var(--text-dim)', marginTop: '20px', fontSize: '15px', lineHeight: '1.6' }}>{project.description}</p>
-            <div className="case-hero-buttons" style={{ display: 'flex', gap: '16px', marginTop: '32px' }}>
-              <MagneticButton to="/contact" variant="primary">VIEW LIVE DEMO →</MagneticButton>
-              <MagneticButton to="/contact" variant="secondary">VISIT WEBSITE →</MagneticButton>
-            </div>
           </div>
           <div className="case-hero-image">
-            <div className="case-image-placeholder" style={{ 
-              width: '100%', 
-              height: '400px', 
-              background: 'linear-gradient(135deg, rgba(183,255,0,0.1), rgba(200,255,61,0.05))',
-              border: '1px solid rgba(183,255,0,0.2)',
-              borderRadius: '16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--text-dim)',
-              fontSize: '14px'
-            }}>
-              Project Showcase Image
-            </div>
+            {project.image ? (
+              <img className="case-study-image" src={project.image} alt={`${project.name} project showcase`} />
+            ) : (
+              <div className="case-image-placeholder">Project Showcase Image</div>
+            )}
           </div>
         </div>
       </section>
@@ -145,7 +132,13 @@ export default function CaseStudy() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection
+        eyebrow="MAKE AN IMPACT"
+        title={<>LET&apos;S BUILD SOMETHING<br /><span className="text-lime">EXTRAORDINARY</span> TOGETHER.</>}
+        description="From idea to impact — we build digital products that drive growth, engage users and create lasting value."
+        showSecondaryButton={false}
+        visualType="rocket"
+      />
     </div>
   )
 }

@@ -464,7 +464,6 @@ export default function Services() {
             <article className="service-detail reveal" id={service.slug} key={service.slug}>
               <div className="service-number">
                 <span>{service.number}</span>
-                {service.badge ? <div className="service-badge">{service.badge}</div> : null}
               </div>
               <div className="service-content">
                 <h3>{service.title}</h3>

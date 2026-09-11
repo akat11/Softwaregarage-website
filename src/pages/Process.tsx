@@ -568,6 +568,13 @@ export default function Process() {
 
         <div className="container">
           <div className="process-cta-inner">
+            <img
+              className="process-cta-mountain"
+              src="/mission-mountain.png"
+              alt=""
+              aria-hidden="true"
+            />
+
             <div className="eyebrow">
               YOUR IDEA HAS A NEXT STEP.
             </div>
