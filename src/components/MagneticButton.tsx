@@ -25,24 +25,38 @@ export default function MagneticButton({
   disabled,
   cursorLabel,
 }: Props) {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement | null>(null)
   const reducedMotion = usePrefersReducedMotion()
 
   useGSAP(
     () => {
       const el = ref.current
+
       if (!el || reducedMotion) return
 
-      const xTo = gsap.quickTo(el, 'x', { duration: 0.4, ease: 'power3' })
-      const yTo = gsap.quickTo(el, 'y', { duration: 0.4, ease: 'power3' })
+      const xTo = gsap.quickTo(el, 'x', {
+        duration: 0.4,
+        ease: 'power3',
+      })
+
+      const yTo = gsap.quickTo(el, 'y', {
+        duration: 0.4,
+        ease: 'power3',
+      })
 
       const onMove = (e: MouseEvent) => {
         const rect = el.getBoundingClientRect()
-        const relX = e.clientX - (rect.left + rect.width / 2)
-        const relY = e.clientY - (rect.top + rect.height / 2)
+
+        const relX =
+          e.clientX - (rect.left + rect.width / 2)
+
+        const relY =
+          e.clientY - (rect.top + rect.height / 2)
+
         xTo(relX * 0.3)
         yTo(relY * 0.3)
       }
+
       const onLeave = () => {
         xTo(0)
         yTo(0)
@@ -56,29 +70,56 @@ export default function MagneticButton({
         el.removeEventListener('mouseleave', onLeave)
       }
     },
-    { scope: ref, dependencies: [reducedMotion] }
+    {
+      dependencies: [reducedMotion],
+    }
   )
 
-  const className = variant === 'primary' ? 'btn-primary' : 'btn-secondary'
-  const cursorProps = { 'data-cursor': 'expand', 'data-cursor-label': cursorLabel }
+  const className =
+    variant === 'primary'
+      ? 'btn-primary'
+      : 'btn-secondary'
+
+  const cursorProps = {
+    'data-cursor': 'expand',
+    'data-cursor-label': cursorLabel,
+  }
 
   if (to) {
     return (
-      <Link to={to} ref={ref as any} className={className} {...cursorProps}>
+      <Link
+        to={to}
+        ref={(node) => {
+          ref.current = node
+        }}
+        className={className}
+        {...cursorProps}
+      >
         {children}
       </Link>
     )
   }
+
   if (href) {
     return (
-      <a href={href} ref={ref as any} className={className} {...cursorProps}>
+      <a
+        href={href}
+        ref={(node) => {
+          ref.current = node
+        }}
+        className={className}
+        {...cursorProps}
+      >
         {children}
       </a>
     )
   }
+
   return (
     <button
-      ref={ref as any}
+      ref={(node) => {
+        ref.current = node
+      }}
       type={type}
       className={className}
       onClick={onClick}
