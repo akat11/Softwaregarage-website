@@ -66,6 +66,15 @@ export default function Work() {
         </div>
       </section>
 
+      <section className="work-selected-projects" aria-label="More selected projects">
+        <div className="container">
+          <img
+            src="/project.png"
+            alt="15 plus selected projects across web, mobile, SaaS, e-commerce and software testing"
+          />
+        </div>
+      </section>
+
       <CTASection
         className="work-cta"
         eyebrow="HAVE A PROJECT IN MIND?"
