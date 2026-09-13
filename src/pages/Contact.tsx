@@ -24,7 +24,9 @@ import { useScrollReveals } from '@/hooks/useScrollReveals'
 import '@/styles/contact.css'
 
 interface FormState {
-  name: string
+  firstName: string
+  lastName: string
+  mobile: string
   company: string
   email: string
   projectType: string
@@ -33,7 +35,9 @@ interface FormState {
 }
 
 const initialState: FormState = {
-  name: '',
+  firstName: '',
+  lastName: '',
+  mobile: '',
   company: '',
   email: '',
   projectType: '',
@@ -44,11 +48,12 @@ const initialState: FormState = {
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const NAME_RE = /^[A-Za-z]+(?:[ '\u002D][A-Za-z]+)*$/
+const MOBILE_RE = /^\+?[0-9][0-9\s().-]{7,19}$/
 
 // Google Apps Script Web App URL
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbyCQg_lqKWvW3lx61Nqz0WmxSKydbP6cp-hsJui7Bd9WxNxSqsbw3Is0oUC_G2Ohh_jOg/exec'
-
+       'https://script.google.com/macros/s/AKfycbwf3nffH2Nvm53tTeLdjphHh3EGelqoCEdn-8AwyRc2P9A0pEcBXsLbny8eEUVfor0/exec'
 const CONTACT_EMAIL = 'softwaregarage2025@gmail.com'
 
 export default function Contact() {
@@ -73,9 +78,17 @@ export default function Contact() {
         HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
       >
     ) => {
+      let value = e.target.value
+
+      if (field === 'firstName' || field === 'lastName') {
+        value = value.replace(/[^A-Za-z '\u002D]/g, '')
+      } else if (field === 'mobile') {
+        value = value.replace(/[^0-9+().\s-]/g, '')
+      }
+
       setForm((currentForm) => ({
         ...currentForm,
-        [field]: e.target.value,
+        [field]: value,
       }))
 
       setErrors((currentErrors) => ({
@@ -91,17 +104,35 @@ export default function Contact() {
   const validate = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {}
 
-    const name = form.name.trim()
+    const firstName = form.firstName.trim()
+    const lastName = form.lastName.trim()
+    const mobile = form.mobile.trim()
     const email = form.email.trim()
     const company = form.company.trim()
     const projectType = form.projectType.trim()
     const budget = form.budget.trim()
     const description = form.description.trim()
 
-    if (!name) {
-      next.name = 'Name is required.'
-    } else if (name.length > 200) {
-      next.name = 'Name is too long.'
+    if (!firstName) {
+      next.firstName = 'First name is required.'
+    } else if (!NAME_RE.test(firstName)) {
+      next.firstName = 'Use letters only.'
+    } else if (firstName.length > 100) {
+      next.firstName = 'First name is too long.'
+    }
+
+    if (!lastName) {
+      next.lastName = 'Last name is required.'
+    } else if (!NAME_RE.test(lastName)) {
+      next.lastName = 'Use letters only.'
+    } else if (lastName.length > 100) {
+      next.lastName = 'Last name is too long.'
+    }
+
+    if (!mobile) {
+      next.mobile = 'Mobile number is required.'
+    } else if (!MOBILE_RE.test(mobile)) {
+      next.mobile = 'Enter a valid mobile number.'
     }
 
     if (!email) {
@@ -167,7 +198,9 @@ export default function Contact() {
 
       const body = new URLSearchParams()
 
-      body.append('fullName', form.name.trim())
+      body.append('firstName', form.firstName.trim())
+      body.append('lastName', form.lastName.trim())
+      body.append('mobile', form.mobile.trim())
       body.append('email', form.email.trim())
       body.append('company', form.company.trim())
       body.append('projectType', form.projectType.trim())
@@ -303,24 +336,69 @@ export default function Contact() {
             </div>
 
             <div className="form-row">
-              <div className={`form-field${errors.name ? ' error' : ''}`}>
-                <label htmlFor="name">
-                  <UserRound size={14} /> Full Name
+              <div className={`form-field${errors.firstName ? ' error' : ''}`}>
+                <label htmlFor="firstName">
+                  <UserRound size={14} /> First Name
                 </label>
 
                 <input
-                  id="name"
+                  id="firstName"
                   type="text"
-                  value={form.name}
-                  onChange={setField('name')}
-                  maxLength={200}
+                  value={form.firstName}
+                  onChange={setField('firstName')}
+                  maxLength={100}
                   required
                 />
 
-                <small>Enter your full name</small>
+                <small>Enter your first name</small>
 
-                {errors.name && (
-                  <span className="field-error">{errors.name}</span>
+                {errors.firstName && (
+                  <span className="field-error">{errors.firstName}</span>
+                )}
+              </div>
+
+              <div className={`form-field${errors.lastName ? ' error' : ''}`}>
+                <label htmlFor="lastName">
+                  <UserRound size={14} /> Last Name
+                </label>
+
+                <input
+                  id="lastName"
+                  type="text"
+                  value={form.lastName}
+                  onChange={setField('lastName')}
+                  maxLength={100}
+                  required
+                />
+
+                <small>Enter your last name</small>
+
+                {errors.lastName && (
+                  <span className="field-error">{errors.lastName}</span>
+                )}
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className={`form-field${errors.mobile ? ' error' : ''}`}>
+                <label htmlFor="mobile">
+                  <Phone size={14} /> Mobile Number
+                </label>
+
+                <input
+                  id="mobile"
+                  type="tel"
+                  inputMode="tel"
+                  value={form.mobile}
+                  onChange={setField('mobile')}
+                  maxLength={20}
+                  required
+                />
+
+                <small>Enter your mobile number</small>
+
+                {errors.mobile && (
+                  <span className="field-error">{errors.mobile}</span>
                 )}
               </div>
 
@@ -346,9 +424,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div
-              className={`form-field${errors.company ? ' error' : ''}`}
-            >
+            <div className={`form-field${errors.company ? ' error' : ''}`}>
               <label htmlFor="company">
                 <Building2 size={14} /> Company / Organization
               </label>
