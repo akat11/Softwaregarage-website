@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useRef, useState } from 'react'
+ import {
+  ChangeEvent,
+  FormEvent,
+  ReactNode,
+  useRef,
+  useState,
+} from 'react'
 import {
   Building2,
   Clock3,
@@ -45,9 +51,21 @@ type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-// Google Apps Script Web App URL
+/*
+ * Google Apps Script Web App URL
+ *
+ * IMPORTANT:
+ * Replace the URL below with the CURRENT Web App URL
+ * copied from:
+ *
+ * Google Apps Script
+ * → Deploy
+ * → Manage deployments
+ * → Web app
+ * → URL
+ */
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbyCQg_lqKWvW3lx61Nqz0WmxSKydbP6cp-hsJui7Bd9WxNxSqsbw3Is0oUC_G2Ohh_jOg/exec'
+  'https://script.google.com/macros/s/AKfycbzP1YPML0lLjnOpFBjqnkxtI0quaXUpbxJmWtvea0itTUPqm6ManvqXasc3RQ9_dU1z/exec'
 
 const CONTACT_EMAIL = 'softwaregarage2025@gmail.com'
 
@@ -66,6 +84,9 @@ export default function Contact() {
 
   const [honeypot, setHoneypot] = useState('')
 
+  /*
+   * Handle form fields
+   */
   const setField =
     (field: keyof FormState) =>
     (
@@ -88,6 +109,9 @@ export default function Contact() {
       }
     }
 
+  /*
+   * Validate form
+   */
   const validate = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {}
 
@@ -98,12 +122,18 @@ export default function Contact() {
     const budget = form.budget.trim()
     const description = form.description.trim()
 
+    /*
+     * Name
+     */
     if (!name) {
       next.name = 'Name is required.'
     } else if (name.length > 200) {
       next.name = 'Name is too long.'
     }
 
+    /*
+     * Email
+     */
     if (!email) {
       next.email = 'Email is required.'
     } else if (!EMAIL_RE.test(email)) {
@@ -112,24 +142,37 @@ export default function Contact() {
       next.email = 'Email is too long.'
     }
 
-    if (!company) {
-      // Company is optional, so no error here.
-    } else if (company.length > 200) {
+    /*
+     * Company
+     * Optional field
+     */
+    if (company && company.length > 200) {
       next.company = 'Company name is too long.'
     }
 
+    /*
+     * Project Type
+     */
     if (!projectType) {
       next.projectType = 'Select a project type.'
     }
 
+    /*
+     * Budget
+     */
     if (!budget) {
       next.budget = 'Select a budget range.'
     }
 
+    /*
+     * Description
+     */
     if (!description) {
-      next.description = 'Tell us a little about the project.'
+      next.description =
+        'Tell us a little about the project.'
     } else if (description.length > 5000) {
-      next.description = 'Project description is too long.'
+      next.description =
+        'Project description is too long.'
     }
 
     setErrors(next)
@@ -137,22 +180,59 @@ export default function Contact() {
     return Object.keys(next).length === 0
   }
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  /*
+   * Submit lead to Google Sheets
+   */
+  const handleSubmit = async (
+    e: FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault()
 
-    // Prevent double submission
+    /*
+     * Prevent double submission
+     */
     if (status === 'submitting') {
       return
     }
 
-    // Validate form
+    /*
+     * Validate form
+     */
     if (!validate()) {
       return
     }
 
-    // Honeypot spam protection
+    /*
+     * Honeypot spam protection
+     *
+     * Real users never fill this hidden field.
+     */
     if (honeypot.trim()) {
+      console.warn('Spam submission blocked.')
+
+      setStatus('success')
+
+      setForm(initialState)
+      setHoneypot('')
+      setErrors({})
+
+      return
+    }
+
+    /*
+     * Check Google Script URL
+     */
+    if (
+      !GOOGLE_SCRIPT_URL ||
+      GOOGLE_SCRIPT_URL ===
+        'PASTE_YOUR_CURRENT_WEB_APP_URL_HERE'
+    ) {
+      console.error(
+        'Google Apps Script Web App URL is not configured.'
+      )
+
       setStatus('error')
+
       return
     }
 
@@ -160,44 +240,77 @@ export default function Contact() {
 
     try {
       /*
-       * Google Apps Script receives this as normal form data.
-       * We intentionally do NOT send application/json because
-       * that can trigger a CORS preflight from a static website.
+       * Prepare lead data
+       *
+       * We send JSON as text/plain.
+       *
+       * Why text/plain?
+       * Google Apps Script can receive the request without
+       * triggering a browser CORS preflight.
        */
+      const payload = {
+        name: form.name.trim(),
 
-      const body = new URLSearchParams()
+        email: form.email.trim(),
 
-      body.append('fullName', form.name.trim())
-      body.append('email', form.email.trim())
-      body.append('company', form.company.trim())
-      body.append('projectType', form.projectType.trim())
-      body.append('budget', form.budget.trim())
-      body.append('description', form.description.trim())
-      body.append('honeypot', honeypot.trim())
+        company: form.company.trim(),
 
+        projectType: form.projectType.trim(),
+
+        budget: form.budget.trim(),
+
+        description: form.description.trim(),
+
+        /*
+         * Additional lead information
+         */
+        pageUrl: window.location.href,
+
+        userAgent: navigator.userAgent,
+
+        honeypot: honeypot.trim(),
+      }
+
+      /*
+       * Send data to Google Apps Script
+       */
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        body: body,
+
         mode: 'no-cors',
+
+        headers: {
+          'Content-Type':
+            'text/plain;charset=utf-8',
+        },
+
+        body: JSON.stringify(payload),
       })
 
       /*
-       * With no-cors, the browser cannot read the response body
-       * from Google Apps Script.
+       * IMPORTANT:
        *
-       * If fetch completes without throwing a network error,
-       * we consider the submission sent successfully.
+       * Because we use no-cors, browser cannot read
+       * the Google Apps Script response.
+       *
+       * If fetch completes without a network error,
+       * the request has been sent to Google Apps Script.
        */
-
       setStatus('success')
 
+      /*
+       * Reset form
+       */
       setForm(initialState)
 
       setHoneypot('')
 
       setErrors({})
     } catch (error) {
-      console.error('Contact form submission failed:', error)
+      console.error(
+        'Contact form submission failed:',
+        error
+      )
 
       setStatus('error')
     }
@@ -224,13 +337,15 @@ export default function Contact() {
               <br />
               <span>WORTH TALKING</span>
               <br />
-              ABOUT<span className="contact-dot">.</span>
+              ABOUT
+              <span className="contact-dot">.</span>
             </h1>
 
             <p>
               Great ideas deserve the right team.
               <br />
-              Tell us about your project and let&apos;s bring it to life.
+              Tell us about your project and let&apos;s bring
+              it to life.
             </p>
 
             <div className="contact-promises">
@@ -278,7 +393,10 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="contact-hero-art" aria-hidden="true">
+          <div
+            className="contact-hero-art"
+            aria-hidden="true"
+          >
             <img
               className="contact-reference-image"
               src="/contact-envelope.svg"
@@ -303,7 +421,11 @@ export default function Contact() {
             </div>
 
             <div className="form-row">
-              <div className={`form-field${errors.name ? ' error' : ''}`}>
+              <div
+                className={`form-field${
+                  errors.name ? ' error' : ''
+                }`}
+              >
                 <label htmlFor="name">
                   <UserRound size={14} /> Full Name
                 </label>
@@ -314,17 +436,25 @@ export default function Contact() {
                   value={form.name}
                   onChange={setField('name')}
                   maxLength={200}
+                  autoComplete="name"
                   required
+                  aria-invalid={!!errors.name}
                 />
 
                 <small>Enter your full name</small>
 
                 {errors.name && (
-                  <span className="field-error">{errors.name}</span>
+                  <span className="field-error">
+                    {errors.name}
+                  </span>
                 )}
               </div>
 
-              <div className={`form-field${errors.email ? ' error' : ''}`}>
+              <div
+                className={`form-field${
+                  errors.email ? ' error' : ''
+                }`}
+              >
                 <label htmlFor="email">
                   <Mail size={14} /> Email Address
                 </label>
@@ -335,22 +465,29 @@ export default function Contact() {
                   value={form.email}
                   onChange={setField('email')}
                   maxLength={200}
+                  autoComplete="email"
                   required
+                  aria-invalid={!!errors.email}
                 />
 
                 <small>name@example.com</small>
 
                 {errors.email && (
-                  <span className="field-error">{errors.email}</span>
+                  <span className="field-error">
+                    {errors.email}
+                  </span>
                 )}
               </div>
             </div>
 
             <div
-              className={`form-field${errors.company ? ' error' : ''}`}
+              className={`form-field${
+                errors.company ? ' error' : ''
+              }`}
             >
               <label htmlFor="company">
-                <Building2 size={14} /> Company / Organization
+                <Building2 size={14} /> Company /
+                Organization
               </label>
 
               <input
@@ -359,12 +496,16 @@ export default function Contact() {
                 value={form.company}
                 onChange={setField('company')}
                 maxLength={200}
+                autoComplete="organization"
+                aria-invalid={!!errors.company}
               />
 
               <small>Your company name</small>
 
               {errors.company && (
-                <span className="field-error">{errors.company}</span>
+                <span className="field-error">
+                  {errors.company}
+                </span>
               )}
             </div>
 
@@ -383,15 +524,37 @@ export default function Contact() {
                   value={form.projectType}
                   onChange={setField('projectType')}
                   required
+                  aria-invalid={!!errors.projectType}
                 >
                   <option value="">Select one</option>
-                  <option value="Website">Website</option>
-                  <option value="Web Application">Web Application</option>
-                  <option value="Mobile App">Mobile App</option>
-                  <option value="SaaS Platform">SaaS Platform</option>
-                  <option value="E-commerce">E-commerce</option>
-                  <option value="AI / Automation">AI / Automation</option>
-                  <option value="Other">Other</option>
+
+                  <option value="Website">
+                    Website
+                  </option>
+
+                  <option value="Web Application">
+                    Web Application
+                  </option>
+
+                  <option value="Mobile App">
+                    Mobile App
+                  </option>
+
+                  <option value="SaaS Platform">
+                    SaaS Platform
+                  </option>
+
+                  <option value="E-commerce">
+                    E-commerce
+                  </option>
+
+                  <option value="AI / Automation">
+                    AI / Automation
+                  </option>
+
+                  <option value="Other">
+                    Other
+                  </option>
                 </select>
 
                 <small>Select one</small>
@@ -403,7 +566,11 @@ export default function Contact() {
                 )}
               </div>
 
-              <div className={`form-field${errors.budget ? ' error' : ''}`}>
+              <div
+                className={`form-field${
+                  errors.budget ? ' error' : ''
+                }`}
+              >
                 <label htmlFor="budget">
                   <WalletCards size={14} /> Budget Range
                 </label>
@@ -413,13 +580,31 @@ export default function Contact() {
                   value={form.budget}
                   onChange={setField('budget')}
                   required
+                  aria-invalid={!!errors.budget}
                 >
-                  <option value="">Select a range</option>
-                  <option value="Under $5k">Under $5k</option>
-                  <option value="$5k–$15k">$5k–$15k</option>
-                  <option value="$15k–$40k">$15k–$40k</option>
-                  <option value="$40k+">$40k+</option>
-                  <option value="Not sure yet">Not sure yet</option>
+                  <option value="">
+                    Select a range
+                  </option>
+
+                  <option value="Under $5k">
+                    Under $5k
+                  </option>
+
+                  <option value="$5k–$15k">
+                    $5k–$15k
+                  </option>
+
+                  <option value="$15k–$40k">
+                    $15k–$40k
+                  </option>
+
+                  <option value="$40k+">
+                    $40k+
+                  </option>
+
+                  <option value="Not sure yet">
+                    Not sure yet
+                  </option>
                 </select>
 
                 <small>Select a range</small>
@@ -447,6 +632,7 @@ export default function Contact() {
                 onChange={setField('description')}
                 maxLength={5000}
                 required
+                aria-invalid={!!errors.description}
               />
 
               <small>
@@ -476,18 +662,21 @@ export default function Contact() {
               </MagneticButton>
 
               <span>
-                <LockKeyhole size={14} /> We respect your privacy.
+                <LockKeyhole size={14} /> We respect your
+                privacy.
                 <br />
                 Your details are safe with us.
               </span>
             </div>
 
-            {/* Hidden honeypot field for basic spam protection */}
+            {/* Hidden honeypot field for spam protection */}
             <input
               type="text"
               name="website"
               value={honeypot}
-              onChange={(e) => setHoneypot(e.target.value)}
+              onChange={(e) =>
+                setHoneypot(e.target.value)
+              }
               tabIndex={-1}
               autoComplete="off"
               aria-hidden="true"
@@ -501,21 +690,29 @@ export default function Contact() {
             />
 
             {status === 'success' && (
-              <div className="form-status success" role="status">
-                Thank you! Your project details have been submitted
-                successfully.
+              <div
+                className="form-status success"
+                role="status"
+              >
+                Thank you! Your project details have been
+                submitted successfully. Our team will contact
+                you shortly.
               </div>
             )}
 
             {status === 'error' && (
-              <div className="form-status error" role="alert">
-                Unable to submit your project brief. Please try
-                again.
+              <div
+                className="form-status error"
+                role="alert"
+              >
+                Unable to submit your project brief. Please
+                try again.
               </div>
             )}
 
             <p className="form-note">
-              Your project brief will be stored in Google Sheets.
+              Your project brief will be stored in Google
+              Sheets.
             </p>
           </form>
 
@@ -530,6 +727,7 @@ export default function Contact() {
             <p className="direct-intro">
               Prefer email? Reach us directly at
               <br />
+
               <a href={`mailto:${CONTACT_EMAIL}`}>
                 {CONTACT_EMAIL}
               </a>
@@ -600,7 +798,9 @@ export default function Contact() {
         <div className="container contact-services">
           <div>
             <Rocket size={18} />
+
             <b>We Build</b>
+
             <small>
               Powerful digital products
               <br />
@@ -610,7 +810,9 @@ export default function Contact() {
 
           <div>
             <Code2 size={18} />
+
             <b>We Develop</b>
+
             <small>
               Clean, efficient &amp; future-
               <br />
@@ -620,7 +822,9 @@ export default function Contact() {
 
           <div>
             <ShieldCheck size={18} />
+
             <b>We Test</b>
+
             <small>
               Quality-first approach for bug-free
               <br />
@@ -630,7 +834,9 @@ export default function Contact() {
 
           <div>
             <Headphones size={18} />
+
             <b>We Support</b>
+
             <small>
               Ongoing support to keep
               <br />
@@ -648,7 +854,7 @@ function ContactDetail({
   title,
   value,
 }: {
-  icon: React.ReactNode
+  icon: ReactNode
   title: string
   value: string
 }) {
@@ -658,6 +864,7 @@ function ContactDetail({
 
       <div>
         <b>{title}</b>
+
         <small>{value}</small>
       </div>
     </div>
