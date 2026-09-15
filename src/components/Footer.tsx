@@ -14,8 +14,8 @@ const resourceLinks = [
 ]
 
 const socialLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com' },
-  { label: 'Instagram', href: 'https://www.instagram.com' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/thesoftwaregarage' },
+  { label: 'Instagram', href: 'https://www.instagram.com/the_software_garage/' },
   { label: 'softwaregarage2025@gmail.com', href: 'mailto:softwaregarage2025@gmail.com' },
 ]
 
@@ -64,17 +64,11 @@ export default function Footer() {
               RESOURCES
             </div>
             <nav className="footer-links" aria-label="Resources navigation">
-              {resourceLinks.map((item) =>
-                item.to ? (
-                  <Link key={item.label} to={item.to}>
-                    {item.label}
-                  </Link>
-                ) : (
-                  <a key={item.label} href={item.href}>
-                    {item.label}
-                  </a>
-                ),
-              )}
+              {resourceLinks.map((item) => (
+                <Link key={item.label} to={item.to}>
+                  {item.label}
+                </Link>
+              ))}
             </nav>
           </div>
 

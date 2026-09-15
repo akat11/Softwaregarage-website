@@ -9,6 +9,7 @@ function doPost(e) {
     }
 
     const fullName = String(data.fullName || '').trim();
+    const mobile = String(data.mobile || '').trim();
     const email = String(data.email || '').trim();
     const company = String(data.company || '').trim();
     const projectType = String(data.projectType || '').trim();
@@ -20,7 +21,7 @@ function doPost(e) {
       return ContentService.createTextOutput(JSON.stringify({ success: false, error: 'Spam rejected' })).setMimeType(ContentService.MimeType.JSON);
     }
 
-    if (!fullName || !email || !projectType || !description) {
+    if (!fullName || !mobile || !email || !projectType || !description) {
       return ContentService.createTextOutput(JSON.stringify({ success: false, error: 'Missing required fields' })).setMimeType(ContentService.MimeType.JSON);
     }
 
@@ -29,7 +30,7 @@ function doPost(e) {
       return ContentService.createTextOutput(JSON.stringify({ success: false, error: 'Invalid email' })).setMimeType(ContentService.MimeType.JSON);
     }
 
-    if (fullName.length > 200 || email.length > 200 || company.length > 200 || projectType.length > 200 || budget.length > 200 || description.length > 5000) {
+    if (fullName.length > 200 || mobile.length > 20 || email.length > 200 || company.length > 200 || projectType.length > 200 || budget.length > 200 || description.length > 5000) {
       return ContentService.createTextOutput(JSON.stringify({ success: false, error: 'Field length exceeded' })).setMimeType(ContentService.MimeType.JSON);
     }
 
@@ -40,11 +41,11 @@ function doPost(e) {
 
     if (!sheet) {
       sheet = spreadsheet.insertSheet(sheetName);
-      sheet.appendRow(['Timestamp', 'Full Name', 'Email', 'Company / Organization', 'Project Type', 'Budget Range', 'Project Description']);
+      sheet.appendRow(['Timestamp', 'Full Name', 'Mobile Number', 'Email', 'Company / Organization', 'Project Type', 'Budget Range', 'Project Description']);
     }
 
     const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-    const requiredHeaders = ['Timestamp', 'Full Name', 'Email', 'Company / Organization', 'Project Type', 'Budget Range', 'Project Description'];
+    const requiredHeaders = ['Timestamp', 'Full Name', 'Mobile Number', 'Email', 'Company / Organization', 'Project Type', 'Budget Range', 'Project Description'];
 
     if (headers.length === 0 || headers[0] !== 'Timestamp' || !requiredHeaders.every((header) => headers.includes(header))) {
       const existing = headers.length ? headers : [];
@@ -56,6 +57,7 @@ function doPost(e) {
     const row = [
       timestamp.toLocaleString('en-GB', { timeZone: 'Asia/Kolkata' }),
       fullName,
+      mobile,
       email,
       company,
       projectType,

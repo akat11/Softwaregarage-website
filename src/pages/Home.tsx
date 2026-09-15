@@ -72,7 +72,8 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-proof">
-          
+          <AnimatedCounter value={15} label="PROJECTS DELIVERED" />
+          <AnimatedCounter value={6} label="GLOBAL CLIENTS" />
         </div>
         <div className="scroll-hint"><div className="bar" />SCROLL</div>
       </section>
