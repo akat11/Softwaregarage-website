@@ -64,7 +64,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
  * → Web app
  * → URL
  */
-const GOOGLE_SCRIPT_URL =
+const GOOGLE_SCRIPT_URL: string =
   'https://script.google.com/macros/s/AKfycbzP1YPML0lLjnOpFBjqnkxtI0quaXUpbxJmWtvea0itTUPqm6ManvqXasc3RQ9_dU1z/exec'
 
 const CONTACT_EMAIL = 'softwaregarage2025@gmail.com'
