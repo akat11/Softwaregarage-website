@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">More work selected projects</title>
+  <desc id="desc">A neon Software Garage project showcase with web, mobile, QA, SaaS and e-commerce cards.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050605"/><stop offset="1" stop-color="#0c1107"/></linearGradient>
+    <linearGradient id="lime" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4ff35"/><stop offset="1" stop-color="#82bd00"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#b7ff00" stop-opacity=".25"/><stop offset="1" stop-color="#b7ff00" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="16"/></filter>
+    <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#b7ff00" flood-opacity=".18"/></filter>
+  </defs>
+  <rect width="1200" height="380" rx="18" fill="url(#bg)" stroke="#30352a"/>
+  <ellipse cx="820" cy="174" rx="370" ry="170" fill="url(#glow)" filter="url(#blur)"/>
+  <g font-family="monospace" letter-spacing="4" fill="#b7ff00"><circle cx="42" cy="48" r="5"/><text x="60" y="54" font-size="13">MORE WORK  •  SELECTED PROJECTS</text></g>
+  <g font-family="Arial, sans-serif" font-weight="800"><text x="42" y="132" font-size="58" fill="#f5f5f5">15+ PROJECTS.</text><text x="42" y="195" font-size="53" fill="url(#lime)">MORE IN THE WORKS.</text></g>
+  <g font-family="Arial, sans-serif" font-size="16" fill="#999"><text x="42" y="236">These are just a selection of projects we&apos;ve delivered across</text><text x="42" y="260">web, mobile, SaaS, e-commerce, and software testing.</text></g>
+  <rect x="42" y="295" width="210" height="48" rx="24" fill="#b7ff00"/><text x="72" y="325" font-family="monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#101407">VIEW MORE PROJECTS  →</text>
+  <text x="286" y="325" font-family="monospace" font-size="12" letter-spacing="2" fill="#d7d7d7">LET&apos;S WORK TOGETHER  →</text>
+  <g transform="translate(620 48) rotate(-7)" filter="url(#shadow)"><rect width="142" height="248" rx="12" fill="#0b0d0b" stroke="#b7ff00" stroke-width="2"/><text x="18" y="35" font-family="monospace" font-size="11" fill="#f4f4f4">◎  WEB</text><path d="M20 112 C55 61 80 79 122 65 L122 153 C82 130 54 161 20 180Z" fill="#b7ff00" opacity=".55"/><text x="18" y="210" font-family="Arial" font-size="15" fill="#f4f4f4">Modern Web</text><text x="18" y="230" font-family="Arial" font-size="15" fill="#f4f4f4">Applications</text><circle cx="120" cy="216" r="14" fill="none" stroke="#b7ff00"/><text x="114" y="222" font-size="15" fill="#b7ff00">→</text></g>
+  <g transform="translate(755 62) rotate(-4)"><rect width="125" height="222" rx="11" fill="#101210" stroke="#626861" stroke-width="2"/><text x="15" y="34" font-family="monospace" font-size="10" fill="#f4f4f4">▯  MOBILE</text><rect x="39" y="63" width="48" height="91" rx="9" fill="#050605" stroke="#b7ff00" opacity=".65"/><circle cx="63" cy="141" r="3" fill="#b7ff00"/><text x="15" y="193" font-family="Arial" font-size="15" fill="#f4f4f4">Mobile Apps</text></g>
+  <g transform="translate(872 70) rotate(-2)"><rect width="117" height="214" rx="11" fill="#101210" stroke="#626861" stroke-width="2"/><text x="15" y="34" font-family="monospace" font-size="10" fill="#f4f4f4">⚙  QA</text><rect x="20" y="122" width="14" height="40" fill="#b7ff00" opacity=".6"/><rect x="42" y="96" width="14" height="66" fill="#b7ff00" opacity=".8"/><rect x="64" y="75" width="14" height="87" fill="#b7ff00"/><text x="15" y="192" font-family="Arial" font-size="14" fill="#f4f4f4">Software</text><text x="15" y="210" font-family="Arial" font-size="14" fill="#f4f4f4">Testing</text></g>
+  <g transform="translate(982 78) rotate(1)"><rect width="103" height="206" rx="11" fill="#101210" stroke="#626861" stroke-width="2"/><text x="13" y="33" font-family="monospace" font-size="9" fill="#f4f4f4">▣  SAAS</text><path d="M27 91 51 77 76 91 51 105Z M27 91v37l24 14v-37Zm49 0v37l-25 14v-37Z" fill="#c8ff3d" opacity=".7"/><text x="13" y="177" font-family="Arial" font-size="13" fill="#f4f4f4">SaaS</text><text x="13" y="194" font-family="Arial" font-size="13" fill="#f4f4f4">Platforms</text></g>
+  <g transform="translate(1078 88) rotate(3)"><rect width="105" height="196" rx="11" fill="#101210" stroke="#626861" stroke-width="2"/><text x="11" y="32" font-family="monospace" font-size="8" fill="#f4f4f4">▱ E-COMMERCE</text><path d="M25 80h53l-6 58H32Z" fill="#deded8" opacity=".8"/><path d="M39 80c0-18 25-18 25 0" fill="none" stroke="#555" stroke-width="4"/><text x="11" y="177" font-family="Arial" font-size="13" fill="#f4f4f4">E-commerce</text></g>
+</svg>

@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" aria-hidden="true">
+  <defs>
+    <!-- Gradients -->
+    <radialGradient id="rocketBodyGradient" cx="40%" cy="40%">
+      <stop offset="0%" stop-color="#f0f0f0"/>
+      <stop offset="100%" stop-color="#d0d0d0"/>
+    </radialGradient>
+    
+    <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffeb3b"/>
+      <stop offset="40%" stop-color="#ff9800"/>
+      <stop offset="100%" stop-color="#f44336"/>
+    </linearGradient>
+    
+    <radialGradient id="limeGlowOuter" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#b7ff00" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#b7ff00" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#b7ff00" stop-opacity="0"/>
+    </radialGradient>
+    
+    <radialGradient id="limeGlowMid" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b7ff00" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#b7ff00" stop-opacity="0"/>
+    </radialGradient>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    
+    <filter id="flameGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Large outer glow aura (lime) -->
+  <circle cx="200" cy="220" r="160" fill="url(#limeGlowOuter)" filter="url(#softGlow)"/>
+  <circle cx="200" cy="220" r="120" fill="url(#limeGlowMid)" filter="url(#softGlow)"/>
+  
+  <!-- Flame glow base -->
+  <ellipse cx="200" cy="380" rx="90" ry="80" fill="#b7ff00" opacity="0.2" filter="url(#softGlow)"/>
+  <ellipse cx="200" cy="400" rx="70" ry="60" fill="#ff9800" opacity="0.15" filter="url(#softGlow)"/>
+  
+  <!-- Main rocket group with glow -->
+  <g filter="url(#glow)">
+    <!-- Rocket body - sleek fuselage -->
+    <rect x="165" y="80" width="70" height="240" rx="35" fill="url(#rocketBodyGradient)" stroke="#999" stroke-width="1.5"/>
+    
+    <!-- Nose cone - pointed tip -->
+    <polygon points="200,30 175,80 225,80" fill="#e53935" stroke="#c62828" stroke-width="1.5"/>
+    
+    <!-- Nose cone inner highlight -->
+    <polygon points="200,35 183,80 217,80" fill="#ff5252" opacity="0.6"/>
+    
+    <!-- Window 1 - large -->
+    <circle cx="200" cy="120" r="12" fill="#2196f3" stroke="#1565c0" stroke-width="1.5"/>
+    <circle cx="200" cy="120" r="10" fill="#64b5f6" opacity="0.8"/>
+    
+    <!-- Window 2 -->
+    <circle cx="200" cy="170" r="9" fill="#2196f3" stroke="#1565c0" stroke-width="1.5"/>
+    <circle cx="200" cy="170" r="7" fill="#64b5f6" opacity="0.8"/>
+    
+    <!-- Window 3 -->
+    <circle cx="200" cy="220" r="8" fill="#2196f3" stroke="#1565c0" stroke-width="1.5"/>
+    <circle cx="200" cy="220" r="6" fill="#64b5f6" opacity="0.8"/>
+    
+    <!-- Left fin - sleek -->
+    <polygon points="165,200 120,260 165,245" fill="#1a1a1a" stroke="#555" stroke-width="1.5"/>
+    
+    <!-- Right fin - sleek -->
+    <polygon points="235,200 280,260 235,245" fill="#1a1a1a" stroke="#555" stroke-width="1.5"/>
+    
+    <!-- Booster left -->
+    <rect x="145" y="240" width="25" height="80" rx="8" fill="#2a2a2a" stroke="#666" stroke-width="1"/>
+    
+    <!-- Booster right -->
+    <rect x="230" y="240" width="25" height="80" rx="8" fill="#2a2a2a" stroke="#666" stroke-width="1"/>
+  </g>
+  
+  <!-- Flame layers - outer (red/orange) -->
+  <g filter="url(#flameGlow)">
+    <path d="M 175 320 Q 160 360 155 400 Q 165 440 200 460 Q 235 440 245 400 Q 240 360 225 320 Z" fill="#f44336" opacity="0.85"/>
+  </g>
+  
+  <!-- Flame layers - middle (orange) -->
+  <g filter="url(#flameGlow)">
+    <path d="M 180 330 Q 170 365 168 400 Q 175 435 200 450 Q 225 435 232 400 Q 230 365 220 330 Z" fill="#ff9800" opacity="0.9"/>
+  </g>
+  
+  <!-- Flame layers - inner/core (yellow/lime) -->
+  <g filter="url(#flameGlow)">
+    <path d="M 185 345 Q 180 375 179 400 Q 185 430 200 442 Q 215 430 221 400 Q 220 375 215 345 Z" fill="#ffeb3b" opacity="0.95"/>
+  </g>
+  
+  <!-- Bright lime flame center -->
+  <g filter="url(#flameGlow)">
+    <path d="M 190 365 Q 188 385 188 405 Q 193 428 200 438 Q 207 428 212 405 Q 212 385 210 365 Z" fill="#b7ff00" opacity="0.8"/>
+  </g>
+  
+  <!-- Floating particles/stars -->
+  <g opacity="0.7">
+    <!-- Left side particles -->
+    <circle cx="100" cy="140" r="2.5" fill="#b7ff00"/>
+    <circle cx="85" cy="220" r="2" fill="#b7ff00"/>
+    <circle cx="95" cy="300" r="1.5" fill="#b7ff00"/>
+    <circle cx="110" cy="380" r="2.2" fill="#b7ff00"/>
+    
+    <!-- Right side particles -->
+    <circle cx="300" cy="120" r="2.5" fill="#b7ff00"/>
+    <circle cx="320" cy="200" r="2" fill="#b7ff00"/>
+    <circle cx="310" cy="280" r="1.5" fill="#b7ff00"/>
+    <circle cx="330" cy="360" r="2.2" fill="#b7ff00"/>
+    
+    <!-- Top particles -->
+    <circle cx="150" cy="50" r="1.8" fill="#b7ff00"/>
+    <circle cx="250" cy="60" r="2" fill="#b7ff00"/>
+  </g>
+  
+  <!-- Glow lines/energy streams -->
+  <g stroke="#b7ff00" stroke-width="1.5" opacity="0.4" fill="none" stroke-linecap="round">
+    <path d="M 80 180 Q 120 200 165 210"/>
+    <path d="M 320 240 Q 280 260 235 270"/>
+    <path d="M 100 320 Q 140 340 180 360"/>
+  </g>
+</svg>
