@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import MagneticButton from '@/components/MagneticButton'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
@@ -332,10 +333,7 @@ export default function Services() {
 
   return (
     <div ref={containerRef}>
-      <Seo
-        title="Software Development & Digital Engineering Services | Software Garage"
-        description="From product strategy and design to engineering, testing and automation — we build digital products that move business."
-      />
+      <Seo meta={pageMeta.services} />
 
       <section className="services-hero">
         <div className="container services-hero-grid">

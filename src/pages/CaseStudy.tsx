@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import Seo from '@/components/Seo'
+import { caseStudyMeta } from '@/data/seo'
 import CTASection from '@/components/CTASection'
 import MagneticButton from '@/components/MagneticButton'
 import { getProjectBySlug, projects } from '@/data/projects'
@@ -29,10 +30,7 @@ export default function CaseStudy() {
 
   return (
     <div ref={containerRef}>
-      <Seo
-        title={`${project.name} | Software Garage Case Study`}
-        description={project.description}
-      />
+      <Seo meta={caseStudyMeta(project)} project={project} />
 
       <section className="case-hero">
         <div className="container case-hero-grid">

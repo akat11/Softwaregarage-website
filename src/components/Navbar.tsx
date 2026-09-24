@@ -20,7 +20,10 @@ export default function Navbar({ onBurgerClick, menuOpen }: Props) {
   return (
     <nav className={`site-nav${scrolled ? ' scrolled' : ''}`}>
       <Link to="/" className="logo" data-cursor="expand">
-        SOFTWARE<span>GARAGE</span>
+        <img src="/logo-mark.png" alt="" className="logo-mark" />
+        <span className="logo-text">
+          the software<span>garage</span>
+        </span>
       </Link>
 
       <div className="nav-links">

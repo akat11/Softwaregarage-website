@@ -16,6 +16,7 @@ import {
   UsersRound,
 } from 'lucide-react'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import CTASection from '@/components/CTASection'
 import { industries } from '@/data/industries'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
@@ -102,10 +103,7 @@ export default function Industries() {
 
   return (
     <div ref={containerRef} className="industries-page">
-      <Seo
-        title="Industries We Build For | Software Garage"
-        description="Software Garage builds digital products across SaaS, FinTech, e-commerce, education, healthcare, logistics, gaming, Web3, real estate and business automation."
-      />
+      <Seo meta={pageMeta.industries} />
 
       <section className="industries-showcase">
         <div className="container industries-showcase-inner">

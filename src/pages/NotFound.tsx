@@ -1,10 +1,11 @@
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import MagneticButton from '@/components/MagneticButton'
 
 export default function NotFound() {
   return (
     <div className="not-found">
-      <Seo title="Page Not Found | Software Garage" description="This page doesn't exist." />
+      <Seo meta={pageMeta.notFound} />
       <div className="eyebrow" style={{ justifyContent: 'center' }}>404</div>
       <h1>LOST IN<br />THE GARAGE.</h1>
       <p style={{ color: 'var(--text-dim)', maxWidth: '400px', margin: '20px 0 34px' }}>

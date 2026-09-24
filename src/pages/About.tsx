@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { ArrowUpRight, CheckCircle2, ClipboardList, Code2, FlaskConical, Lightbulb, Rocket, ShieldCheck, Target, UsersRound, UserRound, BarChart3, Globe2, Search, Trophy, Clock3, BadgeCheck, Scaling, Headset } from 'lucide-react'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import '../styles/about.css'
@@ -14,7 +15,7 @@ export default function About() {
   const containerRef = useRef<HTMLDivElement>(null)
   useScrollReveals(containerRef)
   return <div ref={containerRef} className="about-reference">
-    <Seo title="About Software Garage | Digital Technology Studio" description="Software Garage is a digital technology studio that builds high-impact digital solutions." />
+    <Seo meta={pageMeta.about} />
     <section className="about-ref-wrap"><div className="container about-ref-container">
       <header className="about-ref-hero"><div><div className="eyebrow">ABOUT US</div><h1>WE BUILD<br />DIGITAL SOLUTIONS<br /><span>THAT DRIVE REAL IMPACT.</span></h1><p>At Software Garage, we combine strategy, design, and technology to craft digital experiences that help businesses grow, scale and lead in a fast-changing digital world.</p></div><div className="about-office"><img src="/about-hero-office.png" alt="Software Garage team in a studio meeting" /></div></header>
       <div className="about-ref-stats">{stats.map(({ icon: Icon, value, suffix, label }) => <div key={label}><span><Icon size={24} /></span><AnimatedCounter value={value} suffix={suffix} label={label} /></div>)}</div>

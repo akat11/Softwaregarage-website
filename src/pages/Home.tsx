@@ -3,6 +3,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Link } from 'react-router-dom'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import HeroGlow from '@/components/HeroGlow'
 import AINetwork from '@/three/AINetwork'
 import Marquee from '@/components/Marquee'
@@ -43,10 +44,7 @@ export default function Home() {
 
   return (
     <div ref={containerRef}>
-      <Seo
-        title="Software Garage | Global Digital Product & Technology Studio"
-        description="Software Garage builds, tests and transforms digital products through web development, mobile apps, SaaS, UI/UX, QA automation, AI and modern technology solutions."
-      />
+      <Seo meta={pageMeta.home} />
 
       {/* HERO */}
       <section className="hero" id="home">

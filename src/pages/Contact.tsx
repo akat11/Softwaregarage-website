@@ -25,6 +25,7 @@ import {
   Zap,
 } from 'lucide-react'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import MagneticButton from '@/components/MagneticButton'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import '@/styles/contact.css'
@@ -318,10 +319,7 @@ export default function Contact() {
 
   return (
     <div ref={containerRef}>
-      <Seo
-        title="Contact Software Garage | Start Your Digital Project"
-        description="Tell Software Garage what you're building. Start a conversation about your web, mobile, SaaS or AI product."
-      />
+      <Seo meta={pageMeta.contact} />
 
       <section className="contact-hero">
         <div className="container contact-hero-grid">

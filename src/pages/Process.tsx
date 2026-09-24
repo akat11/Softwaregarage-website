@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import '../styles/process.css'
@@ -290,10 +291,7 @@ export default function Process() {
 
   return (
     <div ref={containerRef} className="process-page">
-      <Seo
-        title="Our Process | Software Garage"
-        description="A structured product engineering process built to reduce uncertainty, move faster and ship with confidence."
-      />
+      <Seo meta={pageMeta.process} />
 
       {/* HERO */}
       <section className="process-hero">

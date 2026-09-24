@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import CTASection from '@/components/CTASection'
 import { processSteps } from '@/data/process'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
@@ -192,10 +193,7 @@ export default function Process() {
 
   return (
     <div ref={containerRef}>
-      <Seo
-        title="Our Process | Software Garage"
-        description="From discovery to scale — the seven-stage process Software Garage follows to take a product from idea to impact."
-      />
+      <Seo meta={pageMeta.process} />
 
       <section className="page-hero process-hero">
         <div className="container">

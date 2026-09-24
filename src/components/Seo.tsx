@@ -1,34 +1,36 @@
 import { useEffect } from 'react'
+import { headTags, jsonLd, type PageMeta } from '@/data/seo'
+import type { Project } from '@/data/projects'
 
 interface Props {
-  title: string
-  description: string
+  meta: PageMeta
+  /** Pass on case-study pages to add CreativeWork structured data. */
+  project?: Project
 }
 
 /**
- * Sets document title + meta description per route. Restores the previous
- * values on unmount so navigating away never leaves stale metadata behind.
+ * Swaps the page's <head> SEO tags on client-side navigation. Every managed
+ * tag carries `data-seo`, including the ones the build prerenders into each
+ * route's HTML, so we can drop the previous page's set wholesale.
  */
-export default function Seo({ title, description }: Props) {
+export default function Seo({ meta, project }: Props) {
   useEffect(() => {
-    const prevTitle = document.title
-    document.title = title
+    document.title = meta.title
+    document.head.querySelectorAll('[data-seo]').forEach((el) => el.remove())
 
-    let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement | null
-    const prevDescription = meta?.getAttribute('content') ?? ''
-
-    if (!meta) {
-      meta = document.createElement('meta')
-      meta.setAttribute('name', 'description')
-      document.head.appendChild(meta)
+    for (const { tag, attrs } of headTags(meta)) {
+      const el = document.createElement(tag)
+      for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value)
+      el.setAttribute('data-seo', '')
+      document.head.appendChild(el)
     }
-    meta.setAttribute('content', description)
 
-    return () => {
-      document.title = prevTitle
-      meta?.setAttribute('content', prevDescription)
-    }
-  }, [title, description])
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.setAttribute('data-seo', '')
+    script.textContent = JSON.stringify(jsonLd(meta, project))
+    document.head.appendChild(script)
+  }, [meta, project])
 
   return null
 }

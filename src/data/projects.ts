@@ -83,7 +83,7 @@ export const projects: Project[] = [
     isPlaceholder: true,
   },
   {
-    slug: 'Monro Casino',
+    slug: 'monro-casino',
     name: 'Monro Casino',
     image: '/monro-casino.png.png',
     category: 'GAMING • PAYMENT EXPERIENCE',

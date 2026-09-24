@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Seo from '@/components/Seo'
+import { pageMeta } from '@/data/seo'
 import CTASection from '@/components/CTASection'
 import { projects } from '@/data/projects'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
@@ -11,10 +12,7 @@ export default function Work() {
 
   return (
     <div ref={containerRef}>
-      <Seo
-        title="Digital Product Portfolio | Software Garage"
-        description="Selected work from Software Garage — editorial portfolio of product-first work in web, mobile, commerce and blockchain."
-      />
+      <Seo meta={pageMeta.work} />
 
       <section className="page-hero work-hero">
         <div className="container">

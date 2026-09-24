@@ -25,7 +25,10 @@ export default function Footer() {
       <div className="footer-grid">
         <div className="footer-brand-wrap">
           <h2 className="footer-brand">
-            SOFTWARE <span>GARAGE</span>
+            <img src="/logo-mark.png" alt="" className="footer-logo-mark" />
+            <span className="footer-brand-text">
+              the software<span>garage</span>
+            </span>
           </h2>
 
           <div className="footer-motto">
