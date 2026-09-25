@@ -141,21 +141,25 @@ nav.site-nav.scrolled{
 .hero-proof > .stat{ min-width:112px; padding:0; background:transparent; }
 .hero-proof .num{ margin:0 0 5px; font-family:var(--display); font-size:30px; line-height:1; color:var(--lime); font-weight:600; }
 .hero-proof .lbl{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--text-dim); text-align:left; }
-@media (max-width:900px){ .hero-proof{ display:none; } }
+@media (max-width:900px){
+  .hero-proof{ position:static; bottom:auto; right:auto; margin:28px 6vw 0; justify-content:flex-start; gap:36px; }
+}
 .scroll-hint{ position:absolute; bottom:40px; left:6vw; z-index:2; font-family:var(--mono); font-size:10px; color:var(--text-dim); letter-spacing:.1em; display:flex; align-items:center; gap:10px; }
 .scroll-hint .bar{ width:1px; height:30px; background:var(--line); position:relative; overflow:hidden; }
 .scroll-hint .bar::after{ content:''; position:absolute; top:-30px; left:0; width:100%; height:30px; background:var(--lime); animation:scrollbar 1.8s infinite ease-in-out; }
 @keyframes scrollbar{ to{ top:30px; } }
 @media (max-width:900px){
-  .hero{ min-height:900px; justify-content:flex-start; padding-top:calc(var(--nav-h) + 70px); }
-  .hero-inner{ width:auto; padding:0 6vw; margin-top:0; }
+  .hero{ min-height:0; height:auto; justify-content:flex-start; padding-top:calc(var(--nav-h) + 70px); padding-bottom:50px; }
+  .hero-inner{ width:auto; padding:0 6vw; margin-top:0; order:1; }
   .hero h1{ font-size:clamp(40px,10vw,68px); max-width:100%; }
-  /* left:50% + translateX(-50%) is the more robust centering pattern than
-     right:50%/translateX(50%) — it can't end up partially off-screen, which
-     is what was clipping the floating dashboard cards baked into this image
-     on narrow phones. A touch of extra margin (88vw instead of 94vw) keeps
-     the whole graphic comfortably inside the viewport. */
-  .home-hero-art{ top:auto; left:50%; right:auto; bottom:15px; width:min(88vw,620px); max-width:100%; transform:translateX(-50%); }
+  /* The hero image and stats used to be position:absolute, bottom-anchored
+     inside a fixed-height box — that math breaks the moment any sibling
+     (like hero-proof) also needs flow space, since the anchor is relative to
+     the box's total height, not to where the other content actually ends.
+     Flex `order` lets every piece stay in normal document flow (so the box
+     grows to fit whatever's really there) while still stacking image last. */
+  .home-hero-art{ position:static; width:min(88vw,620px); max-width:100%; margin:32px auto 0; order:3; transform:none; }
+  .hero-proof{ order:2; }
   .scroll-hint{ display:none; }
 }
 
@@ -852,8 +856,6 @@ section.tight{ padding:80px 0; }
   section{ padding:64px 0; }
   section.tight{ padding:42px 0; }
   .page-hero{ padding-top:calc(var(--nav-h) + 58px); padding-bottom:58px; }
-  .hero{ min-height:790px; }
-  .home-hero-art{ bottom:-15px; }
   .hero-inner{ width:auto; padding-left:5vw; padding-right:5vw; }
   .hero h1{ font-size:clamp(42px,12vw,64px); }
   .hero-copy{ max-width:100%; }
