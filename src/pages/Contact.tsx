@@ -396,8 +396,13 @@ export default function Contact() {
             aria-hidden="true"
           >
             <img
-              className="contact-reference-image"
+              className="contact-reference-image contact-reference-image-mobile"
               src="/contact-envelope.svg"
+              alt=""
+            />
+            <img
+              className="contact-reference-image contact-reference-image-desktop"
+              src="/contact-hero-art-new.png"
               alt=""
             />
           </div>
