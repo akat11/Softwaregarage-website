@@ -402,7 +402,7 @@ export default function Contact() {
             />
             <img
               className="contact-reference-image contact-reference-image-desktop"
-              src="/contact-hero-art-new.png"
+              src="/contact-hero-art-new.webp"
               alt=""
             />
           </div>

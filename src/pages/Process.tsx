@@ -267,7 +267,7 @@ function ProcessHeroVisual() {
 
   return (
     <div className="process-hero-visual" aria-hidden="true">
-      <img className="process-hero-reference" src="/process.jpeg" alt="" />
+      <img className="process-hero-reference" src="/process.webp" alt="" />
     </div>
   )
 }
@@ -568,7 +568,7 @@ export default function Process() {
           <div className="process-cta-inner">
             <img
               className="process-cta-mountain"
-              src="/mission-mountain.png"
+              src="/mission-mountain.webp"
               alt=""
               aria-hidden="true"
             />

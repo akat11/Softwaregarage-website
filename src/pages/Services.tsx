@@ -385,7 +385,7 @@ export default function Services() {
 
           <div className="services-hero-visual">
             <img
-              src="/steps.png"
+              src="/steps.webp"
               alt=""
               aria-hidden="true"
             />

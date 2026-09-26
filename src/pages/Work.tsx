@@ -29,7 +29,7 @@ export default function Work() {
         </div>
         <img
           className="work-hero-image"
-          src="/work-hero.png.png"
+          src="/work-hero.webp"
           alt="Software Garage digital product showcase"
         />
         <div className="work-hero-wireframe" aria-hidden="true" />
@@ -67,7 +67,7 @@ export default function Work() {
       <section className="work-selected-projects" aria-label="More selected projects">
         <div className="container">
           <img
-            src="/project.png"
+            src="/project.webp"
             alt="15 plus selected projects across web, mobile, SaaS, e-commerce and software testing"
           />
         </div>

@@ -126,7 +126,7 @@ export default function Industries() {
             <div className="domain-orbit">
               <img
                 className="industry-hero-image"
-                src="/industry-sg-hero.png"
+                src="/industry-sg-hero.webp"
                 alt="Software Garage neon SG cube"
               />
             </div>

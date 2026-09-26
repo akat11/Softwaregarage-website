@@ -25,7 +25,7 @@ export const projects: Project[] = [
   {
     slug: 'schoolspine',
     name: 'SchoolSpine',
-    image: '/schoolspine.png',
+    image: '/schoolspine.webp',
     category: 'EDUCATION • SCHOOL MANAGEMENT • EDTECH',    type: 'School Management Platform',
     description: 'SchoolSpine is a comprehensive school management application designed to simplify academic operations, communication and administration for schools, teachers, students and parents. Available on Web, Android and iOS.',
     technology: ['React', 'Node.js', 'Typescript', 'Express.js', 'AWS', 'Redux', 'PostgreSQL'],
@@ -58,7 +58,7 @@ export const projects: Project[] = [
   {
     slug: 'tdx-launchpad',
     name: 'TDX Launchpad',
-    image: '/lunchpad.png',
+    image: '/lunchpad.webp',
     category: 'WEB3 • DEFI • INVESTMENT PLATFORM ',
     type: 'Blockchain Platform',
     description: 'A next-generation launchpad empowering blockchain projects with seamless fundraising, community building and Web3 infrastructure.',
@@ -85,7 +85,7 @@ export const projects: Project[] = [
   {
     slug: 'monro-casino',
     name: 'Monro Casino',
-    image: '/monro-casino.png.png',
+    image: '/monro-casino.webp',
     category: 'GAMING • PAYMENT EXPERIENCE',
     type: 'Gaming / Payment Experience',
     description: 'A multi-platform gaming platform with integrated payment gateway, supporting secure transactions across Web, Mobile, and iOS applications.',    technology: ['React', 'Node.js', 'Payment APIs', 'WebSockets', 'Firebase'],
@@ -111,7 +111,7 @@ export const projects: Project[] = [
   {
   slug: 'patang-casino',
   name: 'Patang Casino',
-  image: '/patang_casino.png',
+  image: '/patang_casino.webp',
   category: 'CASINO • PAYMENT GATEWAY • TRANSACTION TESTING',
   type: 'Casino & Payment Platform',
   description: 'A casino web & mobile based platform focused on secure payment processing and seamless transaction experiences, with comprehensive testing performed across payment flows, API responses, data validation, transaction handling, and cross-platform compatibility.',
@@ -140,7 +140,7 @@ export const projects: Project[] = [
   {
     slug: 'worknest',
     name: 'WorkNest',
-    image: '/task.png',
+    image: '/task.webp',
     category: 'PROJECT MANAGEMENT • TEAM COLLABORATION',
     type: 'PROJECT MANAGEMENT',
     description: 'A flexible project management platform designed to help organizations manage teams, projects, tasks, and milestones from a centralized workspace. WorkNest enables teams to assign work, track progress, manage workflows, and collaborate efficiently with role-based access.',
@@ -167,7 +167,7 @@ export const projects: Project[] = [
   {
     slug: 'spaarkd',
     name: 'SPAARKD',
-    image: '/fashion.png',
+    image: '/fashion.webp',
     category: 'FASHION • AI • MARKETPLACE',    type: 'Mobile Application',
     description: 'An AI-powered fashion platform helping creators design, produce, launch, and scale fashion brands through a connected global manufacturing ecosystem.',    technology: ['React Native', 'Firebase', 'TypeScript', 'Redux Toolkit'],
     overview: 'SPARKIT is an end-to-end fashion platform that connects creators with AI-powered design tools, global manufacturers, material suppliers, and a built-in marketplace. The platform simplifies the journey from product idea to production and launch, enabling creators to bring fashion products to market without traditional industry barriers.',    challenge: 'The product needed a native-feeling experience across iOS and Android from a single codebase.',
@@ -190,7 +190,7 @@ export const projects: Project[] = [
   {
     slug: 'indouscart',
     name: 'IndousCart',
-    image: '/indo.png',
+    image: '/indo.webp',
     category: 'E-COMMERCE • HANDICRAFTS • ONLINE MARKETPLACE',
     type: 'E-commerce Platform',
     description: 'A feature-rich e-commerce platform connecting customers with authentic Indian handicrafts, ethnic gifts, home décor, religious products, and festive collections.',
@@ -217,7 +217,7 @@ export const projects: Project[] = [
 {
   slug: 'ajmeridarbar',
   name: 'AjmeriDarbar.in',
-  image: '/food.png',
+  image: '/food.webp',
   category: 'FOOD DELIVERY • RESTAURANT • ONLINE ORDERING',
   type: 'Food Ordering Platform',
   description: 'A modern online food ordering and restaurant information platform designed to provide customers with easy access to menus, restaurant details, locations, contact information, and online food ordering.',
@@ -247,7 +247,7 @@ export const projects: Project[] = [
 {
   slug: 'scpschool',
   name: 'SCP School',
-  image: '/school.png',
+  image: '/school.webp',
   category: 'EDUCATION • SCHOOL WEBSITE • INSTITUTIONAL',
   type: 'School Website',
   description: 'A modern, responsive school website designed to provide students, parents, educators, and visitors with clear access to essential school information, academic details, admissions, and contact resources through an intuitive and engaging digital experience.',
@@ -291,7 +291,7 @@ export const projects: Project[] = [
 {
   slug: 'azibiz',
   name: 'Azibiz',
-  image: '/franch.png',
+  image: '/franch.webp',
   category: 'BUSINESS MANAGEMENT • QA • SOFTWARE TESTING',
   type: 'Business Management Platform',
   description: 'A business management platform comprehensively tested across functional workflows, user interface, and regression scenarios to identify critical issues, improve workflow reliability, and ensure a stable experience before production deployment.',

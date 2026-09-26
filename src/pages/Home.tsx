@@ -49,7 +49,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" id="home">
         <div className="home-hero-art" aria-hidden="true">
-          <img src="/herosection.jpeg" alt="" />
+          <img src="/herosection.webp" alt="" />
         </div>
         <HeroGlow />
         <div className="hero-inner">

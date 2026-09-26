@@ -42,7 +42,7 @@ export default function CTASection({
   {className?.includes('industries-cta') && (
     <img
       className="industries-cta-art"
-      src="/industies.png"
+      src="/industies.webp"
       alt=""
       aria-hidden="true"
     />
