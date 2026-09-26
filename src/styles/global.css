@@ -25,13 +25,9 @@
 
 html {
   scroll-behavior:auto;
-  max-width:100%;
-  overflow-x:hidden;
-  overscroll-behavior-y:contain;
 
 }
 
-/* Lenis handles smoothing; native smooth-scroll would double up */
 body {
   background:var(--bg);
   color:var(--text);
@@ -380,11 +376,24 @@ nav.site-nav.scrolled {
   overflow-y:auto;
   transform:translateY(-100%);
   transition:transform .5s cubic-bezier(.77,0,.18,1);
+  /* This is position:fixed + inset:0 (a full-viewport box) that's only
+     pushed off-screen via transform, not actually removed. Some Android
+     Chrome versions don't reliably move a transformed fixed element's
+     touch hit-test region with it, especially once it's its own
+     overflow:auto scroll container — so a single-finger drag anywhere on
+     the page could get caught by this invisible layer instead of reaching
+     the real content underneath (a two-finger gesture takes a different,
+     compositor-level pinch/pan path that isn't affected, which is why that
+     still worked). pointer-events:none while closed makes it fully inert
+     no matter how the transform is hit-tested.
+     */
+  pointer-events:none;
 
 }
 
 .mobile-menu.open {
   transform:translateY(0);
+  pointer-events:auto;
 
 }
 

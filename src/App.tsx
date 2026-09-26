@@ -5,7 +5,7 @@ import MobileMenu from '@/components/MobileMenu'
 import Footer from '@/components/Footer'
 import Cursor from '@/components/Cursor'
 import ScrollProgress from '@/components/ScrollProgress'
-import { useLenis } from '@/hooks/useLenis'
+import { useScrollTriggerSync } from '@/hooks/useScrollTriggerSync'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
 
 // Lazy-loaded per route: each page (and anything only it imports, like
@@ -25,7 +25,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
 
-  useLenis()
+  useScrollTriggerSync()
   useScrollToTop()
 
   return (
