@@ -3,6 +3,7 @@ import Seo from '@/components/Seo'
 import { pageMeta } from '@/data/seo'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import MagneticButton from '@/components/MagneticButton'
+import Testimonials from '@/components/Testimonials'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 
 const services = [
@@ -465,6 +466,8 @@ export default function Services() {
           ))}
         </div>
       </section>
+
+      <Testimonials />
 
       <section className="services-final-cta reveal">
         <div

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Seo from '@/components/Seo'
 import { pageMeta } from '@/data/seo'
 import CTASection from '@/components/CTASection'
+import Testimonials from '@/components/Testimonials'
 import { projects } from '@/data/projects'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 
@@ -72,6 +73,8 @@ export default function Work() {
           />
         </div>
       </section>
+
+      <Testimonials />
 
       <CTASection
         className="work-cta"

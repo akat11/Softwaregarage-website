@@ -11,6 +11,7 @@ import SectionHeading from '@/components/SectionHeading'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import MagneticButton from '@/components/MagneticButton'
 import CTASection from '@/components/CTASection'
+import Testimonials from '@/components/Testimonials'
 import SelectedWork from '@/components/SelectedWork'
 import TestConsole from '@/components/TestConsole'
 import ProcessTimeline from '@/components/ProcessTimeline'
@@ -232,7 +233,9 @@ export default function Home() {
         </div>
       </section>
 
-      <CTASection 
+      <Testimonials />
+
+      <CTASection
         eyebrow="MAKE AN IMPACT"
         title={<>LET'S BUILD SOMETHING<br /><span className="text-lime">EXTRAORDINARY</span> TOGETHER.</>}
         description="From idea to impact — we build digital products that drive growth, engage users and create lasting value."

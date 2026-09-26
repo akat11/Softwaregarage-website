@@ -3,6 +3,7 @@ import Seo from '@/components/Seo'
 import { pageMeta } from '@/data/seo'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import Testimonials from '@/components/Testimonials'
 import '../styles/process.css'
 import {
   Search,
@@ -559,6 +560,8 @@ export default function Process() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* CTA */}
       <section className="process-final-cta reveal">

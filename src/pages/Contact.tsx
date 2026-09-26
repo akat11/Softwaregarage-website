@@ -27,6 +27,7 @@ import {
 import Seo from '@/components/Seo'
 import { pageMeta } from '@/data/seo'
 import MagneticButton from '@/components/MagneticButton'
+import Testimonials from '@/components/Testimonials'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import '@/styles/contact.css'
 
@@ -848,6 +849,8 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
     </div>
   )
 }

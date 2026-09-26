@@ -18,6 +18,7 @@ import {
 import Seo from '@/components/Seo'
 import { pageMeta } from '@/data/seo'
 import CTASection from '@/components/CTASection'
+import Testimonials from '@/components/Testimonials'
 import { industries } from '@/data/industries'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 
@@ -188,6 +189,8 @@ export default function Industries() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       <CTASection
         className="industries-cta"

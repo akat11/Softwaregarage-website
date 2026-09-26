@@ -3,6 +3,7 @@ import { ArrowUpRight, CheckCircle2, ClipboardList, Code2, FlaskConical, Lightbu
 import Seo from '@/components/Seo'
 import { pageMeta } from '@/data/seo'
 import AnimatedCounter from '@/components/AnimatedCounter'
+import Testimonials from '@/components/Testimonials'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import '../styles/about.css'
 
@@ -23,6 +24,8 @@ export default function About() {
       <section className="about-ref-process"><h2>OUR <span>PROCESS</span></h2><p>A proven process that ensures clarity, quality and successful delivery.</p><div>{process.map(({ icon: Icon, title, text }, index) => <article key={title}><span><Icon size={34} strokeWidth={1.65} /></span><i>{String(index + 1).padStart(2, '0')}</i><b>{title}</b><p>{text}</p></article>)}</div></section>
       <section className="about-bottom"><article className="about-why"><h2>WHY CHOOSE <span>SOFTWARE GARAGE?</span></h2><div><img src="/industry-sg-hero.webp" alt="SG cube" /><ul><li><CheckCircle2 /><div><b>Business-Focused Approach</b><small>We align technology with your business goals.</small></div></li><li><CheckCircle2 /><div><b>End-to-End Expertise</b><small>Strategy, design, development, testing and support — all under one roof.</small></div></li><li><CheckCircle2 /><div><b>Agile & Transparent</b><small>Flexible process, clear communication and complete transparency.</small></div></li><li><CheckCircle2 /><div><b>Future-Ready Solutions</b><small>We build scalable, secure and innovative solutions that grow with your business.</small></div></li></ul></div></article><article className="about-mission"><h2>OUR <span>MISSION</span></h2><img className="mission-art" src="/mission-mountain.webp" alt="Mountain peak with a flag" /><p>To help businesses unlock their full potential through innovative digital solutions that <em>create value, build trust and drive growth.</em></p></article><article className="about-vision"><h2>OUR <span>VISION</span></h2><img className="vision-art" src="/vision-eye.webp" alt="Glowing eye illustration" /><p>To be a digital solutions company recognized for innovation, <em>reliability</em> and delivering <em>impact that lasts.</em></p></article></section>
     </div></section>
+
+    <Testimonials />
 
     <section className="about-final-cta">
       <div className="about-final-cta-content">
