@@ -6,7 +6,7 @@ import { projects, type Project } from './projects'
 import { services } from './services'
 
 // Change this when the site moves to its own domain. No trailing slash.
-export const SITE_URL = 'https://softwaregarage.netlify.app'
+export const SITE_URL = 'https://thesoftwaregarage.netlify.app'
 
 export const SITE = {
   name: 'Software Garage',

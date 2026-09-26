@@ -21,6 +21,23 @@ export function useLenis() {
   useEffect(() => {
     if (reducedMotion) return
 
+    // Lenis's smooth-scroll is a mouse-wheel affordance. On touch devices it
+    // has to intercept/replay touch input to fake momentum scrolling, which
+    // is exactly what was reported as broken on real mobile browsers after
+    // deploy (works in desktop devtools' mobile emulation because that still
+    // dispatches mouse/wheel events, not real touch ones). Native touch
+    // scrolling is already smooth on phones, so we skip Lenis there entirely
+    // — ScrollTrigger still gets updated straight off the window's own
+    // scroll event instead of Lenis's.
+    const isTouch =
+      window.matchMedia('(hover:none), (pointer:coarse)').matches
+
+    if (isTouch) {
+      const onWindowScroll = () => ScrollTrigger.update()
+      window.addEventListener('scroll', onWindowScroll, { passive: true })
+      return () => window.removeEventListener('scroll', onWindowScroll)
+    }
+
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
