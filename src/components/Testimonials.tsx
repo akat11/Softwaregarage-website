@@ -1,6 +1,63 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import { testimonials, testimonialStats, clientLogos } from '@/data/testimonials'
+
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <>
+      {Array.from({ length: 5 }).map((_, i) => {
+        const diff = rating - i
+        if (diff >= 1) {
+          return <Star key={i} size={13} fill="currentColor" />
+        }
+        if (diff > 0) {
+          return (
+            <span key={i} className="testimonial-star-half">
+              <Star size={13} className="star-outline" />
+              <Star size={13} fill="currentColor" className="star-fill" />
+            </span>
+          )
+        }
+        return <Star key={i} size={13} className="star-outline" />
+      })}
+    </>
+  )
+}
+
+function CountUpStat({ value, duration = 1500 }: { value: number; duration?: number }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+  const started = useRef(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true
+          const startTime = performance.now()
+
+          const tick = (now: number) => {
+            const progress = Math.min((now - startTime) / duration, 1)
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setCount(Math.round(eased * value))
+            if (progress < 1) requestAnimationFrame(tick)
+          }
+
+          requestAnimationFrame(tick)
+        }
+      },
+      { threshold: 0.4 }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [value, duration])
+
+  return <span ref={ref}>{count}</span>
+}
 
 export default function Testimonials() {
   const [active, setActive] = useState(0)
@@ -40,7 +97,7 @@ export default function Testimonials() {
                   <Icon size={20} strokeWidth={1.6} />
                 </span>
                 <strong>
-                  {value}
+                  <CountUpStat value={value} />
                   {suffix}
                 </strong>
                 <small>{label}</small>
@@ -76,13 +133,19 @@ export default function Testimonials() {
                     <span className="testimonial-avatar">{t.initials}</span>
 
                     <span className="testimonial-stars">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} size={13} fill="currentColor" />
-                      ))}
+                      <StarRating rating={t.rating} />
                     </span>
                   </div>
 
-                  <p className="testimonial-quote">&ldquo;{t.quote}&rdquo;</p>
+                  <div className="testimonial-quote">
+                    {t.quote.split('\n\n').map((paragraph, i, arr) => (
+                      <p key={i}>
+                        {i === 0 && '“'}
+                        {paragraph}
+                        {i === arr.length - 1 && '”'}
+                      </p>
+                    ))}
+                  </div>
 
                   <div className="testimonial-person">
                     <b>{t.name}</b>
@@ -108,27 +171,34 @@ export default function Testimonials() {
         </div>
 
         <div className="testimonial-dots">
-          {testimonials.map((t, i) => (
-            <button
-              type="button"
-              key={t.name}
-              className={i === active ? 'active' : ''}
-              onClick={() => setActive(i)}
-              aria-label={`Go to testimonial ${i + 1}`}
-            />
-          ))}
+          {[0, 1].map((dot) => {
+            const half = Math.ceil(total / 2)
+            const dotStart = dot === 0 ? 0 : half
+            const isActive = dot === 0 ? active < half : active >= half
+            return (
+              <button
+                type="button"
+                key={dot}
+                className={isActive ? 'active' : ''}
+                onClick={() => setActive(dotStart)}
+                aria-label={`Go to testimonial group ${dot + 1}`}
+              />
+            )
+          })}
         </div>
 
         <div className="client-logos-strip">
           <span className="client-logos-label">OUR CLIENTS &amp; PARTNERS</span>
 
-          <div className="client-logos-row">
-            {clientLogos.map(({ name, icon: Icon }) => (
-              <div className="client-logo" key={name}>
-                <Icon size={20} strokeWidth={1.6} />
-                <span>{name}</span>
-              </div>
-            ))}
+          <div className="client-logos-viewport">
+            <div className="client-logos-track">
+              {[...clientLogos, ...clientLogos].map(({ name, icon: Icon }, i) => (
+                <div className="client-logo" key={`${name}-${i}`}>
+                  <Icon size={24} strokeWidth={1.6} />
+                  <span>{name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -5847,11 +5847,48 @@ section.tight {
   color: var(--lime);
 }
 
+.testimonial-stars .star-outline {
+  color: rgba(255,255,255,0.25);
+}
+
+.testimonial-star-half {
+  position: relative;
+  display: inline-flex;
+  width: 13px;
+  height: 13px;
+}
+
+.testimonial-star-half .star-outline {
+  position: absolute;
+  inset: 0;
+}
+
+.testimonial-star-half .star-fill {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  overflow: hidden;
+  color: var(--lime);
+}
+
 .testimonial-quote {
   min-height: 108px;
+  max-height: 260px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   color: rgba(255,255,255,0.82);
   font-size: 14px;
   line-height: 1.7;
+  padding-right: 4px;
+}
+
+.testimonial-quote p {
+  margin: 0 0 12px;
+}
+
+.testimonial-quote p:last-child {
+  margin-bottom: 0;
 }
 
 .testimonial-person {
@@ -5931,22 +5968,44 @@ section.tight {
   color: var(--text-dim);
 }
 
-.client-logos-row {
+.client-logos-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+}
+
+.client-logos-track {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px 40px;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  animation: client-logos-marquee 28s linear infinite;
+}
+
+.client-logos-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes client-logos-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .client-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  flex: 0 0 auto;
   color: rgba(255,255,255,0.55);
   font-family: var(--display);
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
+  white-space: nowrap;
   opacity: 0.75;
   transition: opacity 0.25s ease, color 0.25s ease;
 }
@@ -5991,10 +6050,108 @@ section.tight {
   .testimonial-quote {
     min-height: 0;
   }
-  .client-logos-row {
-    gap: 16px 28px;
+  .client-logos-track {
+    gap: 32px;
   }
   .client-logo {
+    font-size: 16px;
+  }
+}
+
+/* Phones: wrap the nav arrows onto their own centered row below the card
+   instead of letting them consume flex width beside it, which was
+   squeezing the quote text on narrow (320-400px) viewports. */
+@media (max-width: 640px) {
+  .testimonials-section {
+    padding: 56px 0;
+  }
+  .testimonials-intro p {
+    font-size: 13.5px;
+  }
+  .testimonials-stats {
+    gap: 10px;
+  }
+  .testimonial-stat {
+    padding: 13px 14px;
+  }
+  .testimonial-stat-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 9px;
+  }
+  .testimonial-stat strong {
+    font-size: 21px;
+  }
+  .testimonial-carousel {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 16px;
+  }
+  .testimonial-track {
+    order: 1;
+    flex-basis: 100%;
+    width: 100%;
+    gap: 0;
+  }
+  .testimonial-nav {
+    width: 34px;
+    height: 34px;
+  }
+  .testimonial-nav.prev {
+    order: 2;
+  }
+  .testimonial-nav.next {
+    order: 3;
+  }
+  .testimonial-card {
+    padding: 22px 18px;
+  }
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+  .testimonial-quote {
+    max-height: 220px;
+    font-size: 13.5px;
+  }
+  .client-logos-viewport {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  }
+  .client-logos-track {
+    gap: 24px;
+  }
+  .client-logo {
+    gap: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .testimonials-intro h2 {
+    font-size: 28px;
+  }
+  .testimonial-stat {
+    padding: 11px 12px;
+  }
+  .testimonial-stat strong {
+    font-size: 19px;
+  }
+  .testimonial-stat small {
+    font-size: 9.5px;
+  }
+  .testimonial-card {
+    padding: 18px 14px;
+  }
+  .testimonial-nav {
+    width: 30px;
+    height: 30px;
+  }
+  .testimonial-quote {
     font-size: 13px;
+  }
+  .testimonial-person b {
+    font-size: 14px;
   }
 }
