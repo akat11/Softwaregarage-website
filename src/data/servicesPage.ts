@@ -1,0 +1,267 @@
+export interface ServiceItem {
+  slug: string
+  number: string
+  category: string
+  title: string
+  description: string
+  capabilities: string[]
+  technologies: string[]
+  useCases: string[]
+  cta: string
+  image: string
+}
+
+export const servicesPage: ServiceItem[] = [
+  {
+    slug: 'ai-business-automation',
+    number: '01',
+    category: 'AI SOLUTIONS',
+    title: 'AI & Business Automation',
+    description:
+      'We build AI-powered systems that connect your data, software and business workflows — automating repetitive operations and turning complex processes into intelligent, scalable experiences.',
+    capabilities: [
+      'AI-Powered Applications',
+      'AI Agents & Assistants',
+      'RAG & Knowledge Systems',
+      'Intelligent Workflow Automation',
+      'Document Intelligence',
+      'AI Analytics & Decision Support',
+    ],
+    technologies: [
+      'OpenAI',
+      'Anthropic',
+      'Google Gemini',
+      'Python',
+      'Node.js',
+      'n8n',
+      'LangChain',
+      'RAG / Vector DB',
+      'API Integrations',
+      'Automation',
+    ],
+    useCases: [
+      'AI Customer Support',
+      'AI Sales & Lead Qualification',
+      'Internal AI Assistants',
+      'Document & Data Analysis',
+      'Business Process Automation',
+      'AI-Powered SaaS Features',
+      'AI Report Generation',
+      'Custom AI Solutions',
+    ],
+    cta: 'START AN AI PROJECT',
+    image: '/ai-agent-visual.png',
+  },
+  {
+    slug: 'web-development',
+    number: '02',
+    category: 'WEB DEVELOPMENT',
+    title: 'Web Development',
+    description:
+      'We build modern, fast and scalable websites and web applications tailored to your business goals.',
+    capabilities: [
+      'Custom Web Applications',
+      'Business Websites',
+      'CMS Development',
+      'Web Portals & Dashboards',
+      'Progressive Web Apps',
+      'Maintenance & Support',
+    ],
+    technologies: ['React', 'Vue.js', 'Node.js', 'Express.js', 'Laravel', 'Tailwind CSS'],
+    useCases: [
+      'Business Websites',
+      'Admin Dashboards',
+      'SaaS Web Platforms',
+      'Marketplaces',
+      'Enterprise Web Apps',
+      'Legacy System Upgrade',
+    ],
+    cta: 'START A WEB PROJECT',
+    image: '/web-development-visual.png',
+  },
+  {
+    slug: 'mobile-app-development',
+    number: '03',
+    category: 'MOBILE APP DEVELOPMENT',
+    title: 'Mobile App Development',
+    description:
+      'We develop high-performance Android & iOS apps with intuitive design and smooth user experience.',
+    capabilities: [
+      'Android App Development',
+      'iOS App Development',
+      'Cross-Platform Apps',
+      'App Maintenance',
+      'App Store Deployment',
+    ],
+    technologies: ['React Native', 'Flutter', 'Firebase', 'REST APIs', 'GraphQL', 'Node.js'],
+    useCases: [
+      'Consumer Apps',
+      'Business Apps',
+      'On-Demand Apps',
+      'Marketplace Apps',
+      'Wearable & IoT Apps',
+    ],
+    cta: 'START A MOBILE PROJECT',
+    image: '/mobile-app-visual.png',
+  },
+  {
+    slug: 'saas-custom-software',
+    number: '04',
+    category: 'SAAS & CUSTOM SOFTWARE',
+    title: 'SaaS & Custom Software',
+    description:
+      'We build scalable SaaS products and custom software solutions to solve complex business challenges.',
+    capabilities: [
+      'SaaS Product Development',
+      'Custom Software Development',
+      'MVP Development',
+      'Enterprise Applications',
+      'Multi-Tenant Architecture',
+      'Product Modernization',
+    ],
+    technologies: ['React', 'Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'AWS', 'Docker', 'Microservices'],
+    useCases: [
+      'SaaS Platforms',
+      'Internal Tools',
+      'CRM & ERP Systems',
+      'Industry Specific Software',
+      'MVP for Startups',
+      'Product Scaling',
+    ],
+    cta: 'START A SAAS PROJECT',
+    image: '/saas-dashboard-visual.png',
+  },
+  {
+    slug: 'ecommerce-development',
+    number: '05',
+    category: 'E-COMMERCE DEVELOPMENT',
+    title: 'E-Commerce Development',
+    description:
+      'Feature-rich eCommerce stores to grow your business and boost online sales.',
+    capabilities: [
+      'Shopify Development',
+      'WooCommerce Development',
+      'Custom E-Commerce',
+      'Marketplace Solutions',
+      'Payment Gateway Integration',
+      'Ongoing Support',
+    ],
+    technologies: ['Shopify', 'WooCommerce', 'Next.js', 'Node.js', 'Stripe', 'Razorpay', 'PayPal'],
+    useCases: [
+      'D2C Stores',
+      'B2B E-Commerce',
+      'Multi-Vendor Marketplaces',
+      'Subscription Commerce',
+      'Headless Commerce',
+      'Cross-Border Stores',
+    ],
+    cta: 'START AN E-COMMERCE PROJECT',
+    image: '/ecommerce-development-visual.png',
+  },
+  {
+    slug: 'ui-ux-product-design',
+    number: '06',
+    category: 'UI/UX & PRODUCT DESIGN',
+    title: 'UI/UX & Product Design',
+    description:
+      'User-centered, modern and conversion-focused designs that create real impact.',
+    capabilities: [
+      'UI/UX Design',
+      'Product Design',
+      'Web & Mobile App Design',
+      'Design Systems',
+      'Prototyping (Figma)',
+      'UI Audits & Redesign',
+    ],
+    technologies: ['Figma', 'Adobe XD', 'Sketch', 'Photoshop', 'Illustrator', 'Principle'],
+    useCases: [
+      'Web & Mobile UI Design',
+      'SaaS Product Design',
+      'Dashboard & Admin UI',
+      'Brand & Visual Design',
+      'Prototypes & MVP Design',
+      'Design System Creation',
+    ],
+    cta: 'START A DESIGN PROJECT',
+    image: '/ui-ux-design-visual.png',
+  },
+  {
+    slug: 'qa-test-automation',
+    number: '07',
+    category: 'QA & TEST AUTOMATION',
+    title: 'QA & Test Automation',
+    description:
+      'Ensure your product is bug-free, secure and performance-ready with manual & automated testing.',
+    capabilities: [
+      'Manual Testing',
+      'Automation Testing',
+      'API Testing',
+      'Performance Testing',
+      'Security Testing',
+      'QA Consulting',
+    ],
+    technologies: ['Selenium', 'Cypress', 'Postman', 'JMeter', 'Playwright', 'Appium'],
+    useCases: [
+      'Web & Mobile Testing',
+      'Regression Testing',
+      'Cross-Browser Testing',
+      'API & Backend Testing',
+      'Performance & Load Testing',
+      'QA for SaaS Products',
+    ],
+    cta: 'START A QA PROJECT',
+    image: '/qa-testing-visual.png',
+  },
+  {
+    slug: 'api-backend-engineering',
+    number: '08',
+    category: 'API & BACKEND ENGINEERING',
+    title: 'API & Backend Engineering',
+    description:
+      'Robust, secure and scalable backend solutions with powerful APIs and integrations.',
+    capabilities: [
+      'REST API Development',
+      'GraphQL APIs',
+      'Microservices Architecture',
+      'Third-party Integrations',
+      'Database Design',
+      'Microservices & DevOps',
+    ],
+    technologies: ['Node.js', 'Express.js', 'Python', 'Django', 'MongoDB', 'Docker'],
+    useCases: [
+      'For Web & Mobile Apps',
+      'Third-party Integrations',
+      'Scalable Backend Systems',
+      'Performance Optimization',
+      'Cloud Ready Systems',
+    ],
+    cta: 'START AN API PROJECT',
+    image: '/api-backend-visual.png',
+  },
+  {
+    slug: 'blockchain-web3',
+    number: '09',
+    category: 'BLOCKCHAIN & WEB3',
+    title: 'Blockchain & Web3',
+    description:
+      'We build decentralized applications, smart contracts and blockchain solutions for the next generation.',
+    capabilities: [
+      'Smart Contract Development',
+      'DApp Development',
+      'Token Development',
+      'NFT Marketplace',
+      'Wallet Integration',
+      'DeFi & Web3 Solutions',
+    ],
+    technologies: ['Solidity', 'Web3.js', 'Ethers.js', 'Node.js', 'Polygon', 'Ethereum'],
+    useCases: [
+      'DeFi Platforms',
+      'NFT Marketplaces',
+      'Token & Staking Systems',
+      'Blockchain Wallets',
+      'Enterprise Blockchain',
+    ],
+    cta: 'START A BLOCKCHAIN PROJECT',
+    image: '/blockchain-web3-visual.png',
+  },
+]

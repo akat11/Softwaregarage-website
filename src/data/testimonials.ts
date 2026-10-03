@@ -19,7 +19,7 @@ export const testimonialStats = [
   { icon: Briefcase, value: 15, suffix: '+', label: 'Projects Delivered' },
   { icon: Users, value: 12, suffix: '+', label: 'Happy Clients' },
   { icon: Star, value: 100, suffix: '%', label: 'Client Satisfaction' },
-  { icon: Globe2, value: 7, suffix: '+', label: 'Countries Served' },
+  { icon: Globe2, value: 6, suffix: '+', label: 'Countries Served' },
 ]
 
 export const testimonials = [
@@ -56,8 +56,8 @@ export const testimonials = [
   {
     name: 'John',
     title: 'E-commerce Business',
-    country: 'USA',
-    flag: '🇺🇸',
+    country: 'Nigeria',
+    flag: '🇳🇬',
     initials: 'J',
     rating: 4,
     quote:

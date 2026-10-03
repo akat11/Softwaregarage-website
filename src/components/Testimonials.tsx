@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import { testimonials, testimonialStats, clientLogos } from '@/data/testimonials'
+import CountUpStat from '@/components/CountUpStat'
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -22,41 +23,6 @@ function StarRating({ rating }: { rating: number }) {
       })}
     </>
   )
-}
-
-function CountUpStat({ value, duration = 1500 }: { value: number; duration?: number }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const started = useRef(false)
-
-  useEffect(() => {
-    const node = ref.current
-    if (!node) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true
-          const startTime = performance.now()
-
-          const tick = (now: number) => {
-            const progress = Math.min((now - startTime) / duration, 1)
-            const eased = 1 - Math.pow(1 - progress, 3)
-            setCount(Math.round(eased * value))
-            if (progress < 1) requestAnimationFrame(tick)
-          }
-
-          requestAnimationFrame(tick)
-        }
-      },
-      { threshold: 0.4 }
-    )
-
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [value, duration])
-
-  return <span ref={ref}>{count}</span>
 }
 
 export default function Testimonials() {
