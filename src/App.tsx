@@ -13,6 +13,7 @@ import { useScrollToTop } from '@/hooks/useScrollToTop'
 // route has to download up front.
 const Home = lazy(() => import('@/pages/Home'))
 const Services = lazy(() => import('@/pages/Services'))
+const AILab = lazy(() => import('@/pages/AILab'))
 const Work = lazy(() => import('@/pages/Work'))
 const CaseStudy = lazy(() => import('@/pages/CaseStudy'))
 const Industries = lazy(() => import('@/pages/Industries'))
@@ -43,6 +44,7 @@ export default function App() {
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/ai-lab" element={<AILab />} />
             <Route path="/work" element={<Work />} />
             <Route path="/work/:slug" element={<CaseStudy />} />
             <Route path="/industries" element={<Industries />} />

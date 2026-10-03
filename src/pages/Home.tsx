@@ -239,7 +239,6 @@ export default function Home() {
         eyebrow="MAKE AN IMPACT"
         title={<>LET'S BUILD SOMETHING<br /><span className="text-lime">EXTRAORDINARY</span> TOGETHER.</>}
         description="From idea to impact — we build digital products that drive growth, engage users and create lasting value."
-        showSecondaryButton={false}
         visualType="rocket"
       />
     </div>

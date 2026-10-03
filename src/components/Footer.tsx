@@ -4,6 +4,7 @@ const companyLinks = [
   { label: 'Home', to: '/' },
   { label: 'Services', to: '/services' },
   { label: 'Work', to: '/work' },
+  { label: 'AI Lab', to: '/ai-lab' },
 ]
 
 const resourceLinks = [

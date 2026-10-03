@@ -63,6 +63,16 @@ export const pageMeta = {
     priority: 1,
     changefreq: 'weekly',
   },
+  aiLab: {
+    path: '/ai-lab',
+    title: 'AI Solutions & Automation | Software Garage',
+    description:
+      'Build intelligent AI solutions, AI agents, automation workflows and custom AI products with Software Garage.',
+    keywords: ['AI solutions', 'AI agents', 'AI automation', 'RAG systems', 'AI development company', 'workflow automation'],
+    crumb: 'AI Lab',
+    priority: 0.9,
+    changefreq: 'monthly',
+  },
   services: {
     path: '/services',
     title: 'Software Development Services | Software Garage',
