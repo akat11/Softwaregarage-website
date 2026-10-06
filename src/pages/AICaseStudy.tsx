@@ -4,21 +4,15 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  Check,
   CheckCircle2,
   AlertCircle,
-  AlertTriangle,
   Sparkles,
   Clock,
-  Layers,
   Activity,
   FileCheck,
   Calendar,
   Users,
-  RefreshCw,
   Sliders,
-  Send,
-  HelpCircle,
   Briefcase,
   GraduationCap,
   HeartPulse,
@@ -27,18 +21,16 @@ import {
   ListChecks,
   PenTool,
   ShieldAlert,
-  Zap,
   Cpu,
   ChevronRight,
   ChevronLeft,
   ShieldCheck,
-  Database,
   BarChart3,
   Bot,
-  FileText,
 } from 'lucide-react'
 import MagneticButton from '@/components/MagneticButton'
 import Seo from '@/components/Seo'
+import { getAiCaseStudyMeta } from '@/data/seo'
 import { aiCaseStudiesData, type CaseStudyData } from '@/data/aiCaseStudies'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import CaseStudyInteractiveDemo from '@/components/case-study/CaseStudyInteractiveDemo'
@@ -105,14 +97,16 @@ export default function AICaseStudy() {
   return (
     <div ref={containerRef} className="cs-page">
       <Seo
-        meta={{
-          path: data.route,
-          title: data.seo.title,
-          description: data.seo.description,
-          keywords: data.seo.keywords,
-          crumb: data.metadata.domain,
-          type: 'article',
-        }}
+        meta={
+          getAiCaseStudyMeta(data.slug) ?? {
+            path: data.route,
+            title: data.seo.title,
+            description: data.seo.description,
+            keywords: data.seo.keywords,
+            crumb: data.metadata.domain,
+            type: 'article',
+          }
+        }
       />
 
       {/* Sticky Sub-Navigation */}

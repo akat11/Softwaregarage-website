@@ -3,22 +3,12 @@ import {
   Sparkles,
   Check,
   CheckCircle2,
-  AlertCircle,
   AlertTriangle,
   RefreshCw,
   Sliders,
-  FileText,
-  FileCheck,
   Activity,
-  Users,
-  ShieldCheck,
-  ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Clock,
-  Briefcase,
-  GraduationCap,
-  HeartPulse,
   Edit2,
   Save,
   X,
@@ -71,7 +61,7 @@ export default function CaseStudyInteractiveDemo({ slug }: Props) {
   // --- HOSPITAL ROSTER STATE ---
   const [staffList, setStaffList] = useState<RosterStaffRecord[]>(hospitalDemoStaff)
   const [shiftFilter, setShiftFilter] = useState<'All' | 'M' | 'E' | 'N' | 'OFF'>('All')
-  const [inspectingStaff, setInspectingStaff] = useState<RosterStaffRecord | null>(null)
+  const [, setInspectingStaff] = useState<RosterStaffRecord | null>(null)
   const [hospitalLeaveSimulated, setHospitalLeaveSimulated] = useState(false)
   const [leaveSolvingState, setLeaveSolvingState] = useState(false)
 
@@ -113,6 +103,7 @@ export default function CaseStudyInteractiveDemo({ slug }: Props) {
       observer.disconnect()
       if (autoPlayTimerRef.current) clearTimeout(autoPlayTimerRef.current)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug])
 
   // Trigger processing run

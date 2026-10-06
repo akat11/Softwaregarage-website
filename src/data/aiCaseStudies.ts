@@ -23,7 +23,6 @@ import {
   Cpu,
   Brain,
   Zap,
-  Check,
 } from 'lucide-react'
 
 export interface CaseStudyStep {

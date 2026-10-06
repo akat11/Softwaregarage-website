@@ -29,8 +29,6 @@ import {
   Users,
   Gamepad2,
   Briefcase,
-  Trophy,
-  Building2,
   Sparkles,
   Clock,
   Target,
