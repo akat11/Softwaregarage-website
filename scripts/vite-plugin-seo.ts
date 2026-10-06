@@ -97,7 +97,13 @@ export default function seoPlugin(): Plugin {
         fs.writeFileSync(target, content)
       }
 
-      for (const route of routes) write(routeFile(route.path), injectHead(template, route))
+      for (const route of routes) {
+        const html = injectHead(template, route)
+        write(routeFile(route.path), html)
+        if (route.path !== '/') {
+          write(`${route.path.slice(1)}/index.html`, html)
+        }
+      }
       write('404.html', injectHead(template, pageMeta.notFound))
       write('sitemap.xml', sitemap(routes))
       write('robots.txt', robots)

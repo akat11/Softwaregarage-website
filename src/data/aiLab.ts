@@ -29,8 +29,6 @@ import {
   Users,
   Gamepad2,
   Briefcase,
-  Trophy,
-  Building2,
   Sparkles,
   Clock,
   Target,
@@ -104,9 +102,27 @@ export const aiIndustries: Feature[] = [
 ]
 
 export const aiCaseStudies = [
-  { title: 'SchoolSpine AI', tag: 'Education', text: 'AI-powered education platform with automated workflows and intelligent insights.', icon: Building2 },
-  { title: 'AI Sales Automation', tag: 'Business', text: 'Lead qualification, automated follow-ups and CRM intelligence.', icon: Briefcase },
-  { title: 'Document Intelligence', tag: 'Enterprise', text: 'Extract, analyze and organize business documents with AI.', icon: Trophy },
+  {
+    title: 'AI Payroll Automation',
+    tag: 'BUSINESS',
+    text: 'AI-assisted payroll workflows that process attendance, leave, half-days and salary calculations with less manual effort.',
+    icon: Briefcase,
+    slug: 'ai-payroll-automation',
+  },
+  {
+    title: 'SchoolSpine AI',
+    tag: 'EDUCATION',
+    text: 'AI-powered academic workflows that help teachers generate assessments, questions, assignments and answer keys faster.',
+    icon: GraduationCap,
+    slug: 'schoolspine-ai',
+  },
+  {
+    title: 'AI Hospital Roster',
+    tag: 'HEALTHCARE',
+    text: 'An AI-powered scheduling agent that generates staff rosters based on shifts, rotations, availability and hospital rules.',
+    icon: HeartPulse,
+    slug: 'ai-hospital-roster',
+  },
 ]
 
 export const aiTesting: Feature[] = [

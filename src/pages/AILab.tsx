@@ -1,4 +1,5 @@
 import { useRef, type CSSProperties } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import MagneticButton from '@/components/MagneticButton'
 import Seo from '@/components/Seo'
@@ -162,8 +163,13 @@ export default function AILab() {
           </div>
         </div>
         <div className="ai-card-grid three">
-          {aiCaseStudies.map(({ title, tag, text, icon: Icon }) => (
-            <article className="ai-case reveal" key={title}>
+          {aiCaseStudies.map(({ title, tag, text, icon: Icon, slug }) => (
+            <Link
+              to={`/ai-case-studies/${slug}`}
+              className="ai-case reveal"
+              key={title}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               <div className="ai-case-visual">
                 <Icon size={44} strokeWidth={1.3} />
               </div>
@@ -175,7 +181,7 @@ export default function AILab() {
                 <p>{text}</p>
                 <span className="ai-demo-link">View Case Study <ArrowRight size={14} /></span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

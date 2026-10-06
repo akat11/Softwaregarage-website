@@ -20,6 +20,7 @@ const Industries = lazy(() => import('@/pages/Industries'))
 const About = lazy(() => import('@/pages/About'))
 const Process = lazy(() => import('@/pages/Process'))
 const Contact = lazy(() => import('@/pages/Contact'))
+const AICaseStudy = lazy(() => import('@/pages/AICaseStudy'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 export default function App() {
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/ai-lab" element={<AILab />} />
+            <Route path="/ai-case-studies/:slug" element={<AICaseStudy />} />
             <Route path="/work" element={<Work />} />
             <Route path="/work/:slug" element={<CaseStudy />} />
             <Route path="/industries" element={<Industries />} />

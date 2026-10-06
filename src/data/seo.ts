@@ -5,7 +5,7 @@
 import { projects, type Project } from './projects'
 import { services } from './services'
 
-// Change this when the site moves to its own domain. No trailing slash.
+// Production domain confirmed: https://thesoftwaregarage.netlify.app. No trailing slash.
 export const SITE_URL = 'https://thesoftwaregarage.netlify.app'
 
 export const SITE = {
@@ -60,34 +60,51 @@ export const pageMeta = {
       'blockchain development',
       'e-commerce development',
     ],
+    image: '/og-image.jpg',
+    imageAlt: 'Software Garage — Global Digital Product & Technology Studio',
     priority: 1,
     changefreq: 'weekly',
   },
   aiLab: {
     path: '/ai-lab',
-    title: 'AI Solutions & Automation | Software Garage',
+    title: 'AI Lab — Custom AI Agents & Workflow Automation | Software Garage',
     description:
-      'Build intelligent AI solutions, AI agents, automation workflows and custom AI products with Software Garage.',
-    keywords: ['AI solutions', 'AI agents', 'AI automation', 'RAG systems', 'AI development company', 'workflow automation'],
+      'Explore Software Garage AI Lab: production-ready AI scheduling agents, payroll intelligence workflows, automated assessment generators, and custom copilots.',
+    keywords: [
+      'AI solutions',
+      'AI agents',
+      'AI automation',
+      'RAG systems',
+      'AI development company',
+      'workflow automation',
+      'AI scheduling agent',
+      'AI payroll workflow',
+    ],
+    image: '/journey-ai.png',
+    imageAlt: 'Software Garage AI Lab neural intelligence and autonomous workflows',
     crumb: 'AI Lab',
     priority: 0.9,
     changefreq: 'monthly',
   },
   services: {
     path: '/services',
-    title: 'Software Development Services | Software Garage',
+    title: 'Software Development & AI Engineering Services | Software Garage',
     description:
-      'Web development, mobile apps, SaaS, Web3, e-commerce, UI/UX design, QA automation, API engineering and AI automation — end-to-end product engineering from Software Garage.',
+      'End-to-end product engineering services: AI automation, full-stack web development, mobile applications, SaaS architecture, QA automation, and Web3 solutions.',
     keywords: services.map((s) => s.title),
+    image: '/services-hero-scene.png',
+    imageAlt: 'Software Garage digital engineering and AI services overview',
     crumb: 'Services',
     priority: 0.9,
     changefreq: 'monthly',
   },
   work: {
     path: '/work',
-    title: 'Our Work & Case Studies | Software Garage',
+    title: 'Featured Digital Products & Case Studies | Software Garage',
     description:
-      'Explore Software Garage case studies — school management, SaaS, Web3 launchpads, e-commerce, marketplaces and payment QA delivered across web and mobile.',
+      'Explore our portfolio of delivered web apps, mobile solutions, SaaS platforms, Web3 launchpads, and QA automation systems across multiple global industries.',
+    image: '/work-hero.webp',
+    imageAlt: 'Software Garage selected digital work and portfolio showcase',
     crumb: 'Work',
     schemaType: 'CollectionPage',
     priority: 0.9,
@@ -95,18 +112,22 @@ export const pageMeta = {
   },
   industries: {
     path: '/industries',
-    title: 'Industries We Build For | Software Garage',
+    title: 'Industry Solutions — SaaS, FinTech, Healthcare & EdTech | Software Garage',
     description:
-      'Digital products for SaaS, FinTech, e-commerce, education, healthcare, logistics, gaming, Web3, real estate and business automation — built by Software Garage.',
+      'Specialized digital solutions engineered for Education, Healthcare, Gaming, E-Commerce, Web3, Logistics, and Enterprise operations worldwide.',
+    image: '/industries.webp',
+    imageAlt: 'Industries engineered by Software Garage',
     crumb: 'Industries',
     priority: 0.8,
     changefreq: 'monthly',
   },
   about: {
     path: '/about',
-    title: 'About Us | Software Garage Digital Technology Studio',
+    title: 'About Software Garage — Digital Product & Technology Studio',
     description:
-      'Meet Software Garage — a product-first technology studio that designs, engineers and tests high-impact digital products for ambitious businesses around the world.',
+      'Meet Software Garage: a product-first engineering studio combining elite design, scalable architecture, and intelligent automation for ambitious businesses.',
+    image: '/about-hero-office.webp',
+    imageAlt: 'Software Garage studio team and engineering culture',
     crumb: 'About',
     schemaType: 'AboutPage',
     priority: 0.7,
@@ -114,18 +135,22 @@ export const pageMeta = {
   },
   process: {
     path: '/process',
-    title: 'Our Product Development Process | Software Garage',
+    title: 'Product Engineering Process — Discovery to Deployment | Software Garage',
     description:
-      'Discovery, design, development, testing and launch — a structured product engineering process that reduces risk, moves faster and ships with confidence.',
+      'Our battle-tested 5-phase engineering methodology: Strategy Discovery, UI/UX Architecture, Agile Development, QA Automation, and Scalable Deployment.',
+    image: '/process.webp',
+    imageAlt: 'Software Garage structured product development process',
     crumb: 'Process',
     priority: 0.7,
     changefreq: 'yearly',
   },
   contact: {
     path: '/contact',
-    title: 'Contact Us | Start Your Project with Software Garage',
+    title: 'Contact Software Garage — Start Your Product Engineering Project',
     description:
-      "Tell us what you're building. Get in touch with Software Garage about your web, mobile, SaaS, Web3 or AI product — let's build it together.",
+      'Discuss your upcoming web, mobile, SaaS, or AI automation project with Software Garage engineers. Get in touch for architectural consultation and quotes.',
+    image: '/contact-hero-art-new.webp',
+    imageAlt: 'Contact Software Garage engineering team',
     crumb: 'Contact',
     schemaType: 'ContactPage',
     priority: 0.8,
@@ -139,7 +164,7 @@ export const pageMeta = {
   },
 } satisfies Record<string, PageMeta>
 
-function trimDescription(text: string, max = 160): string {
+function trimDescription(text: string, max = 155): string {
   const clean = text.replace(/\s+/g, ' ').trim()
   if (clean.length <= max) return clean
   return clean.slice(0, clean.lastIndexOf(' ', max - 1)).replace(/[,.;:\s]+$/, '') + '…'
@@ -147,7 +172,16 @@ function trimDescription(text: string, max = 160): string {
 
 export function absoluteUrl(pathOrUrl: string): string {
   if (/^https?:\/\//.test(pathOrUrl)) return pathOrUrl
+  if (pathOrUrl === '/') return `${SITE_URL}/`
   return SITE_URL + (pathOrUrl.startsWith('/') ? pathOrUrl : `/${pathOrUrl}`)
+}
+
+function getMimeType(url: string): string {
+  const clean = url.toLowerCase().split('?')[0]
+  if (clean.endsWith('.png')) return 'image/png'
+  if (clean.endsWith('.webp')) return 'image/webp'
+  if (clean.endsWith('.svg')) return 'image/svg+xml'
+  return 'image/jpeg'
 }
 
 const caseStudyCache = new Map<string, PageMeta>()
@@ -158,23 +192,90 @@ export function caseStudyMeta(project: Project): PageMeta {
   const meta: PageMeta = {
     path: `/work/${project.slug}`,
     title: `${project.name} — ${project.type} Case Study | Software Garage`,
-    description: trimDescription(project.description),
+    description: trimDescription(project.description, 155),
     keywords: [project.name, project.type, ...project.technology],
-    image: project.image,
-    imageAlt: `${project.name} — ${project.type} by Software Garage`,
+    image: project.image ? absoluteUrl(project.image) : SITE.ogImage,
+    imageAlt: `${project.name} — ${project.type} Case Study by Software Garage`,
     type: 'article',
     crumb: project.name,
-    priority: 0.6,
-    changefreq: 'yearly',
+    priority: 0.7,
+    changefreq: 'monthly',
   }
   caseStudyCache.set(project.slug, meta)
   return meta
 }
 
+export const aiCaseStudyMetas: PageMeta[] = [
+  {
+    path: '/ai-case-studies/ai-payroll-automation',
+    title: 'AI Payroll Automation Case Study | Software Garage',
+    description:
+      'How Software Garage built an AI payroll intelligence system that automates attendance reconciliation, leave tracking, half-days, and salary calculations.',
+    keywords: [
+      'AI Payroll Automation',
+      'payroll AI workflow',
+      'workforce intelligence',
+      'automated salary calculation',
+      'attendance automation',
+      'HR tech AI',
+    ],
+    image: '/saas-dashboard-visual.png',
+    imageAlt: 'AI Payroll Automation dashboard and verification pipeline',
+    crumb: 'AI Payroll Automation',
+    type: 'article',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/ai-case-studies/schoolspine-ai',
+    title: 'SchoolSpine AI Case Study — Academic Assessment Copilot | Software Garage',
+    description:
+      'Discover how SchoolSpine AI empowers educators with automated assessment generation, Bloom taxonomy mapping, and answer key generation with human-in-the-loop control.',
+    keywords: [
+      'SchoolSpine AI',
+      'AI for education',
+      'assessment generation AI',
+      'question paper builder',
+      'teacher copilot',
+      'EdTech AI solution',
+    ],
+    image: '/schoolspine.webp',
+    imageAlt: 'SchoolSpine AI academic assessment generator and teacher copilot',
+    crumb: 'SchoolSpine AI',
+    type: 'article',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/ai-case-studies/ai-hospital-roster',
+    title: 'AI Hospital Roster Case Study — Healthcare Scheduling Agent | Software Garage',
+    description:
+      'How Software Garage engineered an autonomous clinical roster agent that solves hospital shift constraints, rotation fatigue, and emergency relief coverage.',
+    keywords: [
+      'AI Hospital Roster',
+      'healthcare AI scheduling',
+      'clinical roster agent',
+      'nurse shift scheduling AI',
+      'constraint satisfaction AI',
+      'medical staff scheduling',
+    ],
+    image: '/journey-ai.png',
+    imageAlt: 'AI Hospital Roster scheduling agent and clinical coverage matrix',
+    crumb: 'AI Hospital Roster',
+    type: 'article',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+]
+
+export function getAiCaseStudyMeta(slug: string): PageMeta | undefined {
+  return aiCaseStudyMetas.find((m) => m.path === `/ai-case-studies/${slug}`)
+}
+
 /** Every indexable route, used for prerendering and the sitemap. */
 export function allRoutes(): PageMeta[] {
   const pages = Object.values(pageMeta).filter((p: PageMeta) => !p.noindex)
-  return [...pages, ...projects.map(caseStudyMeta)]
+  return [...pages, ...projects.map(caseStudyMeta), ...aiCaseStudyMetas]
 }
 
 const ORG_ID = `${SITE_URL}/#organization`
@@ -183,6 +284,8 @@ const WEBSITE_ID = `${SITE_URL}/#website`
 /** schema.org JSON-LD graph for a page. */
 export function jsonLd(meta: PageMeta, project?: Project): object {
   const url = absoluteUrl(meta.path)
+  const imageUrl = absoluteUrl(meta.image ?? SITE.ogImage)
+
   const graph: object[] = [
     {
       '@type': 'Organization',
@@ -190,14 +293,19 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
       name: SITE.name,
       legalName: SITE.legalName,
       url: SITE_URL,
-      logo: { '@type': 'ImageObject', url: SITE.logo, width: 512, height: 512 },
+      logo: {
+        '@type': 'ImageObject',
+        url: SITE.logo,
+        width: 512,
+        height: 512,
+      },
       image: SITE.ogImage,
       description: SITE.description,
       email: SITE.email,
       sameAs: SITE.sameAs,
       contactPoint: {
         '@type': 'ContactPoint',
-        contactType: 'sales',
+        contactType: 'sales & technical support',
         email: SITE.email,
         availableLanguage: ['English'],
       },
@@ -220,12 +328,62 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
       description: meta.description,
       isPartOf: { '@id': WEBSITE_ID },
       about: { '@id': ORG_ID },
-      primaryImageOfPage: absoluteUrl(meta.image ?? SITE.ogImage),
+      primaryImageOfPage: imageUrl,
       inLanguage: 'en',
     },
   ]
 
-  if (meta.crumb) {
+  // Breadcrumbs hierarchy
+  if (meta.path.startsWith('/ai-case-studies/')) {
+    graph.push({
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: absoluteUrl('/'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'AI Lab',
+          item: absoluteUrl('/ai-lab'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: meta.crumb ?? meta.title,
+          item: url,
+        },
+      ],
+    })
+
+    // Technical Case Study & Software Application Schema
+    graph.push({
+      '@type': 'TechArticle',
+      '@id': `${url}#article`,
+      headline: meta.title,
+      description: meta.description,
+      url,
+      image: imageUrl,
+      inLanguage: 'en',
+      author: { '@id': ORG_ID },
+      publisher: { '@id': ORG_ID },
+      about: {
+        '@type': 'SoftwareApplication',
+        name: meta.crumb ?? meta.title,
+        applicationCategory: meta.path.includes('payroll')
+          ? 'BusinessApplication'
+          : meta.path.includes('hospital')
+          ? 'HealthApplication'
+          : 'EducationalApplication',
+        operatingSystem: 'Web-based',
+        description: meta.description,
+        creator: { '@id': ORG_ID },
+      },
+    })
+  } else if (meta.crumb) {
     const items = [{ name: 'Home', path: '/' }]
     if (project) items.push({ name: 'Work', path: '/work' })
     items.push({ name: meta.crumb, path: meta.path })
@@ -243,7 +401,7 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
   if (meta.path === '/services') {
     graph.push({
       '@type': 'ItemList',
-      name: 'Software Garage Services',
+      name: 'Software Garage Engineering & AI Services',
       itemListElement: services.map((s, i) => ({
         '@type': 'ListItem',
         position: i + 1,
@@ -261,7 +419,7 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
   if (meta.path === '/work') {
     graph.push({
       '@type': 'ItemList',
-      name: 'Software Garage Case Studies',
+      name: 'Software Garage Case Studies & Delivered Systems',
       itemListElement: projects.map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
@@ -299,8 +457,9 @@ export function headTags(meta: PageMeta): HeadTag[] {
   const url = absoluteUrl(meta.path)
   const image = absoluteUrl(meta.image ?? SITE.ogImage)
   const imageAlt = meta.imageAlt ?? SITE.ogImageAlt
+  const mimeType = getMimeType(image)
   const robots = meta.noindex
-    ? 'noindex, follow'
+    ? 'noindex, nofollow'
     : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
   const m = (key: 'name' | 'property', value: string, content: string): HeadTag => ({
     tag: 'meta',
@@ -318,6 +477,10 @@ export function headTags(meta: PageMeta): HeadTag[] {
     m('property', 'og:title', meta.title),
     m('property', 'og:description', meta.description),
     m('property', 'og:image', image),
+    m('property', 'og:image:secure_url', image),
+    m('property', 'og:image:type', mimeType),
+    m('property', 'og:image:width', '1200'),
+    m('property', 'og:image:height', '630'),
     m('property', 'og:image:alt', imageAlt),
     m('name', 'twitter:card', 'summary_large_image'),
     m('name', 'twitter:title', meta.title),
@@ -325,9 +488,7 @@ export function headTags(meta: PageMeta): HeadTag[] {
     m('name', 'twitter:image', image),
     m('name', 'twitter:image:alt', imageAlt),
   ]
-  if (!meta.image) {
-    tags.push(m('property', 'og:image:width', '1200'), m('property', 'og:image:height', '630'))
-  }
+
   if (meta.keywords?.length) tags.push(m('name', 'keywords', meta.keywords.join(', ')))
   return tags
 }

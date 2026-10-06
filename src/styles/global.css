@@ -321,13 +321,17 @@ nav.site-nav.scrolled {
 .burger {
   display:none;
   flex-direction:column;
+  align-items:center;
+  justify-content:center;
   gap:5px;
   cursor:pointer;
   z-index:600;
   background:none;
   border:none;
-  padding:6px;
-
+  padding:10px;
+  min-width:44px;
+  min-height:44px;
+  touch-action:manipulation;
 }
 
 .burger span {
@@ -354,6 +358,18 @@ nav.site-nav.scrolled {
 }
 
 @media (max-width:900px) {
+  nav.site-nav {
+    padding-top:max(16px, env(safe-area-inset-top));
+    padding-left:max(5vw, env(safe-area-inset-left));
+    padding-right:max(5vw, env(safe-area-inset-right));
+    padding-bottom:16px;
+  }
+  nav.site-nav.scrolled {
+    padding-top:max(12px, env(safe-area-inset-top));
+    padding-left:max(5vw, env(safe-area-inset-left));
+    padding-right:max(5vw, env(safe-area-inset-right));
+    padding-bottom:12px;
+  }
   .nav-links,.nav-cta {
     display:none;
 
@@ -368,12 +384,15 @@ nav.site-nav.scrolled {
 .mobile-menu {
   position:fixed;
   inset:0;
+  height:100vh;
+  height:100dvh;
   background:var(--bg);
   z-index:400;
   display:flex;
   flex-direction:column;
-  padding:calc(var(--nav-h) + 26px) 8vw 28px;
+  padding:calc(var(--nav-h) + 16px) max(8vw, env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) max(8vw, env(safe-area-inset-left));
   overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   transform:translateY(-100%);
   transition:transform .5s cubic-bezier(.77,0,.18,1);
   /* This is position:fixed + inset:0 (a full-viewport box) that's only
@@ -407,10 +426,11 @@ nav.site-nav.scrolled {
   display:flex;
   align-items:center;
   gap:16px;
-  padding:18px 2px;
+  padding:16px 2px;
+  min-height:44px;
   border-bottom:1px solid rgba(255,255,255,0.09);
   font-family:var(--display);
-  font-size:28px;
+  font-size:clamp(20px, 5.5vw, 28px);
   font-weight:600;
   color:var(--text);
   opacity:0;
