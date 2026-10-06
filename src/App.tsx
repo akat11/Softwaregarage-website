@@ -21,6 +21,7 @@ const About = lazy(() => import('@/pages/About'))
 const Process = lazy(() => import('@/pages/Process'))
 const Contact = lazy(() => import('@/pages/Contact'))
 const AICaseStudy = lazy(() => import('@/pages/AICaseStudy'))
+const LandingPage = lazy(() => import('@/pages/LandingPage'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 export default function App() {
@@ -53,6 +54,14 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/process" element={<Process />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/ai-development-company" element={<LandingPage slug="ai-development-company" />} />
+            <Route path="/ai-agent-development" element={<LandingPage slug="ai-agent-development" />} />
+            <Route path="/healthcare-software-development" element={<LandingPage slug="healthcare-software-development" />} />
+            <Route path="/edtech-development" element={<LandingPage slug="edtech-development" />} />
+            <Route path="/ecommerce-development" element={<LandingPage slug="ecommerce-development" />} />
+            <Route path="/saas-development" element={<LandingPage slug="saas-development" />} />
+            <Route path="/software-testing-services" element={<LandingPage slug="software-testing-services" />} />
+            <Route path="/qa-automation-services" element={<LandingPage slug="qa-automation-services" />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

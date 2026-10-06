@@ -4,6 +4,7 @@
 // because the Vite config loads this file outside the app bundle.
 import { projects, type Project } from './projects'
 import { services } from './services'
+import { landingPages } from './landingPages'
 
 // Production domain confirmed: https://thesoftwaregarage.netlify.app. No trailing slash.
 export const SITE_URL = 'https://thesoftwaregarage.netlify.app'
@@ -40,6 +41,8 @@ export interface PageMeta {
   schemaType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage'
   priority?: number
   changefreq?: 'weekly' | 'monthly' | 'yearly'
+  serviceType?: string
+  faqs?: Array<{ question: string; answer: string }>
 }
 
 export const pageMeta = {
@@ -272,10 +275,183 @@ export function getAiCaseStudyMeta(slug: string): PageMeta | undefined {
   return aiCaseStudyMetas.find((m) => m.path === `/ai-case-studies/${slug}`)
 }
 
+export const landingPageMetas: PageMeta[] = [
+  {
+    path: '/ai-development-company',
+    title: 'AI Development Company — Custom AI Agents & LLM Solutions | Software Garage',
+    description:
+      'Software Garage is an AI development company engineering custom autonomous AI agents, enterprise LLM workflows, RAG systems, and intelligent automation.',
+    keywords: [
+      'AI development company',
+      'custom AI development',
+      'AI agent development',
+      'enterprise LLM solutions',
+      'RAG architecture',
+      'AI workflow automation',
+    ],
+    image: '/journey-ai.png',
+    imageAlt: 'Software Garage AI development and neural automation systems',
+    crumb: 'AI Development Company',
+    serviceType: 'Artificial Intelligence Development',
+    priority: 0.9,
+    changefreq: 'weekly',
+    faqs: landingPages['ai-development-company']?.faqs,
+  },
+  {
+    path: '/ai-agent-development',
+    title: 'AI Agent Development Company — Autonomous Agents & Copilots | Software Garage',
+    description:
+      'Build production-ready autonomous AI agents with Software Garage. Multi-agent orchestration, tool-calling copilots, reasoning workflows, and custom domain agents.',
+    keywords: [
+      'AI agent development',
+      'autonomous AI agents',
+      'AI copilot development',
+      'multi-agent systems',
+      'tool calling AI',
+      'workflow automation agents',
+    ],
+    image: '/ai-agent-visual.png',
+    imageAlt: 'Autonomous AI agents collaborating on complex technical workflows',
+    crumb: 'AI Agent Development',
+    serviceType: 'AI Agent Engineering',
+    priority: 0.9,
+    changefreq: 'weekly',
+    faqs: landingPages['ai-agent-development']?.faqs,
+  },
+  {
+    path: '/healthcare-software-development',
+    title: 'Healthcare Software Development Company — Clinical AI & Medical Tech | Software Garage',
+    description:
+      'Custom healthcare software development: HIPAA-compliant clinical systems, autonomous medical staff roster agents, patient portals, and telemetry dashboards.',
+    keywords: [
+      'healthcare software development',
+      'medical software development',
+      'HIPAA compliant software',
+      'clinical scheduling AI',
+      'healthtech platform development',
+    ],
+    image: '/saas-dashboard-visual.png',
+    imageAlt: 'Healthcare software architecture and clinical management dashboard',
+    crumb: 'Healthcare Software Development',
+    serviceType: 'Healthcare Software Development',
+    priority: 0.85,
+    changefreq: 'monthly',
+    faqs: landingPages['healthcare-software-development']?.faqs,
+  },
+  {
+    path: '/edtech-development',
+    title: 'EdTech Software Development Company — Learning Platforms & AI Copilots | Software Garage',
+    description:
+      'Engineering next-generation educational software: school management systems, AI assessment generation, adaptive learning pathways, and teacher copilots.',
+    keywords: [
+      'EdTech software development',
+      'education software company',
+      'LMS development',
+      'school management platform',
+      'AI for education',
+      'teacher copilot',
+    ],
+    image: '/schoolspine.webp',
+    imageAlt: 'EdTech software platform and digital school management interface',
+    crumb: 'EdTech Development',
+    serviceType: 'Educational Technology Development',
+    priority: 0.85,
+    changefreq: 'monthly',
+    faqs: landingPages['edtech-development']?.faqs,
+  },
+  {
+    path: '/ecommerce-development',
+    title: 'E-Commerce Development Company — Headless Commerce & Marketplaces | Software Garage',
+    description:
+      'Scalable e-commerce development: headless Shopify, custom multi-vendor marketplaces, high-conversion checkout flows, and real-time inventory management.',
+    keywords: [
+      'ecommerce development company',
+      'headless ecommerce',
+      'custom online store development',
+      'multi vendor marketplace',
+      'checkout optimization',
+    ],
+    image: '/ecommerce-development-visual.png',
+    imageAlt: 'Modern headless e-commerce store and multi-vendor marketplace interface',
+    crumb: 'E-Commerce Development',
+    serviceType: 'E-Commerce Platform Development',
+    priority: 0.85,
+    changefreq: 'monthly',
+    faqs: landingPages['ecommerce-development']?.faqs,
+  },
+  {
+    path: '/saas-development',
+    title: 'SaaS Development Company — Cloud Architecture & Web Applications | Software Garage',
+    description:
+      'End-to-end SaaS application development: multi-tenant architecture, subscription billing, automated onboarding, high-throughput APIs, and AI integrations.',
+    keywords: [
+      'SaaS development company',
+      'custom SaaS development',
+      'cloud software engineering',
+      'multi tenant architecture',
+      'SaaS MVP development',
+    ],
+    image: '/saas-dashboard-visual.png',
+    imageAlt: 'Multi-tenant SaaS dashboard architecture with real-time operational metrics',
+    crumb: 'SaaS Development',
+    serviceType: 'SaaS Application Engineering',
+    priority: 0.85,
+    changefreq: 'monthly',
+    faqs: landingPages['saas-development']?.faqs,
+  },
+  {
+    path: '/software-testing-services',
+    title: 'Software Testing Services — Manual, Security & Performance QA | Software Garage',
+    description:
+      'Comprehensive software testing services: end-to-end functional QA, cross-browser compatibility, API regression verification, and performance stress testing.',
+    keywords: [
+      'software testing services',
+      'QA testing company',
+      'manual software testing',
+      'regression testing',
+      'functional QA services',
+      'API testing',
+    ],
+    image: '/qa-testing-visual.png',
+    imageAlt: 'Software testing and quality assurance verification matrix',
+    crumb: 'Software Testing Services',
+    serviceType: 'Software Testing & QA Services',
+    priority: 0.85,
+    changefreq: 'monthly',
+    faqs: landingPages['software-testing-services']?.faqs,
+  },
+  {
+    path: '/qa-automation-services',
+    title: 'QA Automation Services — Playwright, Cypress & CI/CD Testing | Software Garage',
+    description:
+      'Enterprise QA automation services: robust test suites with Playwright and Cypress, automated regression pipelines, continuous CI/CD verification, and load testing.',
+    keywords: [
+      'QA automation services',
+      'automated testing company',
+      'Playwright automation',
+      'Cypress test suites',
+      'CI CD test automation',
+      'regression automation',
+    ],
+    image: '/qa-testing-visual.png',
+    imageAlt: 'Automated test suite execution and continuous CI/CD verification pipeline',
+    crumb: 'QA Automation Services',
+    serviceType: 'Quality Assurance Automation',
+    priority: 0.85,
+    changefreq: 'monthly',
+    faqs: landingPages['qa-automation-services']?.faqs,
+  },
+]
+
+export function getLandingPageMeta(slugOrPath: string): PageMeta | undefined {
+  const normalized = slugOrPath.startsWith('/') ? slugOrPath : `/${slugOrPath}`
+  return landingPageMetas.find((m) => m.path === normalized)
+}
+
 /** Every indexable route, used for prerendering and the sitemap. */
 export function allRoutes(): PageMeta[] {
   const pages = Object.values(pageMeta).filter((p: PageMeta) => !p.noindex)
-  return [...pages, ...projects.map(caseStudyMeta), ...aiCaseStudyMetas]
+  return [...pages, ...projects.map(caseStudyMeta), ...aiCaseStudyMetas, ...landingPageMetas]
 }
 
 const ORG_ID = `${SITE_URL}/#organization`
@@ -386,6 +562,7 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
   } else if (meta.crumb) {
     const items = [{ name: 'Home', path: '/' }]
     if (project) items.push({ name: 'Work', path: '/work' })
+    else if (meta.serviceType) items.push({ name: 'Services', path: '/services' })
     items.push({ name: meta.crumb, path: meta.path })
     graph.push({
       '@type': 'BreadcrumbList',
@@ -394,6 +571,33 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
         position: i + 1,
         name: item.name,
         item: absoluteUrl(item.path),
+      })),
+    })
+  }
+
+  if (meta.serviceType) {
+    graph.push({
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: meta.title,
+      serviceType: meta.serviceType,
+      description: meta.description,
+      provider: { '@id': ORG_ID },
+      areaServed: 'Worldwide',
+    })
+  }
+
+  if (meta.faqs && meta.faqs.length > 0) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: meta.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: f.answer,
+        },
       })),
     })
   }

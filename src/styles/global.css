@@ -4867,10 +4867,9 @@ section.tight {
 
 .footer-menu-grid {
   display:grid;
-  grid-template-columns:repeat(3, minmax(130px, 1fr));
-  gap:28px;
+  grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+  gap:24px;
   align-items:start;
-
 }
 
 .footer-menu-block {
@@ -5015,9 +5014,8 @@ section.tight {
 
   }
   .footer-menu-grid {
-    grid-template-columns:repeat(3, minmax(120px, 1fr));
+    grid-template-columns:repeat(auto-fit, minmax(110px, 1fr));
     justify-content:space-between;
-
   }
   .footer-brand-wrap {
     max-width:540px;
