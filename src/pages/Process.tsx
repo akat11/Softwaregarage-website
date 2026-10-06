@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Seo from '@/components/Seo'
 import { pageMeta } from '@/data/seo'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import Testimonials from '@/components/Testimonials'
 import '../styles/process.css'
 import {
@@ -87,188 +86,13 @@ const processSteps = [
 ]
 
 function ProcessHeroVisual() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const reducedMotion = usePrefersReducedMotion()
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
-
-    if (!ctx) return
-
-    let animationFrame = 0
-    let width = 0
-    let height = 0
-    let running = true
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect()
-      const dpr = window.devicePixelRatio || 1
-
-      width = Math.max(1, rect.width)
-      height = Math.max(1, rect.height)
-
-      canvas.width = width * dpr
-      canvas.height = height * dpr
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    }
-
-    const draw = (time: number) => {
-      if (!running) return
-
-      const t = reducedMotion ? 0 : time * 0.0007
-
-      ctx.clearRect(0, 0, width, height)
-
-      const rows = width < 700 ? 15 : 23
-      const cols = width < 700 ? 24 : 38
-
-      const left = width * 0.03
-      const right = width * 1.02
-      const horizon = height * 0.22
-      const bottom = height * 0.9
-
-      const points: { x: number; y: number }[][] = []
-
-      for (let row = 0; row < rows; row += 1) {
-        const depth = row / (rows - 1)
-
-        const y = horizon + depth * (bottom - horizon)
-
-        const rowPoints: { x: number; y: number }[] = []
-
-        for (let col = 0; col < cols; col += 1) {
-          const xProgress = col / (cols - 1)
-
-          const x = left + xProgress * (right - left)
-          const firstPeak = Math.exp(-Math.pow((xProgress - 0.32) / 0.18, 2))
-          const secondPeak = Math.exp(-Math.pow((xProgress - 0.73) / 0.2, 2))
-          const ridge = firstPeak * 0.82 + secondPeak * 1.05
-          const ripple = Math.sin(xProgress * 18 + t * 1.4) * 5
-          const mountainHeight = ridge * height * 0.42 + ripple
-          const animatedHeight = mountainHeight * (1 - depth * 0.72)
-
-          rowPoints.push({
-            x,
-            y: y - animatedHeight,
-          })
-        }
-
-        points.push(rowPoints)
-      }
-
-      ctx.lineCap = 'round'
-      ctx.lineJoin = 'round'
-
-      // Horizontal wave lines
-      points.forEach((row, rowIndex) => {
-        const depth = rowIndex / Math.max(rows - 1, 1)
-
-        ctx.beginPath()
-
-        row.forEach((point, index) => {
-          if (index === 0) {
-            ctx.moveTo(point.x, point.y)
-          } else {
-            const previous = row[index - 1]
-
-            const midX = (previous.x + point.x) / 2
-            const midY = (previous.y + point.y) / 2
-
-            ctx.quadraticCurveTo(
-              previous.x,
-              previous.y,
-              midX,
-              midY,
-            )
-          }
-        })
-
-        ctx.strokeStyle = `rgba(183,255,0,${0.24 - depth * 0.1})`
-        ctx.lineWidth = 1
-        ctx.stroke()
-      })
-
-      // Vertical lines
-      for (let col = 0; col < cols; col += 1) {
-        ctx.beginPath()
-
-        points.forEach((row, rowIndex) => {
-          const point = row[col]
-
-          if (rowIndex === 0) {
-            ctx.moveTo(point.x, point.y)
-          } else {
-            const previous = points[rowIndex - 1][col]
-
-            const midX = (previous.x + point.x) / 2
-            const midY = (previous.y + point.y) / 2
-
-            ctx.quadraticCurveTo(
-              previous.x,
-              previous.y,
-              midX,
-              midY,
-            )
-          }
-        })
-
-        ctx.strokeStyle = `rgba(183,255,0,${0.15 - (col / cols) * 0.05})`
-        ctx.lineWidth = 0.8
-        ctx.stroke()
-      }
-
-      // Glowing markers over the mountain ridge
-      const glowingPoints = [
-        [0.18, 0.38, 3],
-        [0.33, 0.12, 4],
-        [0.52, 0.34, 3],
-        [0.73, 0.08, 5],
-        [0.91, 0.4, 3],
-      ]
-
-      glowingPoints.forEach(([x, y, size], index) => {
-        const px = width * x
-        const py = height * y + Math.sin(t * 2 + index) * 5
-        const pulse = size + Math.sin(t * 4 + index) * 1.2
-
-        ctx.save()
-
-        ctx.fillStyle = 'rgba(183,255,0,0.95)'
-        ctx.shadowColor = 'rgba(183,255,0,0.8)'
-        ctx.shadowBlur = 16
-
-        ctx.beginPath()
-        ctx.rect(px - pulse, py - pulse, pulse * 2, pulse * 2)
-        ctx.fill()
-
-        ctx.restore()
-      })
-
-      if (!reducedMotion) {
-        animationFrame = requestAnimationFrame(draw)
-      }
-    }
-
-    resize()
-    draw(performance.now())
-
-    window.addEventListener('resize', resize)
-
-    return () => {
-      running = false
-      cancelAnimationFrame(animationFrame)
-      window.removeEventListener('resize', resize)
-    }
-  }, [reducedMotion])
-
   return (
     <div className="process-hero-visual" aria-hidden="true">
-      <img className="process-hero-reference" src="/process.webp" alt="" />
+      <img
+        className="process-hero-reference"
+        src="/process.webp"
+        alt="Software Garage product engineering process - Strategy, Execution, Impact"
+      />
     </div>
   )
 }

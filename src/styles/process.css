@@ -45,27 +45,31 @@
 ========================================================= */
 .process-page .process-hero  {
   position: relative;
-  padding: 0;
-  min-height: 610px;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  background: radial-gradient( circle at 70% 35%, rgba(183,255,0,0.035), transparent 35% ), #050505;
+  padding: calc(var(--nav-h) + 75px) 0 70px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(
+      circle at 75% 40%,
+      rgba(183, 255, 0, 0.05),
+      transparent 50%
+    ),
+    #050505;
 
 }
 
 .process-hero-container  {
   position: relative;
-  width: min(100%, 1400px);
-  min-height: 610px;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 46% 54%;
+  grid-template-columns: 1fr 1.05fr;
   align-items: center;
-  padding-top: calc(var(--nav-h) + 50px);
+  gap: 48px;
 
 }
 
 .process-page .process-hero-container  {
-  padding-top: calc(var(--nav-h) + 50px);
+  padding-top: 0;
 
 }
 
@@ -76,11 +80,11 @@
 }
 
 .process-title  {
-  margin: 25px 0 22px;
-  font-size: clamp(58px, 6.2vw, 105px);
-  line-height: 0.88;
+  margin: 22px 0 20px;
+  font-size: clamp(48px, 5.6vw, 84px);
+  line-height: 0.92;
   font-weight: 700;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.055em;
   text-transform: uppercase;
 
 }
@@ -201,26 +205,33 @@
 
 .process-hero-visual  {
   position: relative;
+  min-width: 0;
   width: 100%;
-  max-width: 500px;
-  margin-left: auto;
-  aspect-ratio: 1385 / 1136;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   pointer-events: none;
 
 }
 
-.process-hero-visual canvas  {
-  width: 100%;
-  height: 100%;
-  display: block;
-
-}
-
 .process-hero-reference  {
-  width: 100%;
-  height: 100%;
   display: block;
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  aspect-ratio: 1385 / 1136;
   object-fit: contain;
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    #000 62%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    #000 62%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 0 28px rgba(183, 255, 0, 0.2));
 
 }
 
@@ -902,9 +913,14 @@
 
 }
 
-@media (max-width: 800px)  {
+@media (max-width: 900px)  {
   .process-page .section-space  {
     padding: 60px 0;
+
+  }
+  .process-page .process-hero  {
+    padding: calc(var(--nav-h) + 48px) 0 48px;
+    min-height: 0;
 
   }
   .process-hero, .process-hero-container  {
@@ -912,9 +928,11 @@
 
   }
   .process-hero-container  {
-    display: block;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
 
   }
   .process-hero-content  {
@@ -922,25 +940,25 @@
 
   }
   .process-title  {
-    font-size: clamp(52px, 15vw, 88px);
+    font-size: clamp(44px, 11vw, 68px);
 
   }
-  /* Below the grid breakpoint the container switches to normal block flow,
-     so the visual must flow with it instead of staying position:absolute —
-     absolute positioning combined with a hardcoded top:Npx offset is what
-     was causing it to sit on top of the description/keywords text once
-     their real (wrapped) height exceeded that guessed offset. Letting it
-     sit in-flow, full width, below the text removes the overlap for any
-     text length rather than one specific guessed height. */
   .process-hero-visual  {
     position: relative;
     top: auto;
     left: auto;
     right: auto;
     width: 100%;
-    height: 300px;
-    margin-top: 28px;
+    max-width: 520px;
+    margin: 0 auto;
+    height: auto;
     opacity: 1;
+
+  }
+  .process-hero-reference  {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
 
   }
   .process-section-heading  {
@@ -1043,6 +1061,27 @@
 }
 
 @media (max-width: 520px)  {
+  .process-page .process-hero  {
+    padding: calc(var(--nav-h) + 36px) 0 40px;
+
+  }
+  .process-hero-container  {
+    gap: 28px;
+
+  }
+  .process-title  {
+    font-size: clamp(38px, 12vw, 54px);
+
+  }
+  .process-hero-description  {
+    font-size: 14px;
+
+  }
+  .process-hero-visual  {
+    max-width: 100%;
+    margin-top: 0;
+
+  }
   .process-hero-keywords  {
     flex-wrap: wrap;
     gap: 10px;
@@ -1102,29 +1141,6 @@
 }
 
 @media (max-width: 800px)  {
-  .process-hero-container {
-    width:100%;
-    padding-left:5vw;
-    padding-right:5vw;
-
-  }
-  .process-hero-keywords {
-    flex-wrap:wrap;
-    gap:14px;
-
-  }
-  .process-hero-keywords > i {
-    display:none;
-
-  }
-  .process-hero-keyword-copy strong,.process-hero-keyword-copy em {
-    white-space:normal;
-
-  }
-  .process-hero-visual {
-    height:260px;
-
-  }
   .process-step-title {
     min-width:0;
 
@@ -1156,27 +1172,6 @@
 @media (max-width:520px)  {
   .process-page .section-space {
     padding:52px 0;
-
-  }
-  .process-hero,.process-hero-container {
-    min-height:0;
-
-  }
-  .process-hero-container {
-    padding-top:calc(var(--nav-h) + 38px);
-
-  }
-  .process-title {
-    font-size:clamp(46px,14vw,68px);
-
-  }
-  .process-hero-description {
-    font-size:14px;
-
-  }
-  .process-hero-visual {
-    height:220px;
-    margin-top:22px;
 
   }
   .process-step {

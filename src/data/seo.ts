@@ -171,10 +171,64 @@ export function caseStudyMeta(project: Project): PageMeta {
   return meta
 }
 
+export const aiCaseStudyMetas: PageMeta[] = [
+  {
+    path: '/ai-case-studies/ai-payroll-automation',
+    title: 'AI Payroll Automation Case Study | Software Garage',
+    description:
+      'How Software Garage engineers AI-assisted payroll workflows that process attendance, leave, half-days and salary calculations with less manual effort.',
+    keywords: [
+      'AI Payroll Automation',
+      'payroll AI',
+      'workforce intelligence',
+      'automated salary calculation',
+      'attendance automation',
+    ],
+    crumb: 'Business Operations',
+    type: 'article',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/ai-case-studies/schoolspine-ai',
+    title: 'SchoolSpine AI Case Study | Software Garage',
+    description:
+      'Explore how SchoolSpine AI empowers teachers with automated question generation, assessment structuring and answer keys while maintaining human control.',
+    keywords: [
+      'SchoolSpine AI',
+      'AI for education',
+      'assessment generation AI',
+      'question paper builder',
+      'teacher copilot',
+    ],
+    crumb: 'Education',
+    type: 'article',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/ai-case-studies/ai-hospital-roster',
+    title: 'AI Hospital Roster Case Study | Software Garage',
+    description:
+      'Discover how Software Garage engineers an AI roster agent that solves hospital shift constraints, rotation cycles, and leave requests into reviewable schedules.',
+    keywords: [
+      'AI Hospital Roster',
+      'healthcare AI scheduling',
+      'roster agent',
+      'nurse shift scheduling AI',
+      'constraint based roster',
+    ],
+    crumb: 'Healthcare Operations',
+    type: 'article',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+]
+
 /** Every indexable route, used for prerendering and the sitemap. */
 export function allRoutes(): PageMeta[] {
   const pages = Object.values(pageMeta).filter((p: PageMeta) => !p.noindex)
-  return [...pages, ...projects.map(caseStudyMeta)]
+  return [...pages, ...projects.map(caseStudyMeta), ...aiCaseStudyMetas]
 }
 
 const ORG_ID = `${SITE_URL}/#organization`
