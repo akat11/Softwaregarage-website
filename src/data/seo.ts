@@ -48,9 +48,9 @@ export interface PageMeta {
 export const pageMeta = {
   home: {
     path: '/',
-    title: 'Software Garage | Web, Mobile, SaaS & AI Development Studio',
+    title: 'Software Garage | AI & Web3 Product Engineering Studio',
     description:
-      'Software Garage builds, tests and scales digital products — web and mobile apps, SaaS, Web3, e-commerce, UI/UX, QA automation and AI solutions for businesses worldwide.',
+      'We build AI-powered products, intelligent agents, Web3 & blockchain solutions, SaaS platforms, and scalable digital experiences for ambitious businesses.',
     keywords: [
       'software development company',
       'web development company',
