@@ -4,20 +4,35 @@
    ========================================================================== */
 
 .demo-component-window {
+  --cs-lime: #a6d93a;
   position: relative;
   border-radius: 18px;
   background: #080b06;
   border: 1px solid rgba(183, 255, 0, 0.28);
   box-shadow:
     0 24px 70px rgba(0, 0, 0, 0.85),
-    0 0 35px rgba(183, 255, 0, 0.05);
+    0 0 24px rgba(166, 217, 58, 0.035);
   overflow: hidden;
-  margin-top: 36px;
+  margin-top: 56px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .demo-component-window:hover {
-  border-color: rgba(183, 255, 0, 0.4);
+  border-color: rgba(166, 217, 58, 0.3);
+}
+
+.demo-component-window-payroll .demo-main-layout {
+  min-height: 480px;
+}
+
+.demo-component-window-payroll .demo-pane-left {
+  padding: 20px;
+  gap: 12px;
+}
+
+.demo-component-window-payroll .demo-metrics-strip {
+  padding-top: 12px;
+  gap: 6px;
 }
 
 /* -------------------------------------------------------------
@@ -245,14 +260,14 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 0 18px rgba(183, 255, 0, 0.25);
+  box-shadow: 0 0 12px rgba(166, 217, 58, 0.12);
   transition: all 0.2s ease;
 }
 
 .demo-btn-action-primary:hover:not(:disabled) {
   opacity: 0.92;
   transform: translateY(-1px);
-  box-shadow: 0 0 24px rgba(183, 255, 0, 0.35);
+  box-shadow: 0 0 16px rgba(166, 217, 58, 0.18);
 }
 
 .demo-btn-action-primary:disabled {
@@ -360,7 +375,7 @@
 .demo-processing-fill {
   height: 100%;
   background: var(--cs-lime, #b7ff00);
-  box-shadow: 0 0 10px var(--cs-lime, #b7ff00);
+  box-shadow: 0 0 6px rgba(166, 217, 58, 0.5);
   transition: width 0.3s ease;
 }
 
@@ -771,7 +786,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 0 16px rgba(183, 255, 0, 0.25);
+  box-shadow: 0 0 12px rgba(166, 217, 58, 0.12);
   transition: all 0.2s ease;
 }
 
@@ -1032,8 +1047,8 @@
 
   .demo-mobile-payroll-card:hover,
   .demo-mobile-payroll-card:active {
-    background: rgba(183, 255, 0, 0.03);
-    border-color: rgba(183, 255, 0, 0.35);
+    background: rgba(183, 255, 0, 0.015);
+    border-color: rgba(183, 255, 0, 0.2);
   }
 
   .demo-mobile-card-top {
@@ -1122,8 +1137,8 @@
 
   .demo-mobile-staff-card:hover,
   .demo-mobile-staff-card:active {
-    background: rgba(183, 255, 0, 0.03);
-    border-color: rgba(183, 255, 0, 0.35);
+    background: rgba(183, 255, 0, 0.015);
+    border-color: rgba(183, 255, 0, 0.2);
   }
 
   .demo-mobile-recovery-pill {

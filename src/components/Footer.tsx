@@ -7,15 +7,6 @@ const companyLinks = [
   { label: 'AI Lab', to: '/ai-lab' },
 ]
 
-const solutionLinks = [
-  { label: 'AI Development', to: '/ai-development-company' },
-  { label: 'AI Agents', to: '/ai-agent-development' },
-  { label: 'SaaS Platforms', to: '/saas-development' },
-  { label: 'Healthcare Tech', to: '/healthcare-software-development' },
-  { label: 'EdTech Systems', to: '/edtech-development' },
-  { label: 'QA Automation', to: '/qa-automation-services' },
-]
-
 const resourceLinks = [
   { label: 'Process', to: '/process' },
   { label: 'Industries', to: '/industries' },
@@ -60,26 +51,6 @@ export default function Footer() {
             </div>
             <nav className="footer-links" aria-label="Company navigation">
               {companyLinks.map((item) => (
-                <Link key={item.label} to={item.to} data-cursor="expand">
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div className="footer-menu-block">
-            <div className="footer-menu-label">
-              <span className="footer-menu-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-                  <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-                  <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-                </svg>
-              </span>
-              SOLUTIONS
-            </div>
-            <nav className="footer-links" aria-label="Solutions navigation">
-              {solutionLinks.map((item) => (
                 <Link key={item.label} to={item.to} data-cursor="expand">
                   {item.label}
                 </Link>

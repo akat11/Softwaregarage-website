@@ -253,7 +253,7 @@ export default function CaseStudyInteractiveDemo({ slug }: Props) {
   return (
     <div
       ref={containerRef}
-      className="demo-component-window reveal"
+      className={`demo-component-window${slug === 'ai-payroll-automation' ? ' demo-component-window-payroll' : ''} reveal`}
       onClick={recordUserInteraction}
     >
       {/* 1. Window Chrome Topbar */}

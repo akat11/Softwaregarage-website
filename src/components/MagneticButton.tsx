@@ -13,6 +13,7 @@ interface Props {
   type?: 'button' | 'submit'
   disabled?: boolean
   cursorLabel?: string
+  magnetic?: boolean
 }
 
 export default function MagneticButton({
@@ -24,6 +25,7 @@ export default function MagneticButton({
   type = 'button',
   disabled,
   cursorLabel,
+  magnetic = true,
 }: Props) {
   const ref = useRef<HTMLElement | null>(null)
   const reducedMotion = usePrefersReducedMotion()
@@ -32,7 +34,7 @@ export default function MagneticButton({
     () => {
       const el = ref.current
 
-      if (!el || reducedMotion) return
+      if (!el || reducedMotion || !magnetic) return
 
       const xTo = gsap.quickTo(el, 'x', {
         duration: 0.4,
@@ -71,7 +73,7 @@ export default function MagneticButton({
       }
     },
     {
-      dependencies: [reducedMotion],
+      dependencies: [magnetic, reducedMotion],
     }
   )
 

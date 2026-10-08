@@ -22,13 +22,11 @@ import {
   PenTool,
   ShieldAlert,
   Cpu,
-  ChevronRight,
-  ChevronLeft,
   ShieldCheck,
   BarChart3,
   Bot,
 } from 'lucide-react'
-import MagneticButton from '@/components/MagneticButton'
+import AICaseStudyCTA from '@/components/AICaseStudyCTA'
 import Seo from '@/components/Seo'
 import { getAiCaseStudyMeta } from '@/data/seo'
 import { aiCaseStudiesData, type CaseStudyData } from '@/data/aiCaseStudies'
@@ -538,32 +536,45 @@ export default function AICaseStudy() {
               <p className="cs-section-body reveal">{data.problem.body}</p>
             </div>
 
-            {/* 3D Luminous Tech Book / Circuit Graphic */}
-            <div className="cs-problem-visual-wrap reveal">
-              <svg className="cs-circuit-svg" viewBox="0 0 400 240" fill="none">
-                <circle cx="200" cy="120" r="85" stroke="rgba(183, 255, 0, 0.15)" strokeWidth="1" />
-                <circle
-                  cx="200"
-                  cy="120"
-                  r="60"
-                  stroke="rgba(183, 255, 0, 0.25)"
-                  strokeWidth="1"
-                  strokeDasharray="4 4"
+            {/* Problem visual */}
+            <div className={`cs-problem-visual-wrap reveal${data.slug === 'ai-payroll-automation' ? ' cs-problem-visual-image' : ''}`}>
+              {data.slug === 'ai-payroll-automation' ? (
+                <img
+                  className="cs-problem-image"
+                  src="/ai-payroll-problem.jpg"
+                  alt="Payroll engine connecting attendance, leave records, shift schedules and salary rules to payroll outputs"
+                  width={652}
+                  height={357}
+                  loading="lazy"
+                  decoding="async"
                 />
-                <circle cx="200" cy="120" r="105" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="1" />
-                <path d="M40 120 H140" stroke="rgba(183, 255, 0, 0.3)" strokeWidth="1" />
-                <path d="M260 120 H360" stroke="rgba(183, 255, 0, 0.3)" strokeWidth="1" />
-                <circle cx="60" cy="120" r="4" fill="#b7ff00" />
-                <circle cx="340" cy="120" r="4" fill="#b7ff00" />
-              </svg>
+              ) : (
+                <>
+                  <svg className="cs-circuit-svg" viewBox="0 0 400 240" fill="none">
+                    <circle cx="200" cy="120" r="85" stroke="rgba(183, 255, 0, 0.15)" strokeWidth="1" />
+                    <circle
+                      cx="200"
+                      cy="120"
+                      r="60"
+                      stroke="rgba(183, 255, 0, 0.25)"
+                      strokeWidth="1"
+                      strokeDasharray="4 4"
+                    />
+                    <circle cx="200" cy="120" r="105" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="1" />
+                    <path d="M40 120 H140" stroke="rgba(183, 255, 0, 0.3)" strokeWidth="1" />
+                    <path d="M260 120 H360" stroke="rgba(183, 255, 0, 0.3)" strokeWidth="1" />
+                    <circle cx="60" cy="120" r="4" fill="#b7ff00" />
+                    <circle cx="340" cy="120" r="4" fill="#b7ff00" />
+                  </svg>
 
-              <div className="cs-tech-symbol-hub">
-                <div className="cs-center-cube">
-                  {data.slug === 'schoolspine-ai' && <BookOpen size={34} />}
-                  {data.slug === 'ai-payroll-automation' && <Clock size={34} />}
-                  {data.slug === 'ai-hospital-roster' && <HeartPulse size={34} />}
-                </div>
-              </div>
+                  <div className="cs-tech-symbol-hub">
+                    <div className="cs-center-cube">
+                      {data.slug === 'schoolspine-ai' && <BookOpen size={34} />}
+                      {data.slug === 'ai-hospital-roster' && <HeartPulse size={34} />}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -602,7 +613,19 @@ export default function AICaseStudy() {
             <p className="cs-section-body reveal">{data.intelligenceLayer.body}</p>
           </div>
 
-          {/* Right: Architecture Node Graph */}
+          {data.slug === 'ai-payroll-automation' ? (
+            <figure className="cs-solution-image-wrap reveal">
+              <img
+                src="/ai-payroll-solution.jpg"
+                alt="AI payroll engine processing attendance, leave, calendar and salary rules into reviewed payroll outputs"
+                width={1200}
+                height={789}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          ) : (
+          /* Right: Architecture Node Graph */
           <div className="cs-solution-graph-wrap reveal">
             {/* Top Inputs */}
             <div className="cs-node-inputs-row">
@@ -737,6 +760,7 @@ export default function AICaseStudy() {
               </div>
             </div>
           </div>
+            )}
         </div>
       </section>
 
@@ -920,75 +944,14 @@ export default function AICaseStudy() {
         </div>
       </section>
 
-      {/* SECTION 9: FINAL CTA (CINEMATIC BOX WITH HOLOGRAPHIC CUBE) */}
-      <section className="cs-section">
-        <div className="container">
-          <div className="cs-cta-box-cinema reveal">
-            <div className="cs-cta-split">
-              {/* Left 3D Hologram Cube Wireframe */}
-              <div className="cs-cta-holo-cube">
-                <div className="cs-holo-wireframe">
-                  <div className="cs-holo-core" />
-                </div>
-              </div>
-
-              {/* Right CTA Text & Actions */}
-              <div className="cs-cta-content">
-                <span className="cs-cta-eyebrow">LET'S BUILD TOGETHER</span>
-                <h2>{data.finalCta.headline}</h2>
-
-                <p className="cs-cta-subtext">
-                  We don't start with AI. We start with the problem. Then we engineer the
-                  intelligence around it.
-                </p>
-
-                <div className="cs-cta-btn-row">
-                  <MagneticButton>
-                    <Link to={data.finalCta.primaryBtn.to} className="cs-btn-cta-lime">
-                      <span>{data.finalCta.primaryBtn.label}</span>
-                      <ArrowRight size={14} />
-                    </Link>
-                  </MagneticButton>
-
-                  <MagneticButton>
-                    <Link to={data.finalCta.secondaryBtn.to} className="cs-btn-cta-dark">
-                      <span>{data.finalCta.secondaryBtn.label}</span>
-                    </Link>
-                  </MagneticButton>
-                </div>
-
-                <div className="cs-cta-handwritten">
-                  <span>Your workflow. Our AI expertise. Real impact.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION 9: SHARED AI CTA */}
+      <AICaseStudyCTA />
 
       {/* SECTION 10: RELATED CASE STUDIES */}
       <section className="cs-section">
         <div className="container">
           <div className="cs-section-head-top">
             <span className="cs-pill-badge">RELATED CASE STUDIES</span>
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <button
-                type="button"
-                className="cs-btn-subtle"
-                style={{ padding: '6px 10px', borderRadius: '50%' }}
-                aria-label="Previous"
-              >
-                <ChevronLeft size={14} />
-              </button>
-              <button
-                type="button"
-                className="cs-btn-subtle"
-                style={{ padding: '6px 10px', borderRadius: '50%' }}
-                aria-label="Next"
-              >
-                <ChevronRight size={14} />
-              </button>
-            </div>
           </div>
           <h2 className="reveal">Related AI Case Studies</h2>
 
@@ -996,6 +959,19 @@ export default function AICaseStudy() {
             {data.relatedSlugs.map((relSlug) => {
               const relData = aiCaseStudiesData[relSlug]
               if (!relData) return null
+              const previewImage =
+                relSlug === 'ai-hospital-roster'
+                  ? {
+                      src: '/ai-hospital-roster-preview.jpg',
+                      alt: 'Hospital Roster Engine showing staff shift schedules',
+                    }
+                  : relSlug === 'schoolspine-ai'
+                    ? {
+                        src: '/ai-schoolspine-question-generator.jpg',
+                        alt: 'SchoolSpine AI question generator for teachers',
+                      }
+                    : undefined
+
               return (
                 <Link
                   key={relSlug}
@@ -1014,20 +990,28 @@ export default function AICaseStudy() {
                     </div>
                   </div>
 
-                  <div className="cs-rel-preview-side">
-                    <div className="cs-mini-dashboard-preview">
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '9px', fontFamily: 'var(--cs-mono)', color: 'var(--cs-lime)' }}>
-                          {relSlug === 'schoolspine-ai' && 'SchoolSpine Builder'}
-                          {relSlug === 'ai-payroll-automation' && 'Payroll Control Center'}
-                          {relSlug === 'ai-hospital-roster' && 'Hospital Roster Engine'}
-                        </span>
-                        <span className="cs-pulse-dot" />
+                  <div className={`cs-rel-preview-side${previewImage ? ' has-preview-image' : ''}`}>
+                    {previewImage ? (
+                      <img
+                        src={previewImage.src}
+                        alt={previewImage.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div className="cs-mini-dashboard-preview">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '9px', fontFamily: 'var(--cs-mono)', color: 'var(--cs-lime)' }}>
+                            {relSlug === 'schoolspine-ai' && 'SchoolSpine Builder'}
+                            {relSlug === 'ai-payroll-automation' && 'Payroll Control Center'}
+                          </span>
+                          <span className="cs-pulse-dot" />
+                        </div>
+                        <div style={{ height: '2px', background: 'rgba(183, 255, 0, 0.2)', width: '60%' }} />
+                        <div style={{ height: '35px', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--cs-border)' }} />
+                        <div style={{ height: '35px', borderRadius: '4px', background: 'rgba(183, 255, 0, 0.05)', border: '1px solid var(--cs-border-lime)' }} />
                       </div>
-                      <div style={{ height: '2px', background: 'rgba(183, 255, 0, 0.2)', width: '60%' }} />
-                      <div style={{ height: '35px', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--cs-border)' }} />
-                      <div style={{ height: '35px', borderRadius: '4px', background: 'rgba(183, 255, 0, 0.05)', border: '1px solid var(--cs-border-lime)' }} />
-                    </div>
+                    )}
                   </div>
                 </Link>
               )

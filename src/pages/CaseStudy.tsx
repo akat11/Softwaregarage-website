@@ -29,7 +29,7 @@ export default function CaseStudy() {
   const next = projects[(currentIndex + 1) % projects.length]
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="case-study-page">
       <Seo meta={caseStudyMeta(project)} project={project} />
 
       <section className="case-hero">

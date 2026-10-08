@@ -91,12 +91,6 @@ export interface CaseStudyData {
     body?: string
     cards: CaseStudyCard[]
   }
-  finalCta: {
-    headline: string
-    highlightLine?: string
-    primaryBtn: { label: string; to: string }
-    secondaryBtn: { label: string; to: string }
-  }
   relatedSlugs: string[]
   seo: {
     title: string
@@ -313,11 +307,6 @@ export const aiCaseStudiesData: Record<string, CaseStudyData> = {
         },
       ],
     },
-    finalCta: {
-      headline: 'What if your payroll team stopped calculating and started reviewing?',
-      primaryBtn: { label: 'Build an AI Workflow →', to: '/contact' },
-      secondaryBtn: { label: 'Talk to Software Garage →', to: '/contact' },
-    },
     relatedSlugs: ['schoolspine-ai', 'ai-hospital-roster'],
     seo: {
       title: 'AI Payroll Automation Case Study | Software Garage',
@@ -527,11 +516,6 @@ export const aiCaseStudiesData: Record<string, CaseStudyData> = {
           icon: BookOpen,
         },
       ],
-    },
-    finalCta: {
-      headline: 'What should your school system be able to understand next?',
-      primaryBtn: { label: 'Build AI for Education →', to: '/contact' },
-      secondaryBtn: { label: 'Talk to Software Garage →', to: '/contact' },
     },
     relatedSlugs: ['ai-payroll-automation', 'ai-hospital-roster'],
     seo: {
@@ -777,12 +761,6 @@ export const aiCaseStudiesData: Record<string, CaseStudyData> = {
           icon: ShieldAlert,
         },
       ],
-    },
-    finalCta: {
-      headline: 'Have a workflow with too many rules?',
-      highlightLine: "That's exactly where AI becomes interesting.",
-      primaryBtn: { label: 'Build Your AI Agent →', to: '/contact' },
-      secondaryBtn: { label: 'Talk to Our AI Team →', to: '/contact' },
     },
     relatedSlugs: ['ai-payroll-automation', 'schoolspine-ai'],
     seo: {

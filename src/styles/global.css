@@ -263,7 +263,7 @@ nav.site-nav.scrolled {
   display:flex;
   gap:34px;
   font-family:var(--mono);
-  font-size:13px;
+  font-size:12px;
   letter-spacing:.1em;
   text-transform:uppercase;
 
@@ -4304,6 +4304,38 @@ section.tight {
 }
 
 /* Case study */
+.case-study-page {
+  --lime:#b7ff00;
+
+}
+
+.case-study-page .final-cta.with-rocket .btn-primary {
+  border:1px solid rgba(183, 255, 0, 0.9);
+  box-shadow:0 0 0 1px rgba(183, 255, 0, 0.25), 0 0 20px rgba(183, 255, 0, 0.18);
+
+}
+
+.case-study-page .final-cta.with-rocket .btn-primary,
+.case-study-page .final-cta.with-rocket .btn-secondary {
+  background:#b7ff00;
+  border:1px solid #b7ff00;
+  border-radius:999px;
+  color:#050505;
+  font-family:var(--mono);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.05em;
+  padding:13px 28px;
+  text-transform:uppercase;
+
+}
+
+.case-study-page .final-cta.with-rocket .btn-primary:hover,
+.case-study-page .final-cta.with-rocket .btn-secondary:hover {
+  box-shadow:0 0 24px rgba(183, 255, 0, 0.35);
+
+}
+
 .case-hero {
   padding:calc(var(--nav-h) + 60px) 0 80px;
   border-bottom:1px solid var(--line);
