@@ -53,7 +53,7 @@ export default function Services() {
               alt="SG platform connecting AI, web, mobile, e-commerce, SaaS, API, QA and Web3 services"
               width="1649"
               height="954"
-              fetchPriority="high"
+              loading="eager"
             />
           </div>
         </div>

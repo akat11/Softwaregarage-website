@@ -1,0 +1,18 @@
+# Software Garage Netlify Redirects & Canonical Routing
+
+# 301 Permanent Redirects for legacy / consolidated discovered URLs
+/work/monro                       /work/monro-casino                    301!
+/work/lunchpad                    /work                                 301!
+/work/spaarkd                     /work/flowstate                       301!
+/work/schoolspine                 /ai-case-studies/schoolspine-ai       301!
+/ai-agent-development             /ai-lab                               301!
+/ai-development-company           /ai-lab                               301!
+/ecommerce-development            /services                             301!
+/edtech-development               /industries                           301!
+/healthcare-software-development  /industries                           301!
+/saas-development                 /services                             301!
+/software-testing-services        /services                             301!
+/qa-automation-services           /services                             301!
+
+# SPA Fallback for client-side routing
+/*    /index.html   200

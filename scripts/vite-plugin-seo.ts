@@ -32,12 +32,14 @@ function injectHead(html: string, meta: PageMeta): string {
   return html.replace(MARKER, renderHead(meta))
 }
 
+export { injectHead, renderHead, escapeAttr }
+
 /** `/` → index.html, `/services` → services.html, `/work/x` → work/x.html */
-function routeFile(routePath: string): string {
+export function routeFile(routePath: string): string {
   return routePath === '/' ? 'index.html' : `${routePath.slice(1)}.html`
 }
 
-function sitemap(routes: PageMeta[]): string {
+export function sitemap(routes: PageMeta[]): string {
   const lastmod = new Date().toISOString().slice(0, 10)
   const urls = routes
     .map((r) => {
@@ -57,7 +59,7 @@ function sitemap(routes: PageMeta[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
 }
 
-const robots = `User-agent: *
+export const robots = `User-agent: *
 Allow: /
 Disallow: /404
 
@@ -66,10 +68,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 /**
  * Dev: fills the <!--seo--> marker with home-page tags.
- * Build: writes one HTML file per route with that route's tags baked in, so
- * crawlers and link-preview bots that don't run JS still get correct meta.
- * Also writes 404.html (served by static hosts for unknown URLs, with a real
- * 404 status), sitemap.xml and robots.txt.
+ * Build: writes route metadata and static assets. Skips when SSR build runs.
  */
 export default function seoPlugin(): Plugin {
   let config: ResolvedConfig
@@ -86,9 +85,12 @@ export default function seoPlugin(): Plugin {
       },
     },
     closeBundle() {
-      if (config.command !== 'build') return
+      if (config.command !== 'build' || config.build.ssr || process.env.PRERENDER_RUNNING === 'true') return
       const outDir = path.resolve(config.root, config.build.outDir)
-      const template = fs.readFileSync(path.join(outDir, 'index.html'), 'utf8')
+      const indexFile = path.join(outDir, 'index.html')
+      if (!fs.existsSync(indexFile)) return
+
+      const template = fs.readFileSync(indexFile, 'utf8')
       const routes = allRoutes()
 
       const write = (file: string, content: string) => {
@@ -108,7 +110,7 @@ export default function seoPlugin(): Plugin {
       write('sitemap.xml', sitemap(routes))
       write('robots.txt', robots)
 
-      config.logger.info(`[seo] prerendered ${routes.length} routes + 404.html, sitemap.xml, robots.txt`)
+      config.logger.info(`[seo] prerendered fallback ${routes.length} routes + 404.html, sitemap.xml, robots.txt`)
     },
   }
 }

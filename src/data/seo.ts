@@ -67,18 +67,19 @@ export const pageMeta = {
   },
   aiLab: {
     path: '/ai-lab',
-    title: 'AI Lab — Custom AI Agents & Workflow Automation | Software Garage',
+    title: 'AI Agent Development & Custom AI Solutions | Software Garage AI Lab',
     description:
-      'Explore Software Garage AI Lab: production-ready AI scheduling agents, payroll intelligence workflows, automated assessment generators, and custom copilots.',
+      'Software Garage AI Lab builds autonomous AI agents, enterprise RAG workflows, payroll intelligence systems, and clinical scheduling copilots for modern businesses.',
     keywords: [
-      'AI solutions',
-      'AI agents',
-      'AI automation',
-      'RAG systems',
+      'AI Agent Development',
       'AI development company',
+      'AI agents',
+      'autonomous agents',
+      'AI solutions',
       'workflow automation',
-      'AI scheduling agent',
+      'RAG systems',
       'AI payroll workflow',
+      'healthcare AI scheduling',
     ],
     image: '/journey-ai.png',
     imageAlt: 'Software Garage AI Lab neural intelligence and autonomous workflows',
@@ -91,7 +92,15 @@ export const pageMeta = {
     title: 'Software Development & AI Engineering Services | Software Garage',
     description:
       'End-to-end product engineering services: AI automation, full-stack web development, mobile applications, SaaS architecture, QA automation, and Web3 solutions.',
-    keywords: services.map((s) => s.title),
+    keywords: [
+      ...services.map((s) => s.title),
+      'AI Agent Development',
+      'AI Development Company',
+      'E-commerce Development',
+      'EdTech Development',
+      'Healthcare Software Development',
+      'Custom Software Development',
+    ],
     image: '/services-hero-scene.png',
     imageAlt: 'Software Garage digital engineering and AI services overview',
     crumb: 'Services',
@@ -114,7 +123,7 @@ export const pageMeta = {
     path: '/industries',
     title: 'Industry Solutions — SaaS, FinTech, Healthcare & EdTech | Software Garage',
     description:
-      'Specialized digital solutions engineered for Education, Healthcare, Gaming, E-Commerce, Web3, Logistics, and Enterprise operations worldwide.',
+      'Specialized digital engineering for Education (EdTech), Healthcare, FinTech, E-Commerce, Web3, SaaS, and Enterprise Automation worldwide.',
     image: '/industries.webp',
     imageAlt: 'Industries engineered by Software Garage',
     crumb: 'Industries',
@@ -368,6 +377,9 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
       url,
       image: imageUrl,
       inLanguage: 'en',
+      datePublished: '2026-01-15T08:00:00+00:00',
+      dateModified: '2026-10-31T12:00:00+00:00',
+      mainEntityOfPage: url,
       author: { '@id': ORG_ID },
       publisher: { '@id': ORG_ID },
       about: {
@@ -395,6 +407,18 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
         name: item.name,
         item: absoluteUrl(item.path),
       })),
+    })
+  }
+
+  if (meta.path === '/ai-lab') {
+    graph.push({
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: 'AI Agent Development & Enterprise Automation',
+      description: meta.description,
+      provider: { '@id': ORG_ID },
+      areaServed: 'Worldwide',
+      serviceType: 'Artificial Intelligence & Agent Engineering',
     })
   }
 
@@ -439,6 +463,9 @@ export function jsonLd(meta: PageMeta, project?: Project): object {
       genre: project.type,
       keywords: project.technology.join(', '),
       image: project.image ? absoluteUrl(project.image) : SITE.ogImage,
+      datePublished: '2026-02-01T08:00:00+00:00',
+      dateModified: '2026-10-31T12:00:00+00:00',
+      mainEntityOfPage: url,
       creator: { '@id': ORG_ID },
       url,
     })

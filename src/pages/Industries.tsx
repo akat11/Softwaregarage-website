@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import {
   BarChart3,
   Bot,
@@ -36,29 +37,29 @@ const icons = [
 ]
 
 const descriptions = [
-  'Scalable SaaS platforms built for performance, reliability and long-term growth.',
-  'Secure and compliant fintech solutions that power modern financial experiences.',
-  'Decentralized applications and platforms for the next generation of the internet.',
-  'Conversion-focused e-commerce experiences that drive sales and customer loyalty.',
-  'Engaging digital platforms that empower learners and simplify education.',
-  'HIPAA-ready solutions that improve patient care and operational efficiency.',
-  'Smart logistics solutions that optimize operations and real-time visibility.',
-  'Immersive gaming and interactive experiences that engage and retain players.',
-  'Digital solutions that connect, simplify and accelerate real estate journeys.',
-  'Workflow automation and custom tools that streamline operations and boost productivity.',
+  'Scalable SaaS platforms built for performance, reliability and long-term multi-tenant growth.',
+  'Secure and compliant fintech solutions that power modern financial transactions and reporting.',
+  'Decentralized applications, token launchpads, and audited Web3 platforms for the decentralized web.',
+  'Conversion-focused headless e-commerce experiences that accelerate online retail sales and loyalty.',
+  'Engaging EdTech platforms, automated school administration, and AI teacher copilots that simplify education.',
+  'HIPAA-ready healthcare applications and constraint-solving roster agents that improve patient care.',
+  'Smart logistics solutions that optimize route operations, dispatching, and real-time fleet visibility.',
+  'Immersive gaming interfaces and high-concurrency payment gateway integrations built for engagement.',
+  'Digital marketplace platforms that connect, simplify, and accelerate commercial real estate and business sales.',
+  'Workflow automation and autonomous AI agents that eliminate operational bottlenecks and boost productivity.',
 ]
 
 const useCases = [
-  'Dashboards, CRM, Analytics, Collaboration Tools',
-  'Digital Banking, Payments, Wallets, Lending, Trading Platforms',
-  'DeFi, DApps, NFT Marketplaces, Wallets, DAO Platforms',
-  'Online Stores, Marketplaces, Subscription Platforms, D2C Brands',
-  'LMS, Online Courses, Student Portals, Assessment Systems',
-  'Telehealth, Patient Portals, EHR, Appointment Scheduling',
+  'Dashboards, Multi-tenancy, CRM, Analytics, Collaboration Tools',
+  'Digital Banking, Payments, Wallets, Lending, Transaction QA',
+  'DeFi, DApps, Token Launchpads, Smart Contracts, Web3 Wallets',
+  'Online Stores, Headless Commerce, Subscription Platforms, Marketplaces',
+  'LMS, School Management, Question Paper Generators, Student Portals',
+  'Telehealth, Clinical Roster Agents, Patient Portals, Appointment Scheduling',
   'Route Optimization, Fleet Tracking, Warehouse Management, Supply Chain',
-  'Game Platforms, Multiplayer Systems, Leaderboards, In-game Economy',
-  'Property Listings, CRM, Virtual Tours, Lease Management',
-  'ERP, Workflow Automation, Reporting Tools, Internal Dashboards',
+  'Game Platforms, Payment Gateways, Leaderboards, In-game Economy',
+  'Business Broker Listings, Franchise Directories, Search & Filters',
+  'AI Payroll Automation, Biometric Reconciliation, Reporting Copilots',
 ]
 
 const proof = [
@@ -78,22 +79,22 @@ const advantages = [
   {
     icon: Target,
     title: 'Industry Expertise',
-    text: 'Deep understanding of specific industry challenges and opportunities.',
+    text: 'Deep understanding of specific industry challenges, regulatory requirements, and technical opportunities.',
   },
   {
     icon: ShieldCheck,
     title: 'Tailored Solutions',
-    text: 'Custom-built solutions aligned with your business goals and users.',
+    text: 'Custom-built software architectures aligned directly with your business goals and end-user workflows.',
   },
   {
     icon: BarChart3,
     title: 'Measurable Impact',
-    text: 'We deliver solutions that drive growth, efficiency and real results.',
+    text: 'We deliver production-ready software solutions that drive operational growth, efficiency, and revenue.',
   },
   {
     icon: UsersRound,
     title: 'End-to-end Partner',
-    text: 'From strategy to support, we’re with you at every step.',
+    text: 'From technical discovery to continuous scaling and QA automation, we are with you at every stage.',
   },
 ]
 
@@ -119,8 +120,8 @@ export default function Industries() {
               </h1>
 
               <p>
-                We design, build and scale digital products for industries
-                that shape the future.
+                We design, engineer and scale mission-critical digital products
+                for industries that shape the modern economy.
               </p>
             </div>
 
@@ -128,7 +129,7 @@ export default function Industries() {
               <img
                 className="industry-hero-image"
                 src="/industry-sg-hero.webp"
-                alt="Software Garage neon SG cube"
+                alt="Software Garage neon SG cube industry engineering visual"
               />
             </div>
           </div>
@@ -154,6 +155,7 @@ export default function Industries() {
                 <article
                   className="industry-row"
                   key={industry.slug}
+                  id={industry.slug}
                 >
                   <span className="industry-icon">
                     <Icon size={21} strokeWidth={1.45} />
@@ -167,6 +169,26 @@ export default function Industries() {
                     <b>USE CASES</b>
                     <span>{useCases[index]}</span>
                   </div>
+
+                  {industry.caseStudyLink && (
+                    <div style={{ marginTop: '16px' }}>
+                      <Link
+                        to={industry.caseStudyLink.url}
+                        style={{
+                          color: 'var(--lime)',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          textDecoration: 'none',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                        }}
+                        data-cursor="expand"
+                      >
+                        FEATURED WORK: {industry.caseStudyLink.label} →
+                      </Link>
+                    </div>
+                  )}
                 </article>
               )
             })}
@@ -202,7 +224,7 @@ export default function Industries() {
             <span>LET&apos;S BUILD IT.</span>
           </>
         }
-        description="Tell us about your idea and we'll help turn it into a solid product people can use, trust and remember."
+        description="Tell us about your industry requirements and we'll help architect a scalable, reliable product people can use and trust."
         secondaryLabel="TALK TO THE GARAGE"
       />
     </div>

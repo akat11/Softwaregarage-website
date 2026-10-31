@@ -19,7 +19,7 @@ import { services } from '@/data/services'
 import { useScrollReveals } from '@/hooks/useScrollReveals'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
-const capabilityMarquee = ['WEB DEVELOPMENT', 'MOBILE APPS', 'SAAS', 'AI', 'QA AUTOMATION', 'E-COMMERCE', 'UI/UX', 'DIGITAL PRODUCTS']
+const capabilityMarquee = ['WEB DEVELOPMENT', 'MOBILE APPS', 'SAAS', 'AI AGENTS', 'QA AUTOMATION', 'E-COMMERCE', 'UI/UX', 'DIGITAL PRODUCTS']
 const stackMarquee = ['REACT', 'NEXT.JS', 'NODE.JS', 'TYPESCRIPT', 'PYTHON', 'FLUTTER', 'AWS', 'DOCKER']
 const industryMarquee = ['SAAS', 'FINTECH', 'E-COMMERCE', 'EDUCATION', 'HEALTHCARE', 'LOGISTICS', 'GAMING', 'WEB3', 'REAL ESTATE', 'AUTOMATION']
 
@@ -50,7 +50,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" id="home">
         <div className="home-hero-art" aria-hidden="true">
-          <img src="/herosection.webp" alt="" />
+          <img src="/herosection.webp" alt="Software Garage digital engineering studio abstract 3D visual" />
         </div>
         <HeroGlow />
         <div className="hero-inner">
@@ -62,9 +62,9 @@ export default function Home() {
             <span className="line"><span className="text-lime">FORWARD.</span></span>
           </h1>
           <p className="hero-copy">
-            From powerful web platforms to scalable mobile apps,<br />
+            From powerful web platforms to scalable mobile apps and autonomous AI agents,<br />
             we design, build and deliver digital solutions that<br />
-            create impact and accelerate growth.
+            create impact and accelerate business growth.
           </p>
           <div className="hero-ctas">
             <MagneticButton to="/work" variant="primary">VIEW ALL PROJECTS →</MagneticButton>
@@ -145,6 +145,11 @@ export default function Home() {
           />
         </div>
         <Marquee items={industryMarquee} duration={44} />
+        <div style={{ textAlign: 'center', marginTop: '32px' }}>
+          <MagneticButton to="/industries" variant="secondary">
+            EXPLORE ALL DOMAINS →
+          </MagneticButton>
+        </div>
       </section>
 
       {/* WHY */}
@@ -214,11 +219,16 @@ export default function Home() {
           <div className="ai-grid">
             <div className="ai-list">
               <div>AI-Powered Applications</div>
-              <div>AI Integrations</div>
-              <div>AI Assistants</div>
-              <div>Business Automation</div>
-              <div>Intelligent Workflows</div>
+              <div>AI Integrations &amp; Assistants</div>
+              <div>Autonomous Agents</div>
+              <div>Business Automation Workflows</div>
+              <div>Intelligent Document Processing</div>
               <div>AI-Assisted Testing</div>
+              <div style={{ paddingTop: '16px' }}>
+                <MagneticButton to="/ai-lab" variant="primary">
+                  EXPLORE OUR AI LAB →
+                </MagneticButton>
+              </div>
             </div>
             <AINetwork />
           </div>
@@ -230,6 +240,11 @@ export default function Home() {
         <div className="container">
           <SectionHeading eyebrow="08 / PROCESS" title="HOW WE WORK" />
           <ProcessTimeline />
+          <div style={{ textAlign: 'center', marginTop: '36px' }}>
+            <MagneticButton to="/process" variant="secondary">
+              LEARN ABOUT OUR 5-STAGE PROCESS →
+            </MagneticButton>
+          </div>
         </div>
       </section>
 

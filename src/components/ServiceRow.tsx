@@ -60,8 +60,7 @@ export default function ServiceRow({ service }: Props) {
           <img
             className="service-image"
             src={service.image}
-            alt=""
-            aria-hidden="true"
+            alt={`${service.title} architecture, capabilities and engineering workflows by Software Garage`}
             loading="lazy"
             decoding="async"
           />

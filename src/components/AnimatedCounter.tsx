@@ -40,7 +40,7 @@ export default function AnimatedCounter({ value, suffix = '+', label }: Props) {
 
   return (
     <div className="stat">
-      <div className="num" ref={numRef}>0</div>
+      <div className="num" ref={numRef}>{value}{suffix}</div>
       <div className="lbl">{label}</div>
     </div>
   )

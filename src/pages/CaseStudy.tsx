@@ -115,6 +115,46 @@ export default function CaseStudy() {
         </div>
       </div>
 
+      {/* Challenge & Engineering Approach */}
+      {(project.challenge || project.approach) && (
+        <div className="container">
+          <div
+            className="case-challenge-section"
+            style={{
+              paddingTop: '60px',
+              paddingBottom: '60px',
+              borderTop: '1px solid var(--line)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '40px',
+            }}
+          >
+            {project.challenge && (
+              <div>
+                <div className="eyebrow" style={{ color: 'var(--lime)' }}>THE CHALLENGE</div>
+                <h3 style={{ fontSize: '20px', marginTop: '12px', marginBottom: '16px', color: 'var(--text)' }}>
+                  Problem Context &amp; Requirements
+                </h3>
+                <p style={{ color: 'var(--text-dim)', fontSize: '15px', lineHeight: '1.7' }}>
+                  {project.challenge}
+                </p>
+              </div>
+            )}
+            {project.approach && (
+              <div>
+                <div className="eyebrow" style={{ color: 'var(--lime)' }}>ENGINEERING APPROACH</div>
+                <h3 style={{ fontSize: '20px', marginTop: '12px', marginBottom: '16px', color: 'var(--text)' }}>
+                  Architecture &amp; Implementation
+                </h3>
+                <p style={{ color: 'var(--text-dim)', fontSize: '15px', lineHeight: '1.7' }}>
+                  {project.approach}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Key Features */}
       {project.keyFeatures && project.keyFeatures.length > 0 && (
         <div className="container">
@@ -303,6 +343,28 @@ export default function CaseStudy() {
             </div>
           </div>
         )}
+
+      {/* Outcome & Impact */}
+      {project.outcome && (
+        <div className="container">
+          <div
+            className="case-outcome-section"
+            style={{
+              paddingTop: '60px',
+              paddingBottom: '60px',
+              borderTop: '1px solid var(--line)',
+            }}
+          >
+            <div className="eyebrow" style={{ color: 'var(--lime)' }}>OUTCOME &amp; IMPACT</div>
+            <h3 style={{ fontSize: '22px', marginTop: '14px', marginBottom: '16px', color: 'var(--text)' }}>
+              Business Value &amp; Production Results
+            </h3>
+            <p style={{ color: 'var(--text-dim)', fontSize: '15px', lineHeight: '1.7', maxWidth: '800px' }}>
+              {project.outcome}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Next Project */}
       <section className="tight">

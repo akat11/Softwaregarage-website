@@ -9,10 +9,16 @@ if (!rootEl) {
   throw new Error('Root element #root not found in index.html')
 }
 
-ReactDOM.createRoot(rootEl).render(
+const app = (
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>
 )
+
+if (rootEl.hasChildNodes()) {
+  ReactDOM.hydrateRoot(rootEl, app)
+} else {
+  ReactDOM.createRoot(rootEl).render(app)
+}

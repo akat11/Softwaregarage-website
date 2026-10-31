@@ -9,7 +9,7 @@ export default function CountUpStat({
   suffix?: string
   duration?: number
 }) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(value)
   const ref = useRef<HTMLSpanElement>(null)
   const started = useRef(false)
 
